@@ -18,7 +18,7 @@ interface Repository {
 const GET_USER_REPOS = gql`
   query GetUserRepositories($username: String!) {
     user(login: $username) {
-      repositories(first: 10, orderBy: { field: UPDATED_AT, direction: DESC }) {
+      repositories(first: 100, orderBy: { field: STARGAZERS, direction: DESC }) {
         nodes {
           id
           name
@@ -56,7 +56,7 @@ function App() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            GitHub Repository Viewer
+            GitStats
           </h1>
           <form onSubmit={handleSearch} className="mt-8">
             <input
