@@ -40,3 +40,7 @@
 .read-the-docs {
   color: #888;
 }
+
+.stat-card {
+  @apply bg-gray-50 p-4 rounded-lg text-center;
+}
