@@ -1,6 +1,20 @@
 import { useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
 
+interface Repository {
+  id: string;
+  name: string;
+  description: string | null;
+  url: string;
+  stargazerCount: number;
+  forkCount: number;
+  updatedAt: string;
+  primaryLanguage: {
+    name: string;
+    color: string;
+  } | null;
+}
+
 const GET_USER_REPOS = gql`
   query GetUserRepositories($username: String!) {
     user(login: $username) {
@@ -63,7 +77,7 @@ function App() {
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
             {loading && <p>Loading repositories...</p>}
             {error && <p className="text-red-500">Error: {error.message}</p>}
-            {data?.user?.repositories.nodes.map((repo: any) => (
+            {data?.user?.repositories.nodes.map((repo: Repository) => (
               <div
                 key={repo.id}
                 className="bg-white p-6 rounded-lg shadow-md text-left"
@@ -73,7 +87,7 @@ function App() {
                     {repo.name}
                   </a>
                 </h2>
-                <p className="mt-2 text-gray-600">{repo.description}</p>
+                <p className="mt-2 text-black">{repo.description}</p>
                 <div className="mt-4 flex items-center space-x-4">
                   {repo.primaryLanguage && (
                     <span className="flex items-center">
