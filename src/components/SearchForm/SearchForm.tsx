@@ -5,7 +5,7 @@ export interface SearchFormProps {
 }
 
 export const SearchForm = ({ username, onUsernameChange, onSubmit }: SearchFormProps) => (
-  <form onSubmit={onSubmit} className="mt-8">
+  <form onSubmit={onSubmit} className="my-8">
     <input
       type="text"
       value={username}
