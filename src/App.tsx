@@ -38,7 +38,7 @@ function App() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            GitStats
+            GitHub Stats
           </h1>
 
           <div className="flex justify-center items-center gap-4 mt-6">
