@@ -13,9 +13,11 @@ export function RepositoryList({ repositories, loading, error }: RepositoryListP
   const [selectedLanguage, setSelectedLanguage] = useState('');
   const [sortBy, setSortBy] = useState<'stars' | 'forks' | 'updated'>('stars');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // You can adjust this number or make it configurable
 
   const getFilteredAndSortedRepos = (repos: Repository[]) => {
-    return repos
+    const filtered = repos
       .filter(repo => {
         const matchesSearch = repo.name.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesLanguage = !selectedLanguage || repo.primaryLanguage?.name === selectedLanguage;
@@ -34,6 +36,14 @@ export function RepositoryList({ repositories, loading, error }: RepositoryListP
             return 0;
         }
       });
+
+    // Calculate pagination slice
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return {
+      paginatedRepos: filtered.slice(startIndex, endIndex),
+      totalCount: filtered.length
+    };
   };
 
   const getUniqueLanguages = (repos: Repository[]) => {
@@ -42,6 +52,9 @@ export function RepositoryList({ repositories, loading, error }: RepositoryListP
       .filter((lang): lang is string => !!lang);
     return Array.from(new Set(languages));
   };
+
+  const { paginatedRepos, totalCount } = getFilteredAndSortedRepos(repositories);
+  const totalPages = Math.ceil(totalCount / itemsPerPage);
 
   return (
     <>
@@ -86,10 +99,33 @@ export function RepositoryList({ repositories, loading, error }: RepositoryListP
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
         {loading && <p>Loading repositories...</p>}
         {error && <p className="text-red-500">Error: {error.message}</p>}
-        {repositories && getFilteredAndSortedRepos(repositories).map((repo: Repository) => (
+        {repositories && paginatedRepos.map((repo: Repository) => (
           <RepositoryCard key={repo.id} repository={repo} />
         ))}
       </div>
+
+      {/* Add pagination controls */}
+      {totalPages > 1 && (
+        <div className="mt-6 flex justify-center gap-2">
+          <button
+            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+            className="px-4 py-2 border rounded-md bg-white disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <span className="px-4 py-2">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 border rounded-md bg-white disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </>
   );
 }
