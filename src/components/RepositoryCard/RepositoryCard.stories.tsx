@@ -24,6 +24,9 @@ export const Default: Story = {
         name: 'TypeScript',
         color: '#2b7489'
       },
+      languages: { nodes: [] },
+      issues: { totalCount: 0 },
+      pullRequests: { totalCount: 0 },
       stargazerCount: 1234,
       forkCount: 567,
       updatedAt: '2024-03-20T12:00:00Z'
@@ -42,6 +45,9 @@ export const NoDescription: Story = {
         name: 'JavaScript',
         color: '#f1e05a'
       },
+      languages: { nodes: [] },
+      issues: { totalCount: 0 },
+      pullRequests: { totalCount: 0 },
       stargazerCount: 42,
       forkCount: 7,
       updatedAt: '2024-03-20T12:00:00Z'
@@ -57,6 +63,9 @@ export const NoLanguage: Story = {
       description: 'A repository without a primary language',
       url: 'https://github.com/example/nolang',
       primaryLanguage: null,
+      languages: { nodes: [] },
+      issues: { totalCount: 0 },
+      pullRequests: { totalCount: 0 },
       stargazerCount: 89,
       forkCount: 12,
       updatedAt: '2024-03-20T12:00:00Z'
