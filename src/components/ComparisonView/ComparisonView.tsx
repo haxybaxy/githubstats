@@ -33,6 +33,13 @@ export function ComparisonView() {
     }
   };
 
+  const getWinnerStatus = (user1: any, user2: any) => {
+    if (!user1 || !user2) return false;
+    const commits1 = user1.contributionsCollection.totalCommitContributions;
+    const commits2 = user2.contributionsCollection.totalCommitContributions;
+    return commits1 > commits2;
+  };
+
   return (
     <div className="text-center">
       <div className="flex justify-center items-center gap-4 mt-6">
@@ -67,7 +74,10 @@ export function ComparisonView() {
       <div className={`grid gap-4 mt-6 ${isComparing ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}>
         {data1?.user && (
           <div className={isComparing ? '' : 'col-span-full'}>
-            <UserSection user={data1.user} />
+            <UserSection
+              user={data1.user}
+              isWinner={isComparing && getWinnerStatus(data1.user, data2?.user)}
+            />
             <RepositoryList
               repositories={data1.user.repositories.nodes || []}
               loading={loading1}
@@ -78,7 +88,10 @@ export function ComparisonView() {
 
         {isComparing && data2?.user && (
           <div>
-            <UserSection user={data2.user} />
+            <UserSection
+              user={data2.user}
+              isWinner={getWinnerStatus(data2.user, data1?.user)}
+            />
             <RepositoryList
               repositories={data2.user.repositories.nodes || []}
               loading={loading2}

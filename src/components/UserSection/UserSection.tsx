@@ -1,10 +1,12 @@
 import { User } from '../../types/github';
+import crownIcon from '../../assets/crown.svg';
 
 interface UserSectionProps {
   user: User;
+  isWinner?: boolean;
 }
 
-export function UserSection({ user }: UserSectionProps) {
+export function UserSection({ user, isWinner }: UserSectionProps) {
   const stats = [
     { label: 'Total Commits', value: user.contributionsCollection.totalCommitContributions },
     { label: 'Total PRs', value: user.contributionsCollection.totalPullRequestContributions },
@@ -15,11 +17,20 @@ export function UserSection({ user }: UserSectionProps) {
   return (
     <div className="mb-8 bg-white p-6 rounded-lg shadow-md">
       <div className="flex items-center space-x-4">
-        <img
-          src={user.avatarUrl}
-          alt={user.login}
-          className="w-20 h-20 rounded-full"
-        />
+        <div className="relative">
+          <img
+            src={user.avatarUrl}
+            alt={user.login}
+            className="w-20 h-20 rounded-full"
+          />
+          {isWinner && (
+            <img
+              src={crownIcon}
+              alt="Winner"
+              className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-10 h-10"
+            />
+          )}
+        </div>
         <div>
           <h2 className="text-2xl font-bold text-left">{user.name}</h2>
           <p className="text-gray-600 text-left">{user.bio}</p>
