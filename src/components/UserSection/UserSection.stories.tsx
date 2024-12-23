@@ -30,6 +30,10 @@ export const Default: Story = {
         totalPullRequestContributions: 156,
         totalIssueContributions: 89,
         totalRepositoryContributions: 45,
+        contributionCalendar: {
+          totalContributions: 0,
+          weeks: [],
+        },
       },
     },
   },
