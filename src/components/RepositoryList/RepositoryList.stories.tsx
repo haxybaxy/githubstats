@@ -20,6 +20,9 @@ const mockRepositories = [
     description: 'A really awesome project with lots of features',
     url: 'https://github.com/example/awesome',
     primaryLanguage: { name: 'TypeScript', color: '#2b7489' },
+    languages: { nodes: [] },
+    issues: { totalCount: 0 },
+    pullRequests: { totalCount: 0 },
     stargazerCount: 1200,
     forkCount: 300,
     updatedAt: '2024-03-20T12:00:00Z'
@@ -30,6 +33,9 @@ const mockRepositories = [
     description: 'A cool library for doing cool things',
     url: 'https://github.com/example/cool-lib',
     primaryLanguage: { name: 'JavaScript', color: '#f1e05a' },
+    languages: { nodes: [] },
+    issues: { totalCount: 0 },
+    pullRequests: { totalCount: 0 },
     stargazerCount: 800,
     forkCount: 150,
     updatedAt: '2024-03-19T12:00:00Z'
