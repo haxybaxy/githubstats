@@ -5,16 +5,16 @@ import { GET_REPO_COMMITS } from '../../graphql/queries';
 
 // Helper function to create commit mocks with random patterns
 const createCommitMock = (owner: string, repoName: string) => {
-  // Create a random pattern of commits
+  // Create a wave-like pattern with 4 peaks
   const generateDailyCommits = (dayIndex: number) => {
-    // More commits for recent days (lower index)
-    const baseCommits = dayIndex < 30 ? 2 : 1;
-    const randomFactor = Math.random();
+    // Create 4 "hills" of activity using a sine wave pattern
+    const baseCommits = Math.sin((dayIndex / 90) * Math.PI * 4) + 1;
+    // Add some randomness to the pattern
+    const randomFactor = Math.random() * 0.5 + 0.5; // Random between 0.5 and 1
 
-    // Create multiple commit entries for the same day
-    // Reduced multiplier from 5 to 2 for calmer pattern
+    // Create commit entries for the day
     return Array.from(
-      { length: Math.floor(baseCommits * randomFactor * 2) },
+      { length: Math.round(baseCommits * randomFactor * 3) }, // Multiply by 3 for more variation
       () => ({
         committedDate: new Date(
           new Date().getTime() - (dayIndex * 24 * 60 * 60 * 1000)
@@ -24,9 +24,9 @@ const createCommitMock = (owner: string, repoName: string) => {
     );
   };
 
-  // Generate 90 days of commits with random patterns
+  // Generate 90 days of commits with wave pattern
   const commits = Array.from({ length: 90 }, (_, i) => generateDailyCommits(i))
-    .flat(); // Flatten the array of arrays
+    .flat();
 
   return {
     request: {
