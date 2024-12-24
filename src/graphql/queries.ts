@@ -1,7 +1,21 @@
 import { gql } from '@apollo/client';
 
 /**
- * Query to fetch basic user information
+ * Query to fetch basic user information from GitHub
+ *
+ * Returns:
+ * - User's name and login
+ * - Avatar URL
+ * - Bio and location
+ * - Website and Twitter links
+ * - Follower and following counts
+ *
+ * @example
+ * ```tsx
+ * const { data } = useQuery(GET_USER_INFO, {
+ *   variables: { username: "octocat" }
+ * });
+ * ```
  */
 export const GET_USER_INFO = gql`
   query GetUserInfo($username: String!) {
@@ -25,6 +39,21 @@ export const GET_USER_INFO = gql`
 
 /**
  * Query to fetch user's contribution statistics
+ *
+ * Returns:
+ * - Total commit contributions
+ * - Total pull request contributions
+ * - Total issue contributions
+ * - Total repository contributions
+ * - Contribution calendar data
+ * - Pull request and issue counts
+ *
+ * @example
+ * ```tsx
+ * const { data } = useQuery(GET_USER_CONTRIBUTIONS, {
+ *   variables: { username: "octocat" }
+ * });
+ * ```
  */
 export const GET_USER_CONTRIBUTIONS = gql`
   query GetUserContributions($username: String!) {
@@ -56,6 +85,25 @@ export const GET_USER_CONTRIBUTIONS = gql`
 
 /**
  * Query to fetch user's repository information
+ *
+ * Returns:
+ * - Total repository count
+ * - Repository details:
+ *   - Name and description
+ *   - URL
+ *   - Star and fork counts
+ *   - Last update time
+ *   - Primary language
+ *   - Top 10 languages used
+ *
+ * @note Fetches first 100 repositories, sorted by stars
+ *
+ * @example
+ * ```tsx
+ * const { data } = useQuery(GET_USER_REPOS, {
+ *   variables: { username: "octocat" }
+ * });
+ * ```
  */
 export const GET_USER_REPOS = gql`
   query GetUserRepositories($username: String!) {
@@ -94,6 +142,24 @@ export const GET_USER_REPOS = gql`
   }
 `;
 
+/**
+ * Query to fetch repository commit history
+ *
+ * Returns:
+ * - Commit dates for the default branch
+ * - Limited to commits since 2024-01-01
+ * - Maximum of 100 commits
+ *
+ * @example
+ * ```tsx
+ * const { data } = useQuery(GET_REPO_COMMITS, {
+ *   variables: {
+ *     owner: "facebook",
+ *     name: "react"
+ *   }
+ * });
+ * ```
+ */
 export const GET_REPO_COMMITS = gql`
   query GetRepositoryCommits($owner: String!, $name: String!) {
     repository(owner: $owner, name: $name) {
