@@ -4,6 +4,7 @@ import { GET_USER_REPOS } from '../../graphql/queries';
 import { SearchForm } from '../SearchForm';
 import { UserSection } from '../UserSection/UserSection';
 import { RepositoryList } from '../RepositoryList/RepositoryList';
+import { useGitHubRank } from '../../hooks/useGitHubRank';
 
 function getErrorMessage(error: ApolloError) {
   if (error.message.includes('Could not resolve to a User')) {
@@ -35,6 +36,11 @@ export function ComparisonView() {
     skip: !searchedUsername2 || !isComparing,
   });
 
+  const rankingResult = useGitHubRank(
+    data1?.user || null,
+    isComparing ? data2?.user || null : data1?.user || null
+  );
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setSearchedUsername1(username1);
@@ -51,11 +57,8 @@ export function ComparisonView() {
     }
   };
 
-  const getWinnerStatus = (user1: any, user2: any) => {
-    if (!user1 || !user2) return false;
-    const commits1 = user1.contributionsCollection.totalCommitContributions;
-    const commits2 = user2.contributionsCollection.totalCommitContributions;
-    return commits1 > commits2;
+  const isWinner = (userNumber: 1 | 2) => {
+    return rankingResult?.winner === userNumber;
   };
 
   const renderError = (error: ApolloError) => (
@@ -120,7 +123,9 @@ export function ComparisonView() {
           <div className={isComparing ? '' : 'col-span-full'}>
             <UserSection
               user={data1.user}
-              isWinner={isComparing && getWinnerStatus(data1.user, data2?.user)}
+              isWinner={isComparing && isWinner(1)}
+              score={rankingResult?.user1Score}
+              isComparing={isComparing}
             />
             <RepositoryList
               repositories={data1.user.repositories.nodes || []}
@@ -134,7 +139,9 @@ export function ComparisonView() {
           <div>
             <UserSection
               user={data2.user}
-              isWinner={getWinnerStatus(data2.user, data1?.user)}
+              isWinner={isWinner(2)}
+              score={rankingResult?.user2Score}
+              isComparing={isComparing}
             />
             <RepositoryList
               repositories={data2.user.repositories.nodes || []}
