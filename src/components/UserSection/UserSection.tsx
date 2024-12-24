@@ -55,7 +55,7 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
                     : 'text-red-600'
                   : 'text-blue-600'
               }`}>
-                Score: {score.toFixed(1)}
+                Percentile: {score.toFixed(1)}
               </div>
             )}
           </div>
