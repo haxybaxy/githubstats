@@ -1,14 +1,45 @@
 import { useState } from 'react';
 import { Repository } from '../../../types/github';
 
+/**
+ * Custom hook for filtering and sorting repository data
+ *
+ * This hook provides:
+ * - Search functionality
+ * - Language filtering
+ * - Sorting by different criteria
+ * - Pagination
+ *
+ * @param {Repository[]} repositories - Array of repositories to filter and sort
+ * @returns {Object} State and functions for filtering repositories
+ *
+ * @example
+ * ```tsx
+ * const {
+ *   searchQuery,
+ *   setSearchQuery,
+ *   getFilteredAndSortedRepos
+ * } = useRepositoryFiltering(repositories);
+ * ```
+ */
 export function useRepositoryFiltering(repositories: Repository[]) {
+  /** Search query state */
   const [searchQuery, setSearchQuery] = useState('');
+  /** Selected language filter state */
   const [selectedLanguage, setSelectedLanguage] = useState('');
+  /** Sort criteria state */
   const [sortBy, setSortBy] = useState<'stars' | 'forks' | 'updated'>('stars');
+  /** Sort order state */
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  /** Current page number state */
   const [currentPage, setCurrentPage] = useState(1);
+  /** Number of items to display per page */
   const itemsPerPage = 10;
 
+  /**
+   * Filters and sorts repositories based on current state
+   * @returns {{ paginatedRepos: Repository[], totalCount: number }} Filtered and paginated repositories
+   */
   const getFilteredAndSortedRepos = () => {
     const filtered = repositories
       .filter(repo => {
@@ -38,6 +69,10 @@ export function useRepositoryFiltering(repositories: Repository[]) {
     };
   };
 
+  /**
+   * Gets unique programming languages from all repositories
+   * @returns {string[]} Array of unique language names
+   */
   const getUniqueLanguages = () => {
     const languages = repositories
       .map(repo => repo.primaryLanguage?.name)
