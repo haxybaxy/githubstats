@@ -4,6 +4,7 @@ import { GET_USER_REPOS } from '../../graphql/queries';
 import { SearchForm } from '../SearchForm';
 import { UserSection } from '../UserSection/UserSection';
 import { RepositoryList } from '../RepositoryList/RepositoryList';
+import { useGitHubRank } from '../../hooks/useGitHubRank';
 
 function getErrorMessage(error: ApolloError) {
   if (error.message.includes('Could not resolve to a User')) {
@@ -35,6 +36,11 @@ export function ComparisonView() {
     skip: !searchedUsername2 || !isComparing,
   });
 
+  const rankingResult = useGitHubRank(
+    data1?.user || null,
+    (isComparing && data2?.user) || data1?.user || null
+  );
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setSearchedUsername1(username1);
@@ -51,11 +57,8 @@ export function ComparisonView() {
     }
   };
 
-  const getWinnerStatus = (user1: any, user2: any) => {
-    if (!user1 || !user2) return false;
-    const commits1 = user1.contributionsCollection.totalCommitContributions;
-    const commits2 = user2.contributionsCollection.totalCommitContributions;
-    return commits1 > commits2;
+  const isWinner = (userNumber: 1 | 2) => {
+    return rankingResult?.winner === userNumber;
   };
 
   const renderError = (error: ApolloError) => (
@@ -120,7 +123,10 @@ export function ComparisonView() {
           <div className={isComparing ? '' : 'col-span-full'}>
             <UserSection
               user={data1.user}
-              isWinner={isComparing && getWinnerStatus(data1.user, data2?.user)}
+              isWinner={isComparing && isWinner(1)}
+              score={rankingResult?.user1Score}
+              isComparing={isComparing}
+              hasCompetitor={!!data2?.user}
             />
             <RepositoryList
               repositories={data1.user.repositories.nodes || []}
@@ -130,17 +136,28 @@ export function ComparisonView() {
           </div>
         )}
 
-        {isComparing && data2?.user && (
+        {isComparing && (
           <div>
-            <UserSection
-              user={data2.user}
-              isWinner={getWinnerStatus(data2.user, data1?.user)}
-            />
-            <RepositoryList
-              repositories={data2.user.repositories.nodes || []}
-              loading={loading2}
-              error={error2}
-            />
+            {data2?.user ? (
+              <>
+                <UserSection
+                  user={data2.user}
+                  isWinner={isWinner(2)}
+                  score={rankingResult?.user2Score}
+                  isComparing={isComparing}
+                  hasCompetitor={true}
+                />
+                <RepositoryList
+                  repositories={data2.user.repositories.nodes || []}
+                  loading={loading2}
+                  error={error2}
+                />
+              </>
+            ) : (
+              <div className="mb-8 bg-white p-6 rounded-lg shadow-md flex items-center justify-center h-40">
+                <p className="text-gray-500">Enter a second username to compare</p>
+              </div>
+            )}
           </div>
         )}
       </div>
