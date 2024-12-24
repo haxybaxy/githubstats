@@ -132,6 +132,7 @@ export function ComparisonView() {
               repositories={data1.user.repositories.nodes || []}
               loading={loading1}
               error={error1}
+              owner={data1.user.login}
             />
           </div>
         )}
@@ -151,6 +152,7 @@ export function ComparisonView() {
                   repositories={data2.user.repositories.nodes || []}
                   loading={loading2}
                   error={error2}
+                  owner={data2.user.login}
                 />
               </>
             ) : (

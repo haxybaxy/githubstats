@@ -8,9 +8,10 @@ interface RepositoryListProps {
   repositories: Repository[];
   loading: boolean;
   error?: Error;
+  owner: string;
 }
 
-export function RepositoryList({ repositories, loading, error }: RepositoryListProps) {
+export function RepositoryList({ repositories, loading, error, owner }: RepositoryListProps) {
   const {
     searchQuery,
     setSearchQuery,
@@ -47,7 +48,11 @@ export function RepositoryList({ repositories, loading, error }: RepositoryListP
         {loading && <p>Loading repositories...</p>}
         {error && <p className="text-red-500">Error: {error.message}</p>}
         {repositories && paginatedRepos.map((repo: Repository) => (
-          <RepositoryCard key={repo.id} repository={repo} />
+          <RepositoryCard
+            key={repo.id}
+            repository={repo}
+            owner={owner}
+          />
         ))}
       </div>
 

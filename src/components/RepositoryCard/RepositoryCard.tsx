@@ -1,11 +1,12 @@
 import { Repository } from '../../types/github';
+import { CommitChart } from './CommitChart';
 
 export interface RepositoryCardProps {
   repository: Repository;
-  };
+  owner: string;
+}
 
-
-export const RepositoryCard = ({ repository }: RepositoryCardProps) => (
+export const RepositoryCard = ({ repository, owner }: RepositoryCardProps) => (
   <div className="bg-white p-6 rounded-lg shadow-md text-left">
     <h2 className="text-xl font-semibold">
       <a href={repository.url} className="text-blue-600 hover:underline">
@@ -26,5 +27,7 @@ export const RepositoryCard = ({ repository }: RepositoryCardProps) => (
       <span>⭐ {repository.stargazerCount}</span>
       <span>🍴 {repository.forkCount}</span>
     </div>
+
+    <CommitChart owner={owner} repoName={repository.name} />
   </div>
 );
