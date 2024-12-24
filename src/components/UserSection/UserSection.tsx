@@ -2,20 +2,41 @@ import { User } from '../../types/github';
 import crownIcon from '../../assets/crown.svg';
 
 interface UserSectionProps {
+  /** GitHub user data */
   user: User;
+  /** Whether this user won the comparison */
   isWinner: boolean;
+  /** User's percentile score */
   score?: number;
+  /** Whether the component is in comparison mode */
   isComparing: boolean;
+  /** Whether there is another user to compare against */
   hasCompetitor?: boolean;
 }
 
+/**
+ * Displays detailed information about a GitHub user including their profile,
+ * statistics, and social links
+ *
+ * @param props - Component properties
+ * @param props.user - GitHub user data
+ * @param props.isWinner - Whether this user won the comparison
+ * @param props.score - User's percentile score
+ * @param props.isComparing - Whether the component is in comparison mode
+ * @param props.hasCompetitor - Whether there is another user to compare against
+ */
 export function UserSection({ user, isWinner, score, isComparing, hasCompetitor }: UserSectionProps) {
-  // Calculate total stars from repositories
+  /**
+   * Calculates the total number of stars across all repositories
+   */
   const totalStars = user.repositories.totalStargazers.reduce(
     (sum, repo) => sum + repo.stargazerCount,
     0
   );
 
+  /**
+   * User statistics to display
+   */
   const stats = [
     { label: 'Total Commits', value: user.contributionsCollection.totalCommitContributions },
     { label: 'Total Stars', value: totalStars },
