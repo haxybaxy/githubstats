@@ -1,6 +1,10 @@
 import { User } from '../../types/github';
 import crownIcon from '../../assets/crown.svg';
 
+/**
+ * Props for the UserSection component
+ * @interface UserSectionProps
+ */
 interface UserSectionProps {
   /** GitHub user data */
   user: User;
@@ -18,16 +22,32 @@ interface UserSectionProps {
  * Displays detailed information about a GitHub user including their profile,
  * statistics, and social links
  *
- * @param props - Component properties
- * @param props.user - GitHub user data
- * @param props.isWinner - Whether this user won the comparison
- * @param props.score - User's percentile score
- * @param props.isComparing - Whether the component is in comparison mode
- * @param props.hasCompetitor - Whether there is another user to compare against
+ * This component renders:
+ * - User avatar with optional winner crown
+ * - User name and bio
+ * - Percentile score with color-coded status
+ * - Follower and following counts
+ * - Location and social links
+ * - Key statistics in a grid layout
+ *
+ * @param {UserSectionProps} props - Component properties
+ * @returns {JSX.Element} The rendered user section
+ *
+ * @example
+ * ```tsx
+ * <UserSection
+ *   user={userData}
+ *   isWinner={true}
+ *   score={95.5}
+ *   isComparing={true}
+ *   hasCompetitor={true}
+ * />
+ * ```
  */
 export function UserSection({ user, isWinner, score, isComparing, hasCompetitor }: UserSectionProps) {
   /**
    * Calculates the total number of stars across all repositories
+   * @returns {number} Total star count
    */
   const totalStars = user.repositories.totalStargazers.reduce(
     (sum, repo) => sum + repo.stargazerCount,
@@ -35,7 +55,8 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
   );
 
   /**
-   * User statistics to display
+   * User statistics to display in the grid
+   * @type {{ label: string; value: number }[]}
    */
   const stats = [
     { label: 'Total Commits', value: user.contributionsCollection.totalCommitContributions },
@@ -47,7 +68,9 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
 
   return (
     <div className="mb-8 bg-white p-6 rounded-lg shadow-md">
+      {/* User profile section */}
       <div className="flex items-center space-x-4">
+        {/* Avatar with optional winner crown */}
         <div className="relative">
           <img
             src={user.avatarUrl}
@@ -62,6 +85,7 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
             />
           )}
         </div>
+        {/* User info and social links */}
         <div className="flex-grow">
           <div className="flex justify-between items-start">
             <div>
@@ -80,10 +104,12 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
               </div>
             )}
           </div>
+          {/* Follower stats */}
           <div className="mt-2 flex space-x-4">
             <span>👥 {user.followers.totalCount} followers</span>
             <span>👤 {user.following.totalCount} following</span>
           </div>
+          {/* Contact and social info */}
           <div className="mt-2 text-left text-gray-600">
             {user.location && <div>📍 {user.location}</div>}
             {user.websiteUrl && (
@@ -104,6 +130,7 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
         </div>
       </div>
 
+      {/* Statistics grid */}
       <div className="mt-6 grid grid-cols-2 md:grid-cols-5 gap-4">
         {stats.map((stat) => (
           <div key={stat.label} className="stat-card">
