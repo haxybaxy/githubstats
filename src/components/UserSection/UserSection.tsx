@@ -6,9 +6,10 @@ interface UserSectionProps {
   isWinner: boolean;
   score?: number;
   isComparing: boolean;
+  hasCompetitor?: boolean;
 }
 
-export function UserSection({ user, isWinner, score, isComparing }: UserSectionProps) {
+export function UserSection({ user, isWinner, score, isComparing, hasCompetitor }: UserSectionProps) {
   // Calculate total stars from repositories
   const totalStars = user.repositories.totalStargazers.reduce(
     (sum, repo) => sum + repo.stargazerCount,
@@ -48,7 +49,7 @@ export function UserSection({ user, isWinner, score, isComparing }: UserSectionP
             </div>
             {score !== undefined && (
               <div className={`text-lg font-semibold ${
-                isComparing
+                isComparing && hasCompetitor
                   ? isWinner
                     ? 'text-green-600'
                     : 'text-red-600'

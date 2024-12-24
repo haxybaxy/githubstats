@@ -126,6 +126,7 @@ export function ComparisonView() {
               isWinner={isComparing && isWinner(1)}
               score={rankingResult?.user1Score}
               isComparing={isComparing}
+              hasCompetitor={!!data2?.user}
             />
             <RepositoryList
               repositories={data1.user.repositories.nodes || []}
@@ -144,6 +145,7 @@ export function ComparisonView() {
                   isWinner={isWinner(2)}
                   score={rankingResult?.user2Score}
                   isComparing={isComparing}
+                  hasCompetitor={true}
                 />
                 <RepositoryList
                   repositories={data2.user.repositories.nodes || []}
