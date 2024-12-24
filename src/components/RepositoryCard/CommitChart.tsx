@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import type { TooltipItem } from 'chart.js';
 
+// Register ChartJS components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -21,12 +22,39 @@ ChartJS.register(
   Title
 );
 
+/**
+ * Props for the CommitChart component
+ * @interface CommitChartProps
+ */
 interface CommitChartProps {
+  /** Repository owner's username */
   owner: string;
+  /** Repository name */
   repoName: string;
 }
 
+/**
+ * Component that displays a line chart showing commit activity over time
+ *
+ * This component:
+ * - Fetches commit data for a repository
+ * - Processes the data into a daily commit count
+ * - Renders a line chart showing commit frequency
+ * - Handles loading and error states
+ * - Provides interactive tooltips
+ *
+ * @param {CommitChartProps} props - Component properties
+ * @returns {JSX.Element} The rendered commit chart
+ *
+ * @example
+ * ```tsx
+ * <CommitChart owner="octocat" repoName="Hello-World" />
+ * ```
+ */
 export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
+  /**
+   * Fetch commit data from GitHub API
+   */
   const { loading, error, data } = useQuery(GET_REPO_COMMITS, {
     variables: {
       owner,
@@ -38,8 +66,10 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
     pollInterval: 0,
   });
 
+  // Handle loading state
   if (loading) return <div className="h-[100px] animate-pulse bg-gray-200 rounded"></div>;
 
+  // Handle error states
   if (error) {
     if (error.message.includes('API rate limit exceeded')) {
       return (
@@ -61,18 +91,29 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
     );
   }
 
+  /**
+   * Process commit data into daily counts
+   * @type {Object.<string, number>}
+   */
   const commitsByDay = commits.reduce((acc: { [key: string]: number }, commit: { committedDate: string }) => {
     const date = new Date(commit.committedDate).toISOString().split('T')[0];
     acc[date] = (acc[date] || 0) + 1;
     return acc;
   }, {});
 
+  /**
+   * Generate array of dates for the last 90 days
+   * @type {string[]}
+   */
   const dates = Array.from({ length: 90 }, (_, i) => {
     const d = new Date();
     d.setDate(d.getDate() - i);
     return d.toISOString().split('T')[0];
   }).reverse();
 
+  /**
+   * Chart data configuration
+   */
   const chartData = {
     labels: dates,
     datasets: [
@@ -87,6 +128,9 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
     ],
   };
 
+  /**
+   * Chart options configuration
+   */
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -106,9 +150,15 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
       tooltip: {
         enabled: true,
         callbacks: {
+          /**
+           * Format the tooltip title to show the date
+           */
           title: (context: TooltipItem<'line'>[]) => {
             return new Date(dates[context[0].dataIndex]).toLocaleDateString();
           },
+          /**
+           * Format the tooltip label to show commit count
+           */
           label: (context: TooltipItem<'line'>) => {
             return `${context.raw} commits`;
           },
