@@ -1,37 +1,91 @@
 import { useMemo } from 'react';
 
+/**
+ * Calculates the cumulative distribution function for an exponential distribution
+ * @param {number} x - Input value
+ * @returns {number} Probability value between 0 and 1
+ */
 function exponentialCdf(x: number): number {
   return 1 - 2 ** -x;
 }
 
+/**
+ * Calculates the cumulative distribution function for a log-normal distribution
+ * @param {number} x - Input value
+ * @returns {number} Probability value between 0 and 1
+ */
 function logNormalCdf(x: number): number {
   return x / (1 + x);
 }
 
+/**
+ * Interface for GitHub user data required for ranking
+ * @interface GitHubUser
+ */
 interface GitHubUser {
+  /** User's contribution collection data */
   contributionsCollection: {
+    /** Total number of commit contributions */
     totalCommitContributions: number;
   };
+  /** User's repositories data */
   repositories: {
+    /** Total number of repositories */
     totalCount: number;
+    /** Array of repository stargazer counts */
     totalStargazers: { stargazerCount: number }[];
   };
+  /** User's followers data */
   followers: {
+    /** Total number of followers */
     totalCount: number;
   };
+  /** User's pull requests data */
   pullRequests: {
+    /** Total number of pull requests */
     totalCount: number;
   };
+  /** User's issues data */
   issues: {
+    /** Total number of issues */
     totalCount: number;
   };
 }
 
+/**
+ * Custom hook that calculates and compares GitHub user rankings
+ *
+ * This hook:
+ * - Calculates individual scores for different metrics (commits, PRs, etc.)
+ * - Applies weights to each metric
+ * - Computes percentile scores
+ * - Determines the winner in a comparison
+ * - Logs detailed scoring information to the console
+ *
+ * @param {GitHubUser | null} user1 - First GitHub user data
+ * @param {GitHubUser | null} user2 - Second GitHub user data
+ * @returns {Object | null} Ranking results including scores and winner
+ *
+ * @example
+ * ```tsx
+ * const rankingResult = useGitHubRank(user1Data, user2Data);
+ * if (rankingResult) {
+ *   console.log(`Winner: User ${rankingResult.winner}`);
+ * }
+ * ```
+ */
 export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null) {
   return useMemo(() => {
     if (!user1 || !user2) return null;
 
+    /**
+     * Calculates a user's score based on their GitHub metrics
+     * @param {GitHubUser} user - User data to calculate score for
+     * @param {string} userLabel - Label for console logging
+     * @returns {number} User's percentile score
+     */
     const calculateUserScore = (user: GitHubUser, userLabel: string) => {
+      // Extract metrics
       const commits = user.contributionsCollection.totalCommitContributions;
       const stars = user.repositories.totalStargazers.reduce(
         (sum, repo) => sum + repo.stargazerCount,
@@ -41,8 +95,9 @@ export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null
       const issues = user.issues.totalCount;
       const repos = user.repositories.totalCount;
       const followers = user.followers.totalCount;
-      const reviews = 0; // We don't have this data
+      const reviews = 0; // Not available in current data
 
+      // Log user stats
       console.group(`${userLabel} Stats (matching UI display):`);
       console.log('Total Commits:', commits);
       console.log('Total Stars:', stars);
@@ -51,6 +106,7 @@ export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null
       console.log('Total Repositories:', repos);
       console.log('Followers:', followers);
 
+      // Define median values and weights
       const COMMITS_MEDIAN = 250;
       const PRS_MEDIAN = 50;
       const ISSUES_MEDIAN = 25;
@@ -73,6 +129,7 @@ export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null
         STARS_WEIGHT +
         FOLLOWERS_WEIGHT;
 
+      // Calculate rank
       const rank =
         1 -
         (COMMITS_WEIGHT * exponentialCdf(commits / COMMITS_MEDIAN) +
@@ -85,6 +142,7 @@ export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null
 
       const percentile = rank * 100;
 
+      // Log individual scores
       console.log('Individual Scores:');
       console.log('- Commit Score:', exponentialCdf(commits / COMMITS_MEDIAN));
       console.log('- PR Score:', exponentialCdf(prs / PRS_MEDIAN));
@@ -104,6 +162,7 @@ export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null
     const winner = score1 < score2 ? 1 : 2;
     const scoreDiff = Math.abs(score1 - score2);
 
+    // Log comparison results
     console.log('Comparison Results:');
     console.log(`User 1 (${score1.toFixed(2)}) vs User 2 (${score2.toFixed(2)})`);
     console.log('Winner:', winner);
