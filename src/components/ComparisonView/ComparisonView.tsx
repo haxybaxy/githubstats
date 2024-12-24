@@ -6,6 +6,11 @@ import { UserSection } from '../UserSection/UserSection';
 import { RepositoryList } from '../RepositoryList/RepositoryList';
 import { useGitHubRank } from '../../hooks/useGitHubRank';
 
+/**
+ * Custom error message handler for Apollo GraphQL errors
+ * @param {ApolloError} error - The Apollo error object to process
+ * @returns {string} A user-friendly error message
+ */
 function getErrorMessage(error: ApolloError) {
   if (error.message.includes('Could not resolve to a User')) {
     return 'User not found. Please check the username and try again.';
@@ -19,6 +24,10 @@ function getErrorMessage(error: ApolloError) {
   return 'An error occurred while fetching data. Please try again.';
 }
 
+/**
+ * ComparisonView component that allows users to compare GitHub profiles
+ * @returns {JSX.Element} A component that displays and compares GitHub user information
+ */
 export function ComparisonView() {
   const [username1, setUsername1] = useState('');
   const [username2, setUsername2] = useState('');
@@ -41,6 +50,10 @@ export function ComparisonView() {
     (isComparing && data2?.user) || data1?.user || null
   );
 
+  /**
+   * Handles form submission for user search
+   * @param {React.FormEvent} e - The form submission event
+   */
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setSearchedUsername1(username1);
@@ -49,6 +62,9 @@ export function ComparisonView() {
     }
   };
 
+  /**
+   * Toggles the comparison mode and resets second user data when disabled
+   */
   const toggleComparing = () => {
     setIsComparing(!isComparing);
     if (!isComparing) {
@@ -57,10 +73,20 @@ export function ComparisonView() {
     }
   };
 
+  /**
+   * Determines if a user is the winner of the comparison
+   * @param {1 | 2} userNumber - The user number to check (1 or 2)
+   * @returns {boolean | undefined} True if the user is the winner, false or undefined otherwise
+   */
   const isWinner = (userNumber: 1 | 2) => {
     return rankingResult?.winner === userNumber;
   };
 
+  /**
+   * Renders an error message with a consistent UI
+   * @param {ApolloError} error - The error to display
+   * @returns {JSX.Element} An error message component
+   */
   const renderError = (error: ApolloError) => (
     <div className="bg-red-50 border-l-4 border-red-500 p-4 my-4">
       <div className="flex">
