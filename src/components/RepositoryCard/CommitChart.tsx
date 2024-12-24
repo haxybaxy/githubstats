@@ -123,7 +123,7 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
     },
     interaction: {
       intersect: false,
-      mode: 'index',
+      mode: 'nearest' as const,
     },
   };
 
