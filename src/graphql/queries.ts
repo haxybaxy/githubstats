@@ -38,6 +38,9 @@ query GetUserRepositories($username: String!) {
     # Repository stats
     repositories(first: 100, orderBy: { field: STARGAZERS, direction: DESC }) {
       totalCount
+      totalStargazers: nodes {
+        stargazerCount
+      }
       nodes {
         id
         name
@@ -56,13 +59,15 @@ query GetUserRepositories($username: String!) {
             color
           }
         }
-        issues {
-          totalCount
-        }
-        pullRequests {
-          totalCount
-        }
       }
+    }
+
+    # Separate queries for accurate total counts
+    pullRequests {
+      totalCount
+    }
+    issues {
+      totalCount
     }
   }
 }
