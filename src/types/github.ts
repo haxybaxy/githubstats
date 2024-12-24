@@ -16,12 +16,6 @@ export interface Repository {
       color: string;
     }[];
   };
-  issues: {
-    totalCount: number;
-  };
-  pullRequests: {
-    totalCount: number;
-  };
 }
 
 export interface User {
@@ -52,5 +46,18 @@ export interface User {
         }[];
       }[];
     };
+  };
+  repositories: {
+    totalCount: number;
+    totalStargazers: {
+      stargazerCount: number;
+    }[];
+    nodes: Repository[];
+  };
+  pullRequests: {
+    totalCount: number;
+  };
+  issues: {
+    totalCount: number;
   };
 }
