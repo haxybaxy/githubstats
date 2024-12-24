@@ -5,7 +5,7 @@ import { CommitChart } from './CommitChart';
  * Props for the RepositoryCard component
  * @interface RepositoryCardProps
  */
-interface RepositoryCardProps {
+export interface RepositoryCardProps {
   /** Repository data from GitHub */
   repository: Repository;
   /** Repository owner's username */
