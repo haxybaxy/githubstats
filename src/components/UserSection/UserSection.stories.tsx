@@ -25,6 +25,13 @@ export const Default: Story = {
       location: 'San Francisco, CA',
       websiteUrl: 'https://johndoe.dev',
       twitterUsername: 'johndoedev',
+      repositories: {
+        totalCount: 45,
+        totalStargazers: [],
+        nodes: []
+      },
+      pullRequests: { totalCount: 156 },
+      issues: { totalCount: 89 },
       contributionsCollection: {
         totalCommitContributions: 1234,
         totalPullRequestContributions: 156,
@@ -51,6 +58,13 @@ export const MinimalProfile: Story = {
       location: '',
       websiteUrl: '',
       twitterUsername: '',
+      repositories: {
+        totalCount: 45,
+        totalStargazers: [],
+        nodes: []
+      },
+      pullRequests: { totalCount: 156 },
+      issues: { totalCount: 89 },
       contributionsCollection: {
         totalCommitContributions: 50,
         totalPullRequestContributions: 5,
@@ -77,6 +91,13 @@ export const HighlyActive: Story = {
       location: 'Remote',
       websiteUrl: 'https://superdev.tech',
       twitterUsername: 'superdev',
+      repositories: {
+        totalCount: 45,
+        totalStargazers: [],
+        nodes: []
+      },
+      pullRequests: { totalCount: 156 },
+      issues: { totalCount: 89 },
       contributionsCollection: {
         totalCommitContributions: 15000,
         totalPullRequestContributions: 2000,
@@ -103,6 +124,13 @@ export const LongBioAndLinks: Story = {
       location: 'New York City, NY',
       websiteUrl: 'https://really-long-website-name-that-might-overflow.com',
       twitterUsername: 'really_long_twitter_handle_that_might_overflow',
+      repositories: {
+        totalCount: 45,
+        totalStargazers: [],
+        nodes: []
+      },
+      pullRequests: { totalCount: 156 },
+      issues: { totalCount: 89 },
       contributionsCollection: {
         totalCommitContributions: 3000,
         totalPullRequestContributions: 450,
