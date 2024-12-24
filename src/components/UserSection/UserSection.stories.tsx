@@ -13,134 +13,71 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const baseUser = {
+  login: 'johndoe',
+  name: 'John Doe',
+  bio: 'Full-stack developer passionate about React and TypeScript',
+  avatarUrl: 'https://avatars.githubusercontent.com/u/1234567',
+  followers: { totalCount: 150 },
+  following: { totalCount: 89 },
+  location: 'San Francisco, CA',
+  websiteUrl: 'https://johndoe.dev',
+  twitterUsername: 'johndoedev',
+  repositories: {
+    totalCount: 45,
+    totalStargazers: [{ stargazerCount: 100 }],
+    nodes: []
+  },
+  pullRequests: { totalCount: 156 },
+  issues: { totalCount: 89 },
+  contributionsCollection: {
+    totalCommitContributions: 1234,
+    totalPullRequestContributions: 156,
+    totalIssueContributions: 89,
+    totalRepositoryContributions: 45,
+    contributionCalendar: {
+      totalContributions: 0,
+      weeks: [],
+    },
+  },
+};
+
 export const Default: Story = {
   args: {
-    user: {
-      login: 'johndoe',
-      name: 'John Doe',
-      bio: 'Full-stack developer passionate about React and TypeScript',
-      avatarUrl: 'https://avatars.githubusercontent.com/u/1234567',
-      followers: { totalCount: 150 },
-      following: { totalCount: 89 },
-      location: 'San Francisco, CA',
-      websiteUrl: 'https://johndoe.dev',
-      twitterUsername: 'johndoedev',
-      repositories: {
-        totalCount: 45,
-        totalStargazers: [],
-        nodes: []
-      },
-      pullRequests: { totalCount: 156 },
-      issues: { totalCount: 89 },
-      contributionsCollection: {
-        totalCommitContributions: 1234,
-        totalPullRequestContributions: 156,
-        totalIssueContributions: 89,
-        totalRepositoryContributions: 45,
-        contributionCalendar: {
-          totalContributions: 0,
-          weeks: [],
-        },
-      },
-    },
+    user: baseUser,
+    isWinner: false,
+    score: 75.5,
+    isComparing: false,
+    hasCompetitor: false,
   },
 };
 
-export const MinimalProfile: Story = {
+export const Winner: Story = {
   args: {
-    user: {
-      login: 'minimaluser',
-      name: 'Minimal User',
-      bio: '',
-      avatarUrl: 'https://avatars.githubusercontent.com/u/7654321',
-      followers: { totalCount: 10 },
-      following: { totalCount: 5 },
-      location: '',
-      websiteUrl: '',
-      twitterUsername: '',
-      repositories: {
-        totalCount: 45,
-        totalStargazers: [],
-        nodes: []
-      },
-      pullRequests: { totalCount: 156 },
-      issues: { totalCount: 89 },
-      contributionsCollection: {
-        totalCommitContributions: 50,
-        totalPullRequestContributions: 5,
-        totalIssueContributions: 2,
-        totalRepositoryContributions: 3,
-        contributionCalendar: {
-          totalContributions: 0,
-          weeks: [],
-        },
-      },
-    },
+    user: baseUser,
+    isWinner: true,
+    score: 85.5,
+    isComparing: true,
+    hasCompetitor: true,
   },
 };
 
-export const HighlyActive: Story = {
+export const Loser: Story = {
   args: {
-    user: {
-      login: 'superdev',
-      name: 'Super Developer',
-      bio: 'Open source enthusiast | Core contributor to major projects',
-      avatarUrl: 'https://avatars.githubusercontent.com/u/8765432',
-      followers: { totalCount: 5000 },
-      following: { totalCount: 200 },
-      location: 'Remote',
-      websiteUrl: 'https://superdev.tech',
-      twitterUsername: 'superdev',
-      repositories: {
-        totalCount: 45,
-        totalStargazers: [],
-        nodes: []
-      },
-      pullRequests: { totalCount: 156 },
-      issues: { totalCount: 89 },
-      contributionsCollection: {
-        totalCommitContributions: 15000,
-        totalPullRequestContributions: 2000,
-        totalIssueContributions: 500,
-        totalRepositoryContributions: 150,
-        contributionCalendar: {
-          totalContributions: 0,
-          weeks: [],
-        },
-      },
-    },
+    user: baseUser,
+    isWinner: false,
+    score: 65.5,
+    isComparing: true,
+    hasCompetitor: true,
   },
 };
 
-export const LongBioAndLinks: Story = {
+export const ComparingWithoutCompetitor: Story = {
   args: {
-    user: {
-      login: 'verbose',
-      name: 'Verbose Developer',
-      bio: 'Senior Software Engineer with 10+ years of experience in web development. Specialized in React, Node.js, and cloud architecture. Currently working on improving developer experience and building scalable solutions.',
-      avatarUrl: 'https://avatars.githubusercontent.com/u/9876543',
-      followers: { totalCount: 300 },
-      following: { totalCount: 150 },
-      location: 'New York City, NY',
-      websiteUrl: 'https://really-long-website-name-that-might-overflow.com',
-      twitterUsername: 'really_long_twitter_handle_that_might_overflow',
-      repositories: {
-        totalCount: 45,
-        totalStargazers: [],
-        nodes: []
-      },
-      pullRequests: { totalCount: 156 },
-      issues: { totalCount: 89 },
-      contributionsCollection: {
-        totalCommitContributions: 3000,
-        totalPullRequestContributions: 450,
-        totalIssueContributions: 200,
-        totalRepositoryContributions: 75,
-        contributionCalendar: {
-          totalContributions: 0,
-          weeks: [],
-        },
-      },
-    },
+    user: baseUser,
+    isWinner: false,
+    score: 75.5,
+    isComparing: true,
+    hasCompetitor: false,
   },
 };

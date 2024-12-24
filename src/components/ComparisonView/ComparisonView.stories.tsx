@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComparisonView } from './ComparisonView';
 import { ApolloProvider } from '@apollo/client';
-import { client } from '../../apollo-client'; // You'll need to export your Apollo client
+import { client } from '../../apollo-client';
 
 const meta = {
   title: 'Components/ComparisonView',
