@@ -38,7 +38,7 @@ export function ComparisonView() {
 
   const rankingResult = useGitHubRank(
     data1?.user || null,
-    isComparing ? data2?.user || null : data1?.user || null
+    (isComparing && data2?.user) || data1?.user || null
   );
 
   const handleSearch = (e: React.FormEvent) => {
@@ -135,19 +135,27 @@ export function ComparisonView() {
           </div>
         )}
 
-        {isComparing && data2?.user && (
+        {isComparing && (
           <div>
-            <UserSection
-              user={data2.user}
-              isWinner={isWinner(2)}
-              score={rankingResult?.user2Score}
-              isComparing={isComparing}
-            />
-            <RepositoryList
-              repositories={data2.user.repositories.nodes || []}
-              loading={loading2}
-              error={error2}
-            />
+            {data2?.user ? (
+              <>
+                <UserSection
+                  user={data2.user}
+                  isWinner={isWinner(2)}
+                  score={rankingResult?.user2Score}
+                  isComparing={isComparing}
+                />
+                <RepositoryList
+                  repositories={data2.user.repositories.nodes || []}
+                  loading={loading2}
+                  error={error2}
+                />
+              </>
+            ) : (
+              <div className="mb-8 bg-white p-6 rounded-lg shadow-md flex items-center justify-center h-40">
+                <p className="text-gray-500">Enter a second username to compare</p>
+              </div>
+            )}
           </div>
         )}
       </div>
