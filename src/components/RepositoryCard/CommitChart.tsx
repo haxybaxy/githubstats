@@ -31,13 +31,15 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
       owner,
       name: repoName
     },
-    errorPolicy: 'all',  // This will help handle errors more gracefully
+    errorPolicy: 'all',
+    fetchPolicy: 'cache-first',
+    nextFetchPolicy: 'cache-only',
+    pollInterval: 0,
   });
 
   if (loading) return <div className="h-[100px] animate-pulse bg-gray-200 rounded"></div>;
 
   if (error) {
-    // Check if it's a rate limit error
     if (error.message.includes('API rate limit exceeded')) {
       return (
         <div className="h-[100px] flex items-center justify-center text-sm text-gray-500 border border-gray-200 rounded">
@@ -49,7 +51,6 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
     return null;
   }
 
-  // Check if we have valid data
   const commits = data?.repository?.defaultBranchRef?.target?.history?.nodes;
   if (!commits) {
     return (
@@ -59,14 +60,12 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
     );
   }
 
-  // Group commits by day
   const commitsByDay = commits.reduce((acc: { [key: string]: number }, commit: any) => {
     const date = new Date(commit.committedDate).toISOString().split('T')[0];
     acc[date] = (acc[date] || 0) + 1;
     return acc;
   }, {});
 
-  // Create array of last 90 days
   const dates = Array.from({ length: 90 }, (_, i) => {
     const d = new Date();
     d.setDate(d.getDate() - i);
@@ -74,15 +73,15 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
   }).reverse();
 
   const chartData = {
-    labels: dates.map(date => new Date(date).toLocaleDateString()),
+    labels: dates,
     datasets: [
       {
-        label: 'Commits',
         data: dates.map(date => commitsByDay[date] || 0),
         borderColor: 'rgb(75, 192, 192)',
-        backgroundColor: 'rgba(75, 192, 192, 0.5)',
-        tension: 0.1,
+        backgroundColor: 'rgba(75, 192, 192, 0.1)',
+        tension: 0.4,
         fill: true,
+        borderWidth: 3,
       },
     ],
   };
@@ -91,30 +90,40 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
-      y: {
-        beginAtZero: true,
-        ticks: {
-          stepSize: 1,
-          precision: 0,
-        },
-      },
       x: {
-        ticks: {
-          maxTicksLimit: 12,
-        },
+        display: false, // Hide x-axis
+      },
+      y: {
+        display: false, // Hide y-axis
+        beginAtZero: true,
       },
     },
     plugins: {
+      legend: {
+        display: false, // Hide legend
+      },
       tooltip: {
+        enabled: true,
         callbacks: {
           title: (context: any) => {
             return new Date(dates[context[0].dataIndex]).toLocaleDateString();
           },
           label: (context: any) => {
-            return `Commits: ${context.raw}`;
+            return `${context.raw} commits`;
           },
         },
+        displayColors: false, // Hide color box in tooltip
       },
+    },
+    elements: {
+      point: {
+        radius: 0, // Hide points
+        hoverRadius: 4, // Show points on hover
+      },
+    },
+    interaction: {
+      intersect: false,
+      mode: 'index',
     },
   };
 
