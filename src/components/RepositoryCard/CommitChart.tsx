@@ -10,6 +10,7 @@ import {
   Tooltip,
   Title
 } from 'chart.js';
+import type { TooltipItem } from 'chart.js';
 
 ChartJS.register(
   CategoryScale,
@@ -60,7 +61,7 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
     );
   }
 
-  const commitsByDay = commits.reduce((acc: { [key: string]: number }, commit: any) => {
+  const commitsByDay = commits.reduce((acc: { [key: string]: number }, commit: { committedDate: string }) => {
     const date = new Date(commit.committedDate).toISOString().split('T')[0];
     acc[date] = (acc[date] || 0) + 1;
     return acc;
@@ -105,10 +106,10 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
       tooltip: {
         enabled: true,
         callbacks: {
-          title: (context: any) => {
+          title: (context: TooltipItem<'line'>[]) => {
             return new Date(dates[context[0].dataIndex]).toLocaleDateString();
           },
-          label: (context: any) => {
+          label: (context: TooltipItem<'line'>) => {
             return `${context.raw} commits`;
           },
         },
