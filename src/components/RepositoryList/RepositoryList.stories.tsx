@@ -1,17 +1,54 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { RepositoryList } from './RepositoryList';
+import { MockedProvider } from '@apollo/client/testing';
+import { GET_REPO_COMMITS } from '../../graphql/queries';
 
-const meta = {
-  title: 'Components/RepositoryList',
-  component: RepositoryList,
-  parameters: {
-    layout: 'padded',
-  },
-  tags: ['autodocs'],
-} satisfies Meta<typeof RepositoryList>;
+// Reuse the same commit mock generator
+const createCommitMock = (owner: string, repoName: string) => {
+  const generateDailyCommits = (dayIndex: number) => {
+    const baseCommits = Math.sin((dayIndex / 90) * Math.PI * 4) + 1;
+    const randomFactor = Math.random() * 0.5 + 0.5;
+    return Array.from(
+      { length: Math.round(baseCommits * randomFactor * 3) },
+      () => ({
+        committedDate: new Date(
+          new Date().getTime() - (dayIndex * 24 * 60 * 60 * 1000)
+        ).toISOString(),
+        __typename: 'Commit'
+      })
+    );
+  };
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+  const commits = Array.from({ length: 90 }, (_, i) => generateDailyCommits(i))
+    .flat();
+
+  return {
+    request: {
+      query: GET_REPO_COMMITS,
+      variables: {
+        owner,
+        name: repoName,
+      },
+    },
+    result: {
+      data: {
+        repository: {
+          defaultBranchRef: {
+            target: {
+              history: {
+                nodes: commits,
+                __typename: 'CommitHistoryConnection'
+              },
+              __typename: 'Commit'
+            },
+            __typename: 'Ref'
+          },
+          __typename: 'Repository'
+        }
+      }
+    }
+  };
+};
 
 const mockRepositories = [
   {
@@ -38,14 +75,40 @@ const mockRepositories = [
     forkCount: 150,
     updatedAt: '2024-03-19T12:00:00Z'
   },
-  // Add more mock repositories as needed
 ];
+
+const meta = {
+  title: 'Components/RepositoryList',
+  component: RepositoryList,
+  parameters: {
+    layout: 'padded',
+  },
+  decorators: [
+    (Story, context) => {
+      // Create mocks for all repositories
+      const mocks = (context.args.repositories || []).map(repo =>
+        createCommitMock('example', repo.name)
+      );
+
+      return (
+        <MockedProvider mocks={mocks} addTypename={true}>
+          <Story />
+        </MockedProvider>
+      );
+    },
+  ],
+  tags: ['autodocs'],
+} satisfies Meta<typeof RepositoryList>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
     repositories: mockRepositories,
     loading: false,
     error: undefined,
+    owner: 'example'
   },
 };
 
@@ -54,6 +117,7 @@ export const Loading: Story = {
     repositories: [],
     loading: true,
     error: undefined,
+    owner: 'example'
   },
 };
 
@@ -62,6 +126,7 @@ export const WithError: Story = {
     repositories: [],
     loading: false,
     error: new Error('Failed to fetch repositories'),
+    owner: 'example'
   },
 };
 
@@ -70,5 +135,6 @@ export const EmptyList: Story = {
     repositories: [],
     loading: false,
     error: undefined,
+    owner: 'example'
   },
 };

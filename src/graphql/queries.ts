@@ -35,8 +35,13 @@ query GetUserRepositories($username: String!) {
       }
     }
 
-    # Repository stats
-    repositories(first: 100, orderBy: { field: STARGAZERS, direction: DESC }) {
+    # Repository stats - added isFork: false, isArchived: false, and ownerAffiliations: OWNER
+    repositories(
+      first: 100,
+      orderBy: { field: STARGAZERS, direction: DESC },
+      ownerAffiliations: OWNER,
+      isArchived: false
+    ) {
       totalCount
       totalStargazers: nodes {
         stargazerCount
@@ -71,4 +76,22 @@ query GetUserRepositories($username: String!) {
     }
   }
 }
+`;
+
+export const GET_REPO_COMMITS = gql`
+  query GetRepositoryCommits($owner: String!, $name: String!) {
+    repository(owner: $owner, name: $name) {
+      defaultBranchRef {
+        target {
+          ... on Commit {
+            history(first: 100, since: "2024-01-01T00:00:00Z") {
+              nodes {
+                committedDate
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 `;
