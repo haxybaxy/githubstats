@@ -51,6 +51,7 @@ export const SearchForm = ({
     className="my-8"
     role="search"
     aria-label="Search GitHub users"
+    data-testid="search-form"
   >
     {/* Username input field */}
     <input

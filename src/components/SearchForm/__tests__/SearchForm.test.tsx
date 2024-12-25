@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { jest } from '@jest/globals';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { SearchForm } from '../SearchForm';
 
 describe('SearchForm', () => {
@@ -25,5 +25,35 @@ describe('SearchForm', () => {
 
     expect(screen.getByPlaceholderText('Enter GitHub username')).toBeInTheDocument();
     expect(screen.getByRole('button')).toHaveTextContent('Search');
+  });
+
+  it('calls onSubmit when form is submitted', () => {
+    render(
+      <SearchForm
+        username="testuser"
+        onUsernameChange={mockOnUsernameChange}
+        onSubmit={mockOnSubmit}
+        placeholder="Enter GitHub username"
+      />
+    );
+
+    const form = screen.getByTestId('search-form');
+    fireEvent.submit(form);
+
+    expect(mockOnSubmit).toHaveBeenCalled();
+  });
+
+  it('disables submit button when username is empty', () => {
+    render(
+      <SearchForm
+        username=""
+        onUsernameChange={mockOnUsernameChange}
+        onSubmit={mockOnSubmit}
+        placeholder="Enter GitHub username"
+      />
+    );
+
+    const submitButton = screen.getByRole('button');
+    expect(submitButton).toBeDisabled();
   });
 });
