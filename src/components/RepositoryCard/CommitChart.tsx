@@ -180,7 +180,7 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
 
   try {
     return (
-      <div className="h-[100px] mt-4 p-2">
+      <div className="h-[100px] mt-4 p-2" data-testid="commit-chart">
         <Line data={chartData} options={options} />
       </div>
     );
