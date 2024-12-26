@@ -5,6 +5,18 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GitHub Stats</title>
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+          document.body.style.backgroundColor = '#111827';
+        } else {
+          document.body.style.backgroundColor = 'white';
+        }
+      })();
+    </script>
+    <meta name="color-scheme" content="light dark">
   </head>
   <body>
     <div id="root"></div>
