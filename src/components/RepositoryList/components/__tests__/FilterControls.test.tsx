@@ -25,7 +25,7 @@ describe('FilterControls', () => {
   it('renders all controls correctly', () => {
     render(<FilterControls {...mockProps} />);
 
-    expect(screen.getByPlaceholderText('Search repositories...')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Find a repository...')).toBeInTheDocument();
     expect(screen.getByRole('combobox', { name: /filter by language/i })).toBeInTheDocument();
     expect(screen.getByRole('combobox', { name: /sort by/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /sort descending/i })).toBeInTheDocument();

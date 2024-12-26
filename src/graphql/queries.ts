@@ -177,3 +177,21 @@ export const GET_REPO_COMMITS = gql`
     }
   }
 `;
+
+/**
+ * Query to search for users as typing
+ * Limited to 5 results for performance
+ */
+export const SEARCH_USERS = gql`
+  query SearchUsers($query: String!) {
+    search(query: $query, type: USER, first: 5) {
+      nodes {
+        ... on User {
+          login
+          name
+          avatarUrl
+        }
+      }
+    }
+  }
+`;

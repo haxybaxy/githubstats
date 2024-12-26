@@ -84,7 +84,7 @@ export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null
      * @param {string} userLabel - Label for console logging
      * @returns {number} User's percentile score
      */
-    const calculateUserScore = (user: GitHubUser, userLabel: string) => {
+    const calculateUserScore = (user: GitHubUser) => {
       // Extract metrics
       const commits = user.contributionsCollection.totalCommitContributions;
       const stars = user.repositories.totalStargazers.reduce(
@@ -93,18 +93,16 @@ export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null
       );
       const prs = user.pullRequests.totalCount;
       const issues = user.issues.totalCount;
-      const repos = user.repositories.totalCount;
       const followers = user.followers.totalCount;
       const reviews = 0; // Not available in current data
 
       // Log user stats
-      console.group(`${userLabel} Stats (matching UI display):`);
-      console.log('Total Commits:', commits);
-      console.log('Total Stars:', stars);
-      console.log('Total PRs:', prs);
-      console.log('Total Issues:', issues);
-      console.log('Total Repositories:', repos);
-      console.log('Followers:', followers);
+      // console.group(`${userLabel} Stats (matching UI display):`);
+      // console.log('Total Commits:', commits);
+      // console.log('Total Stars:', stars);
+      // console.log('Total PRs:', prs);
+      // console.log('Total Issues:', issues);
+      // console.log('Followers:', followers);
 
       // Define median values and weights
       const COMMITS_MEDIAN = 250;
@@ -143,30 +141,30 @@ export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null
       const percentile = rank * 100;
 
       // Log individual scores
-      console.log('Individual Scores:');
-      console.log('- Commit Score:', exponentialCdf(commits / COMMITS_MEDIAN));
-      console.log('- PR Score:', exponentialCdf(prs / PRS_MEDIAN));
-      console.log('- Issue Score:', exponentialCdf(issues / ISSUES_MEDIAN));
-      console.log('- Review Score:', exponentialCdf(reviews / REVIEWS_MEDIAN));
-      console.log('- Star Score:', logNormalCdf(stars / STARS_MEDIAN));
-      console.log('- Follower Score:', logNormalCdf(followers / FOLLOWERS_MEDIAN));
-      console.log('Final Percentile:', percentile);
-      console.groupEnd();
+      // console.log('Individual Scores:');
+      // console.log('- Commit Score:', exponentialCdf(commits / COMMITS_MEDIAN));
+      // console.log('- PR Score:', exponentialCdf(prs / PRS_MEDIAN));
+      // console.log('- Issue Score:', exponentialCdf(issues / ISSUES_MEDIAN));
+      // console.log('- Review Score:', exponentialCdf(reviews / REVIEWS_MEDIAN));
+      // console.log('- Star Score:', logNormalCdf(stars / STARS_MEDIAN));
+      // console.log('- Follower Score:', logNormalCdf(followers / FOLLOWERS_MEDIAN));
+      // console.log('Final Percentile:', percentile);
+      // console.groupEnd();
 
       return percentile;
     };
 
-    const score1 = calculateUserScore(user1, "User 1");
-    const score2 = calculateUserScore(user2, "User 2");
+    const score1 = calculateUserScore(user1);
+    const score2 = calculateUserScore(user2);
 
     const winner = score1 < score2 ? 1 : 2;
     const scoreDiff = Math.abs(score1 - score2);
 
     // Log comparison results
-    console.log('Comparison Results:');
-    console.log(`User 1 (${score1.toFixed(2)}) vs User 2 (${score2.toFixed(2)})`);
-    console.log('Winner:', winner);
-    console.log('Score Difference:', scoreDiff.toFixed(2));
+    // console.log('Comparison Results:');
+    // console.log(`User 1 (${score1.toFixed(2)}) vs User 2 (${score2.toFixed(2)})`);
+    // console.log('Winner:', winner);
+    // console.log('Score Difference:', scoreDiff.toFixed(2));
 
     return {
       user1Score: score1,
