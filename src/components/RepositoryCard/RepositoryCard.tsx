@@ -41,12 +41,12 @@ export interface RepositoryCardProps {
  * ```
  */
 export const RepositoryCard = ({ repository, owner }: RepositoryCardProps) => (
-  <div className="bg-white p-6 rounded-lg shadow-md text-left">
+  <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-left">
     {/* Repository name and link */}
     <h2 className="text-xl font-semibold">
       <a
         href={repository.url}
-        className="text-blue-600 hover:underline"
+        className="text-blue-600 dark:text-blue-400 hover:underline"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -55,10 +55,10 @@ export const RepositoryCard = ({ repository, owner }: RepositoryCardProps) => (
     </h2>
 
     {/* Repository description */}
-    <p className="mt-2 text-black">{repository.description}</p>
+    <p className="mt-2 text-gray-900 dark:text-gray-100">{repository.description}</p>
 
     {/* Repository statistics */}
-    <div className="mt-4 flex items-center space-x-4">
+    <div className="mt-4 flex items-center space-x-4 text-gray-700 dark:text-gray-300">
       {/* Primary language indicator */}
       {repository.primaryLanguage && (
         <span className="flex items-center">

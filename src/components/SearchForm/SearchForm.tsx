@@ -60,7 +60,10 @@ export const SearchForm = ({
       onChange={(e) => onUsernameChange(e.target.value)}
       placeholder={placeholder}
       disabled={isLoading}
-      className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+      className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md
+                 focus:outline-none focus:ring-2 focus:ring-blue-500
+                 disabled:bg-gray-100 dark:disabled:bg-gray-700
+                 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
       aria-label="GitHub username"
       aria-disabled={isLoading}
     />
@@ -69,7 +72,10 @@ export const SearchForm = ({
     <button
       type="submit"
       disabled={isLoading || !username.trim()}
-      className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400"
+      className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md
+                 hover:bg-blue-600 focus:outline-none focus:ring-2
+                 focus:ring-blue-500 disabled:bg-gray-400
+                 dark:disabled:bg-gray-600"
       aria-disabled={isLoading || !username.trim()}
     >
       {isLoading ? 'Loading...' : 'Search'}

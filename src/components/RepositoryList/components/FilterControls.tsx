@@ -69,7 +69,9 @@ export function FilterControls({
         placeholder="Search repositories..."
         value={searchQuery}
         onChange={(e) => onSearchChange(e.target.value)}
-        className="px-4 py-2 border rounded-md"
+        className="px-4 py-2 border border-gray-300 dark:border-gray-600
+                   rounded-md bg-white dark:bg-gray-800
+                   text-gray-900 dark:text-gray-100"
         aria-label="Search repositories"
       />
 
@@ -77,7 +79,9 @@ export function FilterControls({
       <select
         value={selectedLanguage}
         onChange={(e) => onLanguageChange(e.target.value)}
-        className="px-4 py-2 border rounded-md"
+        className="px-4 py-2 border border-gray-300 dark:border-gray-600
+                   rounded-md bg-white dark:bg-gray-800
+                   text-gray-900 dark:text-gray-100"
         aria-label="Filter by language"
       >
         <option value="">All Languages</option>
@@ -90,7 +94,9 @@ export function FilterControls({
       <select
         value={sortBy}
         onChange={(e) => onSortByChange(e.target.value as 'stars' | 'forks' | 'updated')}
-        className="px-4 py-2 border rounded-md"
+        className="px-4 py-2 border border-gray-300 dark:border-gray-600
+                   rounded-md bg-white dark:bg-gray-800
+                   text-gray-900 dark:text-gray-100"
         aria-label="Sort by"
       >
         <option value="stars">Stars</option>
@@ -101,7 +107,9 @@ export function FilterControls({
       {/* Sort order toggle */}
       <button
         onClick={onSortOrderChange}
-        className="px-4 py-2 border rounded-md bg-white"
+        className="px-4 py-2 border border-gray-300 dark:border-gray-600
+                   rounded-md bg-white dark:bg-gray-800
+                   text-gray-900 dark:text-gray-100"
         aria-label={`Sort ${sortOrder === 'asc' ? 'ascending' : 'descending'}`}
       >
         {sortOrder === 'asc' ? '↑' : '↓'}

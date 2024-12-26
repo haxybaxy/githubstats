@@ -67,7 +67,7 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
   ];
 
   return (
-    <div className="mb-8 bg-white p-6 rounded-lg shadow-md">
+    <div className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
       {/* User profile section */}
       <div className="flex items-center space-x-4">
         {/* Avatar with optional winner crown */}
@@ -89,28 +89,30 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
         <div className="flex-grow">
           <div className="flex justify-between items-start">
             <div>
-              <h2 className="text-2xl font-bold text-left">{user.name}</h2>
-              <p className="text-gray-600 text-left">{user.bio}</p>
+              <h2 className="text-2xl font-bold text-left text-gray-900 dark:text-white">
+                {user.name}
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400 text-left">{user.bio}</p>
             </div>
             {score !== undefined && (
               <div className={`text-lg font-semibold ${
                 isComparing && hasCompetitor
                   ? isWinner
-                    ? 'text-green-600'
-                    : 'text-red-600'
-                  : 'text-blue-600'
+                    ? 'text-green-600 dark:text-green-400'
+                    : 'text-red-600 dark:text-red-400'
+                  : 'text-blue-600 dark:text-blue-400'
               }`}>
                 Percentile: {score.toFixed(1)}
               </div>
             )}
           </div>
           {/* Follower stats */}
-          <div className="mt-2 flex space-x-4">
+          <div className="mt-2 flex space-x-4 text-gray-700 dark:text-gray-300">
             <span>👥 {user.followers.totalCount} followers</span>
             <span>👤 {user.following.totalCount} following</span>
           </div>
           {/* Contact and social info */}
-          <div className="mt-2 text-left text-gray-600">
+          <div className="mt-2 text-left text-gray-600 dark:text-gray-400">
             {user.location && <div>📍 {user.location}</div>}
             {user.websiteUrl && (
               <div>
@@ -133,9 +135,9 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
       {/* Statistics grid */}
       <div className="mt-6 grid grid-cols-2 md:grid-cols-5 gap-4">
         {stats.map((stat) => (
-          <div key={stat.label} className="stat-card">
-            <h3>{stat.label}</h3>
-            <p>{stat.value}</p>
+          <div key={stat.label} className="stat-card bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+            <h3 className="text-gray-600 dark:text-gray-400">{stat.label}</h3>
+            <p className="text-gray-900 dark:text-white font-semibold">{stat.value}</p>
           </div>
         ))}
       </div>

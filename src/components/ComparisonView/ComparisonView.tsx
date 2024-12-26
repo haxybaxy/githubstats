@@ -124,8 +124,8 @@ export function ComparisonView() {
                 />
               </>
             ) : (
-              <div className="mb-8 bg-white p-6 rounded-lg shadow-md flex items-center justify-center h-40">
-                <p className="text-gray-500">Enter a second username to compare</p>
+              <div className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex items-center justify-center h-40">
+                <p className="text-gray-500 dark:text-gray-400">Enter a second username to compare</p>
               </div>
             )}
           </div>
