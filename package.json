@@ -17,6 +17,7 @@
   "dependencies": {
     "@apollo/client": "^3.12.3",
     "@heroicons/react": "^2.2.0",
+    "@primer/octicons-react": "^19.14.0",
     "chart.js": "^4.4.7",
     "graphql": "^16.9.0",
     "react": "^18.3.1",
