@@ -45,9 +45,9 @@ export const RepositoryCard = ({ repository, owner }: RepositoryCardProps) => (
   <div className="py-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 rounded-lg px-4">
     <div className="flex items-start">
       {/* Repository icon and name */}
-      <div className="flex-shrink-0 mr-2 mt-1 text-gray-600 dark:text-gray-400">
+      {/* <div className="flex-shrink-0 mr-2 mt-1 text-gray-600 dark:text-gray-400">
         <RepoIcon size={16} />
-      </div>
+      </div> */}
 
       <div className="flex-1 min-w-0">
         {/* Repository name and link */}
