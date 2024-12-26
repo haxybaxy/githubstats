@@ -40,18 +40,25 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
       <button
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
-        className="px-4 py-2 border rounded-md bg-white disabled:opacity-50"
+        className="px-4 py-2 border border-gray-300 dark:border-gray-600
+                   rounded-md bg-white dark:bg-gray-800
+                   text-gray-900 dark:text-gray-100
+                   disabled:opacity-50"
         aria-label="Previous page"
       >
         Previous
       </button>
-      <span className="px-4 py-2" aria-label={`Page ${currentPage} of ${totalPages}`}>
+      <span className="px-4 py-2 text-gray-900 dark:text-gray-100"
+            aria-label={`Page ${currentPage} of ${totalPages}`}>
         Page {currentPage} of {totalPages}
       </span>
       <button
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}
-        className="px-4 py-2 border rounded-md bg-white disabled:opacity-50"
+        className="px-4 py-2 border border-gray-300 dark:border-gray-600
+                   rounded-md bg-white dark:bg-gray-800
+                   text-gray-900 dark:text-gray-100
+                   disabled:opacity-50"
         aria-label="Next page"
       >
         Next
