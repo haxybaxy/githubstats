@@ -84,7 +84,7 @@ export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null
      * @param {string} userLabel - Label for console logging
      * @returns {number} User's percentile score
      */
-    const calculateUserScore = (user: GitHubUser, userLabel: string) => {
+    const calculateUserScore = (user: GitHubUser) => {
       // Extract metrics
       const commits = user.contributionsCollection.totalCommitContributions;
       const stars = user.repositories.totalStargazers.reduce(
@@ -154,8 +154,8 @@ export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null
       return percentile;
     };
 
-    const score1 = calculateUserScore(user1, "User 1");
-    const score2 = calculateUserScore(user2, "User 2");
+    const score1 = calculateUserScore(user1);
+    const score2 = calculateUserScore(user2);
 
     const winner = score1 < score2 ? 1 : 2;
     const scoreDiff = Math.abs(score1 - score2);
