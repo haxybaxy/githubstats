@@ -14,6 +14,25 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   });
 
   useEffect(() => {
+    // Add the style element for transitions
+    const style = document.createElement('style');
+    style.innerHTML = `
+      * {
+        transition: background-color 0.3s ease,
+                    color 0.3s ease,
+                    border-color 0.3s ease,
+                    fill 0.3s ease !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Clean up function
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []); // Run once on mount
+
+  useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
@@ -31,6 +50,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     </ThemeContext.Provider>
   );
 }
+
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (context === undefined) {
