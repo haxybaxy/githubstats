@@ -39,8 +39,10 @@ describe('RepositoryCard', () => {
     // expect(languageIndicator).toHaveStyle({ backgroundColor: '#2b7489' });
 
     // Check statistics
-    expect(screen.getByTitle('100 stars')).toHaveTextContent('⭐ 100');
-    expect(screen.getByTitle('50 forks')).toHaveTextContent('🍴 50');
+    const stargazersLink = screen.getByRole('link', { name: '100' });
+    const forksLink = screen.getByRole('link', { name: '50' });
+    expect(stargazersLink).toBeInTheDocument();
+    expect(forksLink).toBeInTheDocument();
 
     // Since we can't easily test the chart itself, we can verify the container exists
     expect(screen.getByText('test-repo').closest('div')).toBeInTheDocument();
@@ -79,7 +81,7 @@ describe('RepositoryCard', () => {
 
     render(<RepositoryCard repository={repoWithZeroStats} owner={mockOwner} />);
 
-    expect(screen.getByTitle('0 stars')).toHaveTextContent('⭐ 0');
-    expect(screen.getByTitle('0 forks')).toHaveTextContent('🍴 0');
+    // Stats should not be present when they are zero
+    expect(screen.queryByRole('link', { name: '0' })).not.toBeInTheDocument();
   });
 });

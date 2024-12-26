@@ -113,6 +113,7 @@ export const SearchForm = ({
     <form
       onSubmit={(e) => {
         e.preventDefault();
+        if (!searchTerm.trim()) return;
         setShowSuggestions(false);
         onSubmit(e);
       }}

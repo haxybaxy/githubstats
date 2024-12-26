@@ -43,7 +43,7 @@ describe('SearchForm', () => {
     expect(mockOnSubmit).toHaveBeenCalled();
   });
 
-  it('disables submit button when username is empty', () => {
+  it('prevents submission when username is empty', () => {
     render(
       <SearchForm
         username=""
@@ -53,7 +53,9 @@ describe('SearchForm', () => {
       />
     );
 
-    const submitButton = screen.getByRole('button');
-    expect(submitButton).toBeDisabled();
+    const form = screen.getByTestId('search-form');
+    fireEvent.submit(form);
+
+    expect(mockOnSubmit).not.toHaveBeenCalled();
   });
 });
