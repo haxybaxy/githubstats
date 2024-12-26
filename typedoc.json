@@ -1,0 +1,11 @@
+{
+  "entryPoints": ["src/**/*.ts", "src/**/*.tsx"],
+  "out": "docs",
+  "name": "GitStats Documentation",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "theme": "default",
+  "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/*.stories.tsx"],
+  "categorizeByGroup": true,
+  "categoryOrder": ["Components", "Hooks", "Utils", "*"]
+}
