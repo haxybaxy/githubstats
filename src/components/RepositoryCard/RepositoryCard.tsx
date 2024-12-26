@@ -1,6 +1,6 @@
 import { Repository } from '../../types/github';
 import { CommitChart } from './CommitChart';
-import { StarIcon, RepoForkedIcon, RepoIcon } from '@primer/octicons-react';
+import { StarIcon, RepoForkedIcon } from '@primer/octicons-react';
 
 /**
  * Props for the RepositoryCard component
