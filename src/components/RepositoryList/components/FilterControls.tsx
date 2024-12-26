@@ -1,3 +1,11 @@
+import {
+  MagnifyingGlassIcon,
+  ChevronUpDownIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  FunnelIcon
+} from '@heroicons/react/20/solid';
+
 /**
  * Props for the FilterControls component
  * @interface FilterControlsProps
@@ -62,58 +70,83 @@ export function FilterControls({
   onSortOrderChange,
 }: FilterControlsProps) {
   return (
-    <div className="mt-8 mb-4 flex flex-wrap gap-4 justify-center">
+    <div className="mb-4 flex flex-wrap items-center gap-4 px-4 py-3 bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-700 rounded-lg">
       {/* Search input */}
-      <input
-        type="text"
-        placeholder="Search repositories..."
-        value={searchQuery}
-        onChange={(e) => onSearchChange(e.target.value)}
-        className="px-4 py-2 border border-gray-300 dark:border-gray-600
-                   rounded-md bg-white dark:bg-gray-800
-                   text-gray-900 dark:text-gray-100"
-        aria-label="Search repositories"
-      />
+      <div className="relative flex-1 min-w-[200px]">
+        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+          <MagnifyingGlassIcon className="h-4 w-4" />
+        </div>
+        <input
+          type="text"
+          placeholder="Find a repository..."
+          value={searchQuery}
+          onChange={(e) => onSearchChange(e.target.value)}
+          className="w-full pl-9 pr-3 py-[5px] text-sm border border-gray-300 dark:border-gray-600
+                     rounded-md bg-white dark:bg-gray-700
+                     placeholder:text-gray-500 dark:placeholder:text-gray-400
+                     text-gray-900 dark:text-gray-100
+                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          aria-label="Search repositories"
+        />
+      </div>
 
-      {/* Language filter */}
-      <select
-        value={selectedLanguage}
-        onChange={(e) => onLanguageChange(e.target.value)}
-        className="px-4 py-2 border border-gray-300 dark:border-gray-600
-                   rounded-md bg-white dark:bg-gray-800
-                   text-gray-900 dark:text-gray-100"
-        aria-label="Filter by language"
-      >
-        <option value="">All Languages</option>
-        {languages.map(lang => (
-          <option key={lang} value={lang}>{lang}</option>
-        ))}
-      </select>
+      <div className="flex items-center gap-2 text-sm">
+        {/* Language filter */}
+        <div className="relative">
+          <select
+            value={selectedLanguage}
+            onChange={(e) => onLanguageChange(e.target.value)}
+            className="appearance-none pl-7 pr-8 py-[5px] border border-gray-300 dark:border-gray-600
+                       rounded-md bg-white dark:bg-gray-700
+                       text-gray-900 dark:text-gray-100
+                       hover:bg-gray-50 dark:hover:bg-gray-600
+                       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            aria-label="Filter by language"
+          >
+            <option value="">Language: All</option>
+            {languages.map(lang => (
+              <option key={lang} value={lang}>{lang}</option>
+            ))}
+          </select>
+          <FunnelIcon className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+          <ChevronUpDownIcon className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+        </div>
 
-      {/* Sort criteria selector */}
-      <select
-        value={sortBy}
-        onChange={(e) => onSortByChange(e.target.value as 'stars' | 'forks' | 'updated')}
-        className="px-4 py-2 border border-gray-300 dark:border-gray-600
-                   rounded-md bg-white dark:bg-gray-800
-                   text-gray-900 dark:text-gray-100"
-        aria-label="Sort by"
-      >
-        <option value="stars">Stars</option>
-        <option value="forks">Forks</option>
-        <option value="updated">Last Updated</option>
-      </select>
+        {/* Sort dropdown */}
+        <div className="relative">
+          <select
+            value={sortBy}
+            onChange={(e) => onSortByChange(e.target.value as 'stars' | 'forks' | 'updated')}
+            className="appearance-none pl-3 pr-8 py-[5px] border border-gray-300 dark:border-gray-600
+                       rounded-md bg-white dark:bg-gray-700
+                       text-gray-900 dark:text-gray-100
+                       hover:bg-gray-50 dark:hover:bg-gray-600
+                       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            aria-label="Sort by"
+          >
+            <option value="stars">Sort by: Stars</option>
+            <option value="forks">Sort by: Forks</option>
+            <option value="updated">Sort by: Updated</option>
+          </select>
+          <ChevronUpDownIcon className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+        </div>
 
-      {/* Sort order toggle */}
-      <button
-        onClick={onSortOrderChange}
-        className="px-4 py-2 border border-gray-300 dark:border-gray-600
-                   rounded-md bg-white dark:bg-gray-800
-                   text-gray-900 dark:text-gray-100"
-        aria-label={`Sort ${sortOrder === 'asc' ? 'ascending' : 'descending'}`}
-      >
-        {sortOrder === 'asc' ? '↑' : '↓'}
-      </button>
+        {/* Sort order toggle */}
+        <button
+          onClick={onSortOrderChange}
+          className="p-[5px] border border-gray-300 dark:border-gray-600
+                     rounded-md bg-white dark:bg-gray-700
+                     text-gray-700 dark:text-gray-300
+                     hover:bg-gray-50 dark:hover:bg-gray-600
+                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          aria-label={`Sort ${sortOrder === 'asc' ? 'ascending' : 'descending'}`}
+        >
+          {sortOrder === 'asc'
+            ? <ChevronUpIcon className="h-4 w-4" />
+            : <ChevronDownIcon className="h-4 w-4" />
+          }
+        </button>
+      </div>
     </div>
   );
 }
