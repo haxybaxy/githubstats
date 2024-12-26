@@ -1,5 +1,15 @@
 import { User } from '../../types/github';
 import crownIcon from '../../assets/crown.svg';
+import {
+  PeopleIcon,
+  LocationIcon,
+  LinkExternalIcon,
+  RepoIcon,
+  StarIcon,
+  GitCommitIcon,
+  IssueOpenedIcon,
+  GitPullRequestIcon
+} from '@primer/octicons-react';
 
 /**
  * Props for the UserSection component
@@ -59,87 +69,141 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
    * @type {{ label: string; value: number }[]}
    */
   const stats = [
-    { label: 'Total Commits', value: user.contributionsCollection.totalCommitContributions },
-    { label: 'Total Stars', value: totalStars },
-    { label: 'Total PRs', value: user.pullRequests.totalCount },
-    { label: 'Total Issues', value: user.issues.totalCount },
-    { label: 'Total Repositories', value: user.repositories.totalCount },
+    {
+      label: 'Total Commits',
+      value: user.contributionsCollection.totalCommitContributions,
+      icon: <GitCommitIcon className="h-5 w-5" />
+    },
+    {
+      label: 'Total Stars',
+      value: totalStars,
+      icon: <StarIcon className="h-5 w-5" />
+    },
+    {
+      label: 'Total PRs',
+      value: user.pullRequests.totalCount,
+      icon: <GitPullRequestIcon className="h-5 w-5" />
+    },
+    {
+      label: 'Total Issues',
+      value: user.issues.totalCount,
+      icon: <IssueOpenedIcon className="h-5 w-5" />
+    },
+    {
+      label: 'Total Repositories',
+      value: user.repositories.totalCount,
+      icon: <RepoIcon className="h-5 w-5" />
+    },
   ];
 
   return (
-    <div className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+    <div className="mb-8 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800">
       {/* User profile section */}
-      <div className="flex items-center space-x-4">
-        {/* Avatar with optional winner crown */}
-        <div className="relative">
-          <img
-            src={user.avatarUrl}
-            alt={user.login}
-            className="w-20 h-20 rounded-full"
-          />
-          {isWinner && (
+      <div className="p-6">
+        <div className="flex items-start space-x-4">
+          {/* Avatar with optional winner crown */}
+          <div className="relative flex-shrink-0">
             <img
-              src={crownIcon}
-              alt="Winner"
-              className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-10 h-10"
+              src={user.avatarUrl}
+              alt={user.login}
+              className="w-24 h-24 rounded-full border border-gray-200 dark:border-gray-700"
             />
-          )}
-        </div>
-        {/* User info and social links */}
-        <div className="flex-grow">
-          <div className="flex justify-between items-start">
-            <div>
-              <h2 className="text-2xl font-bold text-left text-gray-900 dark:text-white">
-                {user.name}
-              </h2>
-              <p className="text-gray-600 dark:text-gray-400 text-left">{user.bio}</p>
+            {isWinner && (
+              <img
+                src={crownIcon}
+                alt="Winner"
+                className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-10 h-10"
+              />
+            )}
+          </div>
+
+          {/* User info and social links */}
+          <div className="flex-grow min-w-0">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+              <div className="min-w-0">
+                <h2 className="text-xl text-left font-semibold text-gray-900 dark:text-white truncate">
+                  {user.name || user.login}
+                </h2>
+                <h3 className="text-base text-left text-gray-600 dark:text-gray-400 mb-2">
+                  {user.login}
+                </h3>
+                {user.bio && (
+                  <p className="text-gray-600 text-left dark:text-gray-400 text-sm mb-3 line-clamp-2">
+                    {user.bio}
+                  </p>
+                )}
+              </div>
+              {score !== undefined && (
+                <div className={`text-sm font-medium px-3 py-1 rounded-full ${
+                  isComparing && hasCompetitor
+                    ? isWinner
+                      ? 'bg-green-100 text-green-800 dark:bg-green-800/30 dark:text-green-300'
+                      : 'bg-red-100 text-red-800 dark:bg-red-800/30 dark:text-red-300'
+                    : 'bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-300'
+                }`}>
+                  Percentile: {score.toFixed(1)}
+                </div>
+              )}
             </div>
-            {score !== undefined && (
-              <div className={`text-lg font-semibold ${
-                isComparing && hasCompetitor
-                  ? isWinner
-                    ? 'text-green-600 dark:text-green-400'
-                    : 'text-red-600 dark:text-red-400'
-                  : 'text-blue-600 dark:text-blue-400'
-              }`}>
-                Percentile: {score.toFixed(1)}
+
+            {/* Social stats and info */}
+            <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600 dark:text-gray-400">
+              <div className="flex items-center gap-1">
+                <PeopleIcon className="h-4 w-4" />
+                <span className="font-medium text-gray-900 dark:text-white">
+                  {user.followers.totalCount}
+                </span>
+                <span>followers</span>
+                <span className="mx-1">·</span>
+                <span className="font-medium text-gray-900 dark:text-white">
+                  {user.following.totalCount}
+                </span>
+                <span>following</span>
               </div>
-            )}
-          </div>
-          {/* Follower stats */}
-          <div className="mt-2 flex space-x-4 text-gray-700 dark:text-gray-300">
-            <span>👥 {user.followers.totalCount} followers</span>
-            <span>👤 {user.following.totalCount} following</span>
-          </div>
-          {/* Contact and social info */}
-          <div className="mt-2 text-left text-gray-600 dark:text-gray-400">
-            {user.location && <div>📍 {user.location}</div>}
-            {user.websiteUrl && (
-              <div>
-                🌐 <a href={user.websiteUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-                  {user.websiteUrl}
-                </a>
-              </div>
-            )}
-            {user.twitterUsername && (
-              <div>
-                🐦 <a href={`https://twitter.com/${user.twitterUsername}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-                  @{user.twitterUsername}
-                </a>
-              </div>
-            )}
+
+              {user.location && (
+                <div className="flex items-center gap-1">
+                  <LocationIcon className="h-4 w-4" />
+                  <span>{user.location}</span>
+                </div>
+              )}
+
+              {user.websiteUrl && (
+                <div className="flex items-center gap-1">
+                  <LinkExternalIcon className="h-4 w-4" />
+                  <a
+                    href={user.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline dark:text-blue-400"
+                  >
+                    {user.websiteUrl.replace(/^https?:\/\//, '')}
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Statistics grid */}
-      <div className="mt-6 grid grid-cols-2 md:grid-cols-5 gap-4">
-        {stats.map((stat) => (
-          <div key={stat.label} className="stat-card bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-            <h3 className="text-gray-600 dark:text-gray-400">{stat.label}</h3>
-            <p className="text-gray-900 dark:text-white font-semibold">{stat.value}</p>
-          </div>
-        ))}
+      <div className="border-t border-gray-200 dark:border-gray-700">
+        <div className="grid grid-cols-2 md:grid-cols-5 divide-x divide-y md:divide-y-0 divide-gray-200 dark:divide-gray-700">
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+            >
+              <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-1">
+                {stat.icon}
+                <h3 className="text-sm">{stat.label}</h3>
+              </div>
+              <p className="text-lg font-semibold text-gray-900 dark:text-white">
+                {stat.value.toLocaleString()}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
