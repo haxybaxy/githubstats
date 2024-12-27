@@ -6,6 +6,7 @@ import { UserSection } from '../UserSection/UserSection';
 import { RepositoryList } from '../RepositoryList/RepositoryList';
 import { useGitHubRank } from '../../hooks/useGitHubRank';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 /**
  * ComparisonView component that allows users to compare GitHub profiles
@@ -63,12 +64,21 @@ export function ComparisonView({ onSearchStateChange }: any) {
   };
 
   /**
-   * Update the handleSearch function to trigger the animation
+   * Update the handleSearch function to only trigger animation on valid search
    */
-  const handleSearchSubmit = (e: React.FormEvent) => {
+  const handleSearchSubmit = async (e: React.FormEvent) => {
     handleSearch(e);
-    onSearchStateChange(true);
+    // Don't trigger animation immediately - let the data load first
   };
+
+  /**
+   * Use an effect to monitor user data and errors
+   */
+  useEffect(() => {
+    // Only trigger the animation if we have valid user data and no errors
+    const isValidSearch = user1Data && !error1;
+    onSearchStateChange(isValidSearch);
+  }, [user1Data, error1, onSearchStateChange]);
 
   return (
     <div className="text-center">
