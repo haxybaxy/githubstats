@@ -62,6 +62,7 @@ export const SearchForm = ({
   const [searchTerm, setSearchTerm] = useState(username);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const suggestionRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Debounced search query
   const { data, loading: searchLoading } = useQuery(SEARCH_USERS, {
@@ -95,6 +96,22 @@ export const SearchForm = ({
       debouncedOnChange.cancel();
     };
   }, [debouncedOnChange]);
+
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      // Only trigger if typing in an input/textarea isn't already happening
+      if (
+        e.key === '/' &&
+        !['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement).tagName)
+      ) {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+    return () => document.removeEventListener('keydown', handleKeyPress);
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -131,6 +148,7 @@ export const SearchForm = ({
 
           {/* Username input field */}
           <input
+            ref={inputRef}
             type="text"
             value={searchTerm}
             onChange={handleInputChange}
