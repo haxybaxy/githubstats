@@ -87,7 +87,7 @@ export function RepositoryList({ repositories, loading, error, owner }: Reposito
       />
 
       {/* Repository grid */}
-      <div className="mt-8 grid gap-6 lg:grid-cols-2">
+      <div className="mt-8 grid gap-4 sm:gap-6 lg:grid-cols-2">
         {/* Loading state */}
         {loading && (
           <p className="text-gray-500">Loading repositories...</p>

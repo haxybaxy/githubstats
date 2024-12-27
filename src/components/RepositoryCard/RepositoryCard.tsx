@@ -42,7 +42,7 @@ export interface RepositoryCardProps {
  * ```
  */
 export const RepositoryCard = ({ repository, owner }: RepositoryCardProps) => (
-  <div className="py-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 rounded-lg px-4">
+  <div className="py-4 sm:py-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 rounded-lg px-3 sm:px-4">
     <div className="flex items-start">
       {/* Repository icon and name */}
       {/* <div className="flex-shrink-0 mr-2 mt-1 text-gray-600 dark:text-gray-400">
@@ -52,7 +52,7 @@ export const RepositoryCard = ({ repository, owner }: RepositoryCardProps) => (
       <div className="flex-1 min-w-0">
         {/* Repository name and link */}
         <div className="flex items-center flex-wrap">
-          <h2 className="text-xl leading-6">
+          <h2 className="text-lg sm:text-xl leading-6">
             <a
               href={repository.url}
               className="font-semibold text-blue-600 dark:text-blue-400 hover:underline"
@@ -73,7 +73,7 @@ export const RepositoryCard = ({ repository, owner }: RepositoryCardProps) => (
         )}
 
         {/* Repository metadata */}
-        <div className="mt-2 flex flex-wrap items-center gap-4 text-xs text-gray-600 dark:text-gray-400">
+        <div className="mt-2 flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-gray-600 dark:text-gray-400">
           {/* Primary language */}
           {repository.primaryLanguage && (
             <div className="flex items-center gap-1">
