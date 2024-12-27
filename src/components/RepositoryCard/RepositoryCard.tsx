@@ -42,7 +42,7 @@ export interface RepositoryCardProps {
  * ```
  */
 export const RepositoryCard = ({ repository, owner }: RepositoryCardProps) => (
-  <div className="py-4 sm:py-6 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 rounded-lg px-3 sm:px-4">
+  <div className="py-4 sm:py-6 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-lg px-3 sm:px-4">
     <div className="flex flex-col h-full">
       <div className="flex items-start">
         <div className="flex-1 min-w-0">
