@@ -60,4 +60,10 @@ export interface User {
   issues: {
     totalCount: number;
   };
+  socialAccounts: {
+    nodes: {
+      provider: string;
+      url: string;
+    }[];
+  };
 }

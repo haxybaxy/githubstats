@@ -27,6 +27,12 @@ export const GET_USER_INFO = gql`
       location
       websiteUrl
       twitterUsername
+      socialAccounts(first: 10) {
+        nodes {
+          provider
+          url
+        }
+      }
       followers {
         totalCount
       }
