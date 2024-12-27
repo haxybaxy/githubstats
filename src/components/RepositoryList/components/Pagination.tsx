@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 /**
@@ -39,81 +38,48 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
   if (totalPages <= 1) return null;
 
   return (
-    <div className="mt-6 mb-4 flex items-center justify-center gap-2 text-sm">
+    <nav
+      role="navigation"
+      aria-label="Pagination"
+      className="mt-6 mb-4 flex items-center justify-center gap-3 text-sm"
+    >
       <button
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
-        className="flex items-center gap-1 px-3 py-[5px]
+        className="inline-flex items-center gap-1 px-3 py-1.5
                    border border-gray-300 dark:border-gray-600
                    rounded-md bg-white dark:bg-gray-700
                    text-gray-900 dark:text-gray-100
                    hover:bg-gray-50 dark:hover:bg-gray-600
-                   disabled:opacity-50 disabled:hover:bg-white dark:disabled:hover:bg-gray-700
-                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                   disabled:opacity-50 disabled:cursor-not-allowed
+                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                   transition-colors duration-200"
         aria-label="Previous page"
       >
         <ChevronLeftIcon className="h-4 w-4" />
-        Previous
+        <span>Previous</span>
       </button>
 
-      <div className="flex items-center gap-2">
-        {Array.from({ length: totalPages }, (_, i) => i + 1)
-          .filter(page =>
-            page === 1 ||
-            page === totalPages ||
-            (page >= currentPage - 1 && page <= currentPage + 1)
-          )
-          .map((page, index, array) => {
-            if (index > 0 && array[index - 1] !== page - 1) {
-              return (
-                <React.Fragment key={`ellipsis-${page}`}>
-                  <span className="px-2 text-gray-500">...</span>
-                  <button
-                    onClick={() => onPageChange(page)}
-                    className={`min-w-[32px] px-3 py-[5px] rounded-md
-                              ${currentPage === page
-                                ? 'bg-blue-600 text-white border-transparent z-10'
-                                : 'bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-600'
-                              }`}
-                    aria-current={currentPage === page ? 'page' : undefined}
-                  >
-                    {page}
-                  </button>
-                </React.Fragment>
-              );
-            }
-            return (
-              <button
-                key={page}
-                onClick={() => onPageChange(page)}
-                className={`min-w-[32px] px-3 py-[5px] rounded-md
-                          ${currentPage === page
-                            ? 'bg-blue-600 text-white border-transparent z-10'
-                            : 'bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-600'
-                          }`}
-                aria-current={currentPage === page ? 'page' : undefined}
-              >
-                {page}
-              </button>
-            );
-          })}
-      </div>
+      <span className="text-gray-600 dark:text-gray-300">
+        Page {currentPage} of {totalPages}
+      </span>
 
       <button
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}
-        className="flex items-center gap-1 px-3 py-[5px]
+        className="inline-flex items-center gap-1 px-3 py-1.5
                    border border-gray-300 dark:border-gray-600
                    rounded-md bg-white dark:bg-gray-700
                    text-gray-900 dark:text-gray-100
                    hover:bg-gray-50 dark:hover:bg-gray-600
-                   disabled:opacity-50 disabled:hover:bg-white dark:disabled:hover:bg-gray-700
-                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                   disabled:opacity-50 disabled:cursor-not-allowed
+                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                   transition-colors duration-200"
         aria-label="Next page"
       >
-        Next
+        <span>Next</span>
         <ChevronRightIcon className="h-4 w-4" />
       </button>
-    </div>
+    </nav>
   );
 }
