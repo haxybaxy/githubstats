@@ -97,7 +97,9 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
   ];
 
   return (
-    <div className="mb-8 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800">
+    <div className={`mb-8 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 ${
+      isWinner ? 'shadow-[0_0_15px_rgba(255,215,0,0.5)]' : ''
+    }`}>
       {/* User profile section */}
       <div className="p-6">
         <div className="flex items-start space-x-4">
