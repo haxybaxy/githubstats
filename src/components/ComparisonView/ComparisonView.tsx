@@ -5,6 +5,7 @@ import { ErrorDisplay } from './components/ErrorDisplay';
 import { UserSection } from '../UserSection/UserSection';
 import { RepositoryList } from '../RepositoryList/RepositoryList';
 import { useGitHubRank } from '../../hooks/useGitHubRank';
+import { motion } from 'framer-motion';
 
 /**
  * ComparisonView component that allows users to compare GitHub profiles
@@ -96,7 +97,12 @@ export function ComparisonView({ onSearchStateChange }: any) {
       <div className={`grid gap-4 mt-6 ${state.isComparing ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}>
         {/* First User Section */}
         {user1Data && (
-          <div className={state.isComparing ? '' : 'col-span-full'}>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className={state.isComparing ? '' : 'col-span-full'}
+          >
             <UserSection
               user={user1Data}
               isWinner={state.isComparing && isWinner(1)}
@@ -104,20 +110,30 @@ export function ComparisonView({ onSearchStateChange }: any) {
               isComparing={state.isComparing}
               hasCompetitor={!!user2Data}
             />
-            <RepositoryList
-              repositories={user1Data.repositories.nodes || []}
-              loading={loading1}
-              error={error1 || undefined}
-              owner={user1Data.login}
-            />
-          </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <RepositoryList
+                repositories={user1Data.repositories.nodes || []}
+                loading={loading1}
+                error={error1 || undefined}
+                owner={user1Data.login}
+              />
+            </motion.div>
+          </motion.div>
         )}
 
         {/* Second User Section */}
         {state.isComparing && (
           <div>
             {user2Data ? (
-              <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <UserSection
                   user={user2Data}
                   isWinner={isWinner(2)}
@@ -125,13 +141,19 @@ export function ComparisonView({ onSearchStateChange }: any) {
                   isComparing={state.isComparing}
                   hasCompetitor={true}
                 />
-                <RepositoryList
-                  repositories={user2Data.repositories.nodes || []}
-                  loading={loading2}
-                  error={error2 || undefined}
-                  owner={user2Data.login}
-                />
-              </>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                  <RepositoryList
+                    repositories={user2Data.repositories.nodes || []}
+                    loading={loading2}
+                    error={error2 || undefined}
+                    owner={user2Data.login}
+                  />
+                </motion.div>
+              </motion.div>
             ) : (
               <div className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex items-center justify-center h-40">
                 <p className="text-gray-500 dark:text-gray-400">Enter a second username to compare</p>
