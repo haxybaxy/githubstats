@@ -5,6 +5,8 @@ import { ErrorDisplay } from './components/ErrorDisplay';
 import { UserSection } from '../UserSection/UserSection';
 import { RepositoryList } from '../RepositoryList/RepositoryList';
 import { useGitHubRank } from '../../hooks/useGitHubRank';
+import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 /**
  * ComparisonView component that allows users to compare GitHub profiles
@@ -22,7 +24,8 @@ import { useGitHubRank } from '../../hooks/useGitHubRank';
  * <ComparisonView />
  * ```
  */
-export function ComparisonView() {
+export function ComparisonView({ onSearchStateChange }: any) {
+
   const { state, setState, handleSearch, toggleComparing } = useComparisonState();
 
   /**
@@ -60,6 +63,23 @@ export function ComparisonView() {
     return rankingResult?.winner === userNumber;
   };
 
+  /**
+   * Update the handleSearch function to only trigger animation on valid search
+   */
+  const handleSearchSubmit = async (e: React.FormEvent) => {
+    handleSearch(e);
+    // Don't trigger animation immediately - let the data load first
+  };
+
+  /**
+   * Use an effect to monitor user data and errors
+   */
+  useEffect(() => {
+    // Only trigger the animation if we have valid user data and no errors
+    const isValidSearch = user1Data && !error1;
+    onSearchStateChange(isValidSearch);
+  }, [user1Data, error1, onSearchStateChange]);
+
   return (
     <div className="text-center">
       {/* Error Display Section */}
@@ -79,7 +99,7 @@ export function ComparisonView() {
         loading2={loading2}
         onUsernameChange1={(value) => setState(prev => ({ ...prev, username1: value }))}
         onUsernameChange2={(value) => setState(prev => ({ ...prev, username2: value }))}
-        onSubmit={handleSearch}
+        onSubmit={handleSearchSubmit}
         onToggleComparing={toggleComparing}
       />
 
@@ -87,7 +107,12 @@ export function ComparisonView() {
       <div className={`grid gap-4 mt-6 ${state.isComparing ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}>
         {/* First User Section */}
         {user1Data && (
-          <div className={state.isComparing ? '' : 'col-span-full'}>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className={state.isComparing ? '' : 'col-span-full'}
+          >
             <UserSection
               user={user1Data}
               isWinner={state.isComparing && isWinner(1)}
@@ -95,20 +120,30 @@ export function ComparisonView() {
               isComparing={state.isComparing}
               hasCompetitor={!!user2Data}
             />
-            <RepositoryList
-              repositories={user1Data.repositories.nodes || []}
-              loading={loading1}
-              error={error1 || undefined}
-              owner={user1Data.login}
-            />
-          </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <RepositoryList
+                repositories={user1Data.repositories.nodes || []}
+                loading={loading1}
+                error={error1 || undefined}
+                owner={user1Data.login}
+              />
+            </motion.div>
+          </motion.div>
         )}
 
         {/* Second User Section */}
         {state.isComparing && (
           <div>
             {user2Data ? (
-              <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <UserSection
                   user={user2Data}
                   isWinner={isWinner(2)}
@@ -116,13 +151,19 @@ export function ComparisonView() {
                   isComparing={state.isComparing}
                   hasCompetitor={true}
                 />
-                <RepositoryList
-                  repositories={user2Data.repositories.nodes || []}
-                  loading={loading2}
-                  error={error2 || undefined}
-                  owner={user2Data.login}
-                />
-              </>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                  <RepositoryList
+                    repositories={user2Data.repositories.nodes || []}
+                    loading={loading2}
+                    error={error2 || undefined}
+                    owner={user2Data.login}
+                  />
+                </motion.div>
+              </motion.div>
             ) : (
               <div className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex items-center justify-center h-40">
                 <p className="text-gray-500 dark:text-gray-400">Enter a second username to compare</p>
