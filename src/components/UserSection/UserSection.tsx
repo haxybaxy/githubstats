@@ -188,11 +188,15 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
 
       {/* Statistics grid */}
       <div className="border-t border-gray-200 dark:border-gray-700">
-        <div className="grid grid-cols-2 md:grid-cols-5 divide-x divide-y md:divide-y-0 divide-gray-200 dark:divide-gray-700">
-          {stats.map((stat) => (
+        <div className="grid grid-cols-2 md:grid-cols-5 divide-x md:divide-y-0 dark:divide-gray-700">
+          {stats.map((stat, index) => (
             <div
               key={stat.label}
-              className="p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+              className={`p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors ${
+                index === stats.length - 1 ? 'col-span-2 md:col-span-1' : ''
+              } ${
+                index > 1 ? 'border-t border-gray-200 dark:border-gray-700 md:border-t-0' : ''
+              }`}
             >
               <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-1">
                 {stat.icon}
