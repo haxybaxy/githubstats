@@ -169,7 +169,13 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
             return `${context.raw} commits`;
           },
         },
-        displayColors: false, // Hide color box in tooltip
+        displayColors: false,
+        backgroundColor: 'black',
+        titleColor: 'white',
+        bodyColor: 'white',
+        borderColor: 'rgb(229 231 235)',
+        borderWidth: 1,
+        padding: 8,
       },
     },
     elements: {
