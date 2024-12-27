@@ -22,7 +22,8 @@ import { useGitHubRank } from '../../hooks/useGitHubRank';
  * <ComparisonView />
  * ```
  */
-export function ComparisonView() {
+export function ComparisonView({ onSearchStateChange }: any) {
+
   const { state, setState, handleSearch, toggleComparing } = useComparisonState();
 
   /**
@@ -60,6 +61,14 @@ export function ComparisonView() {
     return rankingResult?.winner === userNumber;
   };
 
+  /**
+   * Update the handleSearch function to trigger the animation
+   */
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    handleSearch(e);
+    onSearchStateChange(true);
+  };
+
   return (
     <div className="text-center">
       {/* Error Display Section */}
@@ -79,7 +88,7 @@ export function ComparisonView() {
         loading2={loading2}
         onUsernameChange1={(value) => setState(prev => ({ ...prev, username1: value }))}
         onUsernameChange2={(value) => setState(prev => ({ ...prev, username2: value }))}
-        onSubmit={handleSearch}
+        onSubmit={handleSearchSubmit}
         onToggleComparing={toggleComparing}
       />
 
