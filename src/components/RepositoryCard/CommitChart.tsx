@@ -67,7 +67,7 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
   });
 
   // Handle loading state
-  if (loading) return <div className="h-[100px] animate-pulse bg-gray-200 rounded"></div>;
+  if (loading) return <div className="h-[100px] animate-pulse bg-gray-200 dark:bg-gray-800 rounded"></div>;
 
   // Handle error states
   if (error) {
@@ -132,6 +132,12 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
    * Chart options configuration
    */
   const options = {
+    layout: {
+      padding: {
+        top: 20,
+        bottom: 20,
+      }
+    },
     responsive: true,
     maintainAspectRatio: false,
     scales: {
@@ -169,7 +175,7 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
     elements: {
       point: {
         radius: 0, // Hide points
-        hoverRadius: 4, // Show points on hover
+        hoverRadius: 2, // Hide points on hover
       },
     },
     interaction: {
@@ -180,7 +186,7 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
 
   try {
     return (
-      <div className="h-[100px] mt-4 p-2" data-testid="commit-chart">
+      <div className="h-[100px] mt-4" data-testid="commit-chart">
         <Line data={chartData} options={options} />
       </div>
     );
