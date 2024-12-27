@@ -14,13 +14,13 @@ function App() {
         <div className="fixed inset-0 z-0">
           {/* Purple-blues */}
           <div className="absolute top-1/4 -left-10 w-96 h-96 bg-violet-100/80 dark:bg-[#58a6ff]/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob"></div>
-          <div className="absolute bottom-1/3 left-1/3 w-96 h-96 bg-purple-100/80 dark:bg-[#1f6feb]/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+          <div className="absolute bottom-1/3 left-1/3 w-96 h-96 bg-amber-100/80 dark:bg-[#1f6feb]/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
 
           {/* Blues with purple tint */}
           <div className="absolute top-1/3 right-1/3 w-96 h-96 bg-indigo-100/80 dark:bg-[#3fb950]/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-32 right-1/4 w-96 h-96 bg-blue-100/80 dark:bg-[#238636]/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob animation-delay-6000"></div>
+          <div className="absolute -bottom-32 right-1/4 w-96 h-96 bg-yellow-100/80 dark:bg-[#238636]/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob animation-delay-6000"></div>
 
-          {/* Additional purple tones */}
+          {/* Additional purple tones and yellow */}
           <div className="absolute top-2/3 right-1/2 w-96 h-96 bg-fuchsia-100/80 dark:bg-[#2ea043]/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob animation-delay-3000"></div>
           <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-violet-100/80 dark:bg-[#388bfd]/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob animation-delay-5000"></div>
 
