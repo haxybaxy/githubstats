@@ -9,20 +9,33 @@ function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen w-screen bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 pb-6 relative overflow-hidden">
-        {/* Add subtle background pattern */}
-        <div className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.05]">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
-                <path d="M0 32L32 0M0 0L32 32" stroke="currentColor" strokeWidth="1" fill="none" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
+      <div className="min-h-screen w-screen bg-gradient-to-br from-gray-200 to-gray-100 dark:from-gray-900 dark:to-gray-800 pb-6 relative overflow-hidden">
+        {/* Floating blurred elements */}
+        <div className="fixed inset-0 z-0">
+          {/* GitHub blue variations */}
+          <div className="absolute top-1/4 -left-10 w-96 h-96 bg-[#58a6ff]/30 dark:bg-[#58a6ff]/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-50 animate-blob"></div>
+          <div className="absolute bottom-1/3 left-1/3 w-96 h-96 bg-[#1f6feb]/30 dark:bg-[#1f6feb]/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-50 animate-blob animation-delay-4000"></div>
+
+          {/* GitHub green variations */}
+          <div className="absolute top-1/3 right-1/3 w-96 h-96 bg-[#3fb950]/30 dark:bg-[#3fb950]/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-32 right-1/4 w-96 h-96 bg-[#238636]/30 dark:bg-[#238636]/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-50 animate-blob animation-delay-6000"></div>
+
+          {/* Additional blobs */}
+          <div className="absolute top-2/3 right-1/2 w-96 h-96 bg-[#2ea043]/30 dark:bg-[#2ea043]/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-50 animate-blob animation-delay-3000"></div>
+          <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-[#388bfd]/30 dark:bg-[#388bfd]/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-50 animate-blob animation-delay-5000"></div>
+        </div>
+
+        {/* Optional subtle noise texture overlay */}
+        <div className="absolute inset-0 z-0 opacity-50">
+          <svg className="w-full h-full">
+            <filter id="noiseFilter">
+              <feTurbulence type="fractalNoise" baseFrequency="0.6" stitchTiles="stitch"/>
+            </filter>
+            <rect width="100%" height="100%" filter="url(#noiseFilter)" opacity="0.05"/>
           </svg>
         </div>
 
-        {/* Add relative positioning to content to appear above pattern */}
+        {/* Your existing content */}
         <div className="relative z-10">
           {/* Header - Always visible */}
           <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 mb-4">
