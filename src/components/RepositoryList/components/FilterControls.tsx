@@ -70,9 +70,9 @@ export function FilterControls({
   onSortOrderChange,
 }: FilterControlsProps) {
   return (
-    <div className="mb-4 flex flex-wrap items-center gap-4 px-4 py-3 bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-700 rounded-lg">
+    <div className="mb-4 flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-700 rounded-lg">
       {/* Search input */}
-      <div className="relative flex-1 min-w-[200px]">
+      <div className="relative w-full sm:flex-1 sm:min-w-[200px]">
         <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
           <MagnifyingGlassIcon className="h-4 w-4" />
         </div>
@@ -90,13 +90,13 @@ export function FilterControls({
         />
       </div>
 
-      <div className="flex items-center gap-2 text-sm">
+      <div className="flex items-center gap-2 text-sm w-full sm:w-auto">
         {/* Language filter */}
-        <div className="relative">
+        <div className="relative flex-1 sm:flex-initial">
           <select
             value={selectedLanguage}
             onChange={(e) => onLanguageChange(e.target.value)}
-            className="appearance-none pl-7 pr-8 py-[5px] border border-gray-300 dark:border-gray-600
+            className="w-full sm:w-auto appearance-none pl-7 pr-8 py-[5px] border border-gray-300 dark:border-gray-600
                        rounded-md bg-white dark:bg-gray-700
                        text-gray-900 dark:text-gray-100
                        hover:bg-gray-50 dark:hover:bg-gray-600
@@ -113,11 +113,11 @@ export function FilterControls({
         </div>
 
         {/* Sort dropdown */}
-        <div className="relative">
+        <div className="relative flex-1 sm:flex-initial">
           <select
             value={sortBy}
             onChange={(e) => onSortByChange(e.target.value as 'stars' | 'forks' | 'updated')}
-            className="appearance-none pl-3 pr-8 py-[5px] border border-gray-300 dark:border-gray-600
+            className="w-full sm:w-auto appearance-none pl-3 pr-8 py-[5px] border border-gray-300 dark:border-gray-600
                        rounded-md bg-white dark:bg-gray-700
                        text-gray-900 dark:text-gray-100
                        hover:bg-gray-50 dark:hover:bg-gray-600
