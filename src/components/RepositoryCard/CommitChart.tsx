@@ -170,7 +170,7 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
           },
         },
         displayColors: false,
-        backgroundColor: 'black',
+        backgroundColor: '#1f2937',
         titleColor: 'white',
         bodyColor: 'white',
         borderColor: 'rgb(229 231 235)',
