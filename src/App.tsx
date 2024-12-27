@@ -1,7 +1,6 @@
 import { ComparisonView } from './components/ComparisonView/ComparisonView';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { ThemeToggle } from './components/ThemeToggle';
-import { MarkGithubIcon } from '@primer/octicons-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
