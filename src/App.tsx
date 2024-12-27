@@ -39,7 +39,7 @@ function App() {
           >
             {/* Title section */}
             <motion.div
-              className="text-center space-y-4 mb-8"
+              className="text-center space-y-4"
               animate={{
                 opacity: isSearchActive ? 0.7 : 1,
                 scale: isSearchActive ? 0.95 : 1

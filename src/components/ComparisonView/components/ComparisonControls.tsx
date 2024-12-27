@@ -64,7 +64,7 @@ export function ComparisonControls({
   onToggleComparing,
 }: ComparisonControlsProps) {
   return (
-    <div className="flex justify-center items-center gap-4 mt-6">
+    <div className="flex justify-center items-center gap-4 mt-1">
       {/* First user search form */}
       <SearchForm
         username={username1}

@@ -1,10 +1,10 @@
 import {
   MagnifyingGlassIcon,
   ChevronUpDownIcon,
-  ChevronDownIcon,
   ChevronUpIcon,
   FunnelIcon
 } from '@heroicons/react/20/solid';
+import { motion } from 'framer-motion';
 
 /**
  * Props for the FilterControls component
@@ -141,10 +141,12 @@ export function FilterControls({
                      focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           aria-label={`Sort ${sortOrder === 'asc' ? 'ascending' : 'descending'}`}
         >
-          {sortOrder === 'asc'
-            ? <ChevronUpIcon className="h-4 w-4" />
-            : <ChevronDownIcon className="h-4 w-4" />
-          }
+          <motion.div
+            animate={{ rotate: sortOrder === 'asc' ? 0 : 180 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <ChevronUpIcon className="h-4 w-4" />
+          </motion.div>
         </button>
       </div>
     </div>

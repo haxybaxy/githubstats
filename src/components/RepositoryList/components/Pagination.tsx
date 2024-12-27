@@ -57,7 +57,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
         aria-label="Previous page"
       >
         <ChevronLeftIcon className="h-4 w-4" />
-        <span>Previous</span>
+        <span>Prev</span>
       </button>
 
       <span className="text-gray-600 dark:text-gray-300">
