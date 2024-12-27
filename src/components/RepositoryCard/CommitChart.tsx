@@ -135,7 +135,7 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
     layout: {
       padding: {
         top: 20,
-        bottom: 20,
+        bottom: 10,
       }
     },
     responsive: true,
@@ -175,7 +175,7 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
     elements: {
       point: {
         radius: 0, // Hide points
-        hoverRadius: 2, // Hide points on hover
+        hoverRadius: 0, // Hide points on hover
       },
     },
     interaction: {
