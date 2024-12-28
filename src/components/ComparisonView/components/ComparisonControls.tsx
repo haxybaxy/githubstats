@@ -64,7 +64,7 @@ export function ComparisonControls({
   onToggleComparing,
 }: ComparisonControlsProps) {
   return (
-    <div className="flex justify-center items-center gap-4 mt-1">
+    <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-1">
       {/* First user search form */}
       <SearchForm
         username={username1}
@@ -72,12 +72,13 @@ export function ComparisonControls({
         onSubmit={onSubmit}
         placeholder={isComparing ? "Enter first username..." : "Enter username..."}
         isLoading={loading1}
+        className="w-full sm:w-auto"
       />
 
       {/* Comparison toggle button */}
       <button
         onClick={onToggleComparing}
-        className={`px-4 py-2 rounded-md ${
+        className={`w-full sm:w-auto px-4 py-2 rounded-md ${
           isComparing
             ? 'bg-red-500 hover:bg-red-600'
             : 'bg-blue-500 hover:bg-blue-600'
@@ -95,6 +96,7 @@ export function ComparisonControls({
           onSubmit={onSubmit}
           placeholder="Enter second username..."
           isLoading={loading2}
+          className="w-full sm:w-auto"
         />
       )}
     </div>

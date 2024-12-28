@@ -19,6 +19,8 @@ export interface SearchFormProps {
   placeholder: string;
   /** Loading state indicator */
   isLoading?: boolean;
+  /** Optional className for the form */
+  className?: string;
 }
 
 // Add type for search result user
@@ -57,7 +59,8 @@ export const SearchForm = ({
   onUsernameChange,
   onSubmit,
   placeholder = "Search GitHub username",
-  isLoading = false
+  isLoading = false,
+  className = ""
 }: SearchFormProps) => {
   const [searchTerm, setSearchTerm] = useState(username);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -134,13 +137,13 @@ export const SearchForm = ({
         setShowSuggestions(false);
         onSubmit(e);
       }}
-      className="my-8 max-w-[500px] relative"
+      className={`my-8 w-full sm:max-w-[500px] relative ${className}`}
       role="search"
       aria-label="Search GitHub users"
       data-testid="search-form"
     >
-      <div className="relative flex items-center gap-2">
-        <div className="relative flex-1">
+      <div className="relative flex flex-col sm:flex-row items-center gap-2">
+        <div className="relative flex-1 w-full">
           {/* Search icon */}
           <div className="absolute left-3 top-[50%] -translate-y-[50%] text-gray-500 dark:text-gray-400 flex items-center">
             <MagnifyingGlassIcon className="h-5 w-5" />
@@ -237,7 +240,7 @@ export const SearchForm = ({
         <button
           type="submit"
           disabled={isLoading}
-          className="px-4 py-[7px] text-sm font-semibold text-white bg-green-600 hover:bg-green-700
+          className="w-full sm:w-auto px-4 py-[7px] text-sm font-semibold text-white bg-green-600 hover:bg-green-700
                    disabled:bg-green-300 disabled:cursor-not-allowed
                    rounded-md transition-colors duration-200"
         >
