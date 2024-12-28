@@ -74,13 +74,3 @@ export const Loser: Story = {
     hasCompetitor: true,
   },
 };
-
-export const ComparingWithoutCompetitor: Story = {
-  args: {
-    user: baseUser,
-    isWinner: false,
-    score: 75.5,
-    isComparing: true,
-    hasCompetitor: false,
-  },
-};
