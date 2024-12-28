@@ -1,7 +1,7 @@
 import { Repository } from '../../types/github';
 import { RepositoryCard } from '../RepositoryCard';
-import { FilterControls } from './components/FilterControls';
-import { Pagination } from './components/Pagination';
+import { FilterControls } from './FilterControls';
+import { Pagination } from './Pagination';
 import { useRepositoryFiltering } from './hooks/useRepositoryFiltering';
 
 /**
