@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { RepositoryCard } from './RepositoryCard';
+import { RepositoryCard } from '../components/RepositoryCard/RepositoryCard';
 import { MockedProvider } from '@apollo/client/testing';
-import { GET_REPO_COMMITS } from '../../graphql/queries';
+import { GET_REPO_COMMITS } from '../graphql/queries';
 
 // Helper function to create commit mocks with random patterns
 const createCommitMock = (owner: string, repoName: string) => {
