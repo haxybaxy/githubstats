@@ -19,6 +19,18 @@ interface UserSocialStatsProps {
  * Displays a user's social statistics and links including followers, following,
  * location, website, and LinkedIn profile
  *
+ * Features:
+ * - Displays follower and following counts with icons
+ * - Shows location if provided
+ * - Renders website URL (automatically adds https:// if missing)
+ * - Links to LinkedIn profile if available in social accounts
+ * - All external links open in new tabs with security attributes
+ *
+ * Layout:
+ * - Items wrap automatically based on available space
+ * - Consistent spacing between items
+ * - Icons aligned with text content
+ *
  * @param props - Component properties
  * @param props.user - GitHub user data containing social information
  * @returns The rendered social statistics

@@ -23,17 +23,33 @@ interface UserStatsGridProps {
  * The grid adapts its layout based on screen size and whether it's in comparison mode.
  * Each statistic is displayed with an icon and value.
  *
+ * Layout behavior:
+ * - Mobile: 2 columns with last item spanning full width
+ * - Desktop: 5 equal columns
+ * - Comparison mode: Icons stack vertically instead of horizontal alignment
+ *
  * @param props - Component properties
  * @param props.user - GitHub user data containing statistics
  * @param props.isComparing - Whether in comparison mode, affects layout
  * @returns The rendered statistics grid
  */
 export function UserStatsGrid({ user, isComparing }: UserStatsGridProps) {
+  /**
+   * Calculates the total number of stars across all repositories
+   * Reduces the stargazer counts from each repository into a single sum
+   */
   const totalStars = user.repositories.totalStargazers.reduce(
     (sum, repo) => sum + repo.stargazerCount,
     0
   );
 
+  /**
+   * Array of statistics to display in the grid
+   * Each stat includes:
+   * - label: Display name of the statistic
+   * - value: Numerical value from user data
+   * - icon: Primer Octicon component for visual representation
+   */
   const stats = [
     {
       label: 'Total Commits',
