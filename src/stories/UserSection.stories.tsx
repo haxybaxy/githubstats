@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { UserSection } from './UserSection';
+import { UserSection } from '../components/UserSection/UserSection';
 
 const meta = {
   title: 'Components/UserSection',

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComparisonView } from '../components/ComparisonView/ComparisonView';
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloProvider, ApolloClient, InMemoryCache, ApolloLink, Observable } from '@apollo/client';
 import { GET_USER_INFO, GET_USER_CONTRIBUTIONS, GET_USER_REPOS, SEARCH_USERS } from '../graphql/queries';
 
 // Create mock data for the search functionality
@@ -90,21 +90,26 @@ const client = new ApolloClient({
   },
 });
 
-// Add mocked responses
-client.setLink({
-  request: ({ operationName }) => {
-    switch (operationName) {
-      case 'SearchUsers':
-        return Promise.resolve({ data: searchMockData });
-      case 'GetUserInfo':
-      case 'GetUserContributions':
-      case 'GetUserRepositories':
-        return Promise.resolve({ data: { user: createUserMock('johndoe') } });
-      default:
-        return Promise.resolve({ data: {} });
-    }
-  }
-});
+// Update the mock link
+client.setLink(
+  new ApolloLink((operation) => {
+    return new Observable((observer) => {
+      switch (operation.operationName) {
+        case 'SearchUsers':
+          observer.next({ data: searchMockData });
+          break;
+        case 'GetUserInfo':
+        case 'GetUserContributions':
+        case 'GetUserRepositories':
+          observer.next({ data: { user: createUserMock('johndoe') } });
+          break;
+        default:
+          observer.next({ data: {} });
+      }
+      observer.complete();
+    });
+  })
+);
 
 const meta = {
   title: 'Components/ComparisonView',
