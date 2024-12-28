@@ -70,7 +70,7 @@ export function FilterControls({
   onSortOrderChange,
 }: FilterControlsProps) {
   return (
-    <div className="mb-4 flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg">
+    <div className="mb-4 flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg opacity-90">
       {/* Search input */}
       <div className="relative w-full sm:flex-1 sm:min-w-[200px]">
         <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
