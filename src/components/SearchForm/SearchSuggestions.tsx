@@ -1,4 +1,4 @@
-import { SearchUser } from './types';
+import { SearchUser } from '../../types/search';
 
 interface SearchSuggestionsProps {
   searchLoading: boolean;

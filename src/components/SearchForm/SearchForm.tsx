@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
-import { SearchFormProps } from './types';
+import { SearchFormProps } from '../../types/search';
 import { useSearch } from './useSearch';
 import { SearchSuggestions } from './SearchSuggestions';
 
