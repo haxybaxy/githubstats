@@ -3,14 +3,33 @@ import crownIcon from '../../assets/crown.svg';
 import { InfoIcon } from '@primer/octicons-react';
 import { UserSocialStats } from './UserSocialStats';
 
+/**
+ * Props interface for the UserProfile component
+ */
 interface UserProfileProps {
+  /** The GitHub user data */
   user: User;
+  /** Whether this user is the winner in a comparison */
   isWinner: boolean;
+  /** User's percentile score */
   score: number | undefined;
+  /** Whether the component is in comparison mode */
   isComparing: boolean;
+  /** Whether there is another user to compare against */
   hasCompetitor?: boolean;
 }
 
+/**
+ * Displays a user's profile information including their avatar, name, bio, and social stats
+ *
+ * @param props - Component properties
+ * @param props.user - GitHub user data
+ * @param props.isWinner - Whether this user won the comparison
+ * @param props.score - User's percentile score
+ * @param props.isComparing - Whether in comparison mode
+ * @param props.hasCompetitor - Whether there is another user to compare against
+ * @returns The rendered user profile
+ */
 export function UserProfile({ user, isWinner, score, isComparing, hasCompetitor }: UserProfileProps) {
   return (
     <div className="flex items-start space-x-4">

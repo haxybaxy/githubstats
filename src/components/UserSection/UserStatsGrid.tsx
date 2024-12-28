@@ -7,11 +7,27 @@ import {
   GitPullRequestIcon,
 } from '@primer/octicons-react';
 
+/**
+ * Props interface for the UserStatsGrid component
+ */
 interface UserStatsGridProps {
+  /** The GitHub user data */
   user: User;
+  /** Whether the component is in comparison mode */
   isComparing: boolean;
 }
 
+/**
+ * Displays a grid of user statistics including commits, stars, PRs, issues, and repositories
+ *
+ * The grid adapts its layout based on screen size and whether it's in comparison mode.
+ * Each statistic is displayed with an icon and value.
+ *
+ * @param props - Component properties
+ * @param props.user - GitHub user data containing statistics
+ * @param props.isComparing - Whether in comparison mode, affects layout
+ * @returns The rendered statistics grid
+ */
 export function UserStatsGrid({ user, isComparing }: UserStatsGridProps) {
   const totalStars = user.repositories.totalStargazers.reduce(
     (sum, repo) => sum + repo.stargazerCount,

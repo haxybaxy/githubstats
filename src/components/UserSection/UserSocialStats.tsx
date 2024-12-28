@@ -7,10 +7,22 @@ import {
   BriefcaseIcon
 } from '@primer/octicons-react';
 
+/**
+ * Props interface for the UserSocialStats component
+ */
 interface UserSocialStatsProps {
+  /** The GitHub user data */
   user: User;
 }
 
+/**
+ * Displays a user's social statistics and links including followers, following,
+ * location, website, and LinkedIn profile
+ *
+ * @param props - Component properties
+ * @param props.user - GitHub user data containing social information
+ * @returns The rendered social statistics
+ */
 export function UserSocialStats({ user }: UserSocialStatsProps) {
   return (
     <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600 dark:text-gray-400">

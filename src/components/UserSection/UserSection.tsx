@@ -4,14 +4,13 @@ import { UserStatsGrid } from './UserStatsGrid';
 
 /**
  * Props for the UserSection component
- * @interface UserSectionProps
  */
 interface UserSectionProps {
-  /** GitHub user data */
+  /** GitHub user data containing profile and statistics information */
   user: User;
   /** Whether this user won the comparison */
   isWinner: boolean;
-  /** User's percentile score */
+  /** User's percentile score (optional) */
   score?: number;
   /** Whether the component is in comparison mode */
   isComparing: boolean;
@@ -20,30 +19,22 @@ interface UserSectionProps {
 }
 
 /**
- * Displays detailed information about a GitHub user including their profile,
- * statistics, and social links
+ * Displays comprehensive information about a GitHub user in a contained section
  *
- * This component renders:
- * - User avatar with optional winner crown
- * - User name and bio
- * - Percentile score with color-coded status
- * - Follower and following counts
- * - Location and social links
- * - Key statistics in a grid layout
+ * This component serves as the main container for user information, combining:
+ * - UserProfile: Avatar, name, bio, and social links
+ * - UserStatsGrid: Key statistics in a grid layout
  *
- * @param {UserSectionProps} props - Component properties
- * @returns {JSX.Element} The rendered user section
+ * When in comparison mode, it can highlight the winning user with a golden shadow
+ * and display comparative statistics appropriately.
  *
- * @example
- * ```tsx
- * <UserSection
- *   user={userData}
- *   isWinner={true}
- *   score={95.5}
- *   isComparing={true}
- *   hasCompetitor={true}
- * />
- * ```
+ * @param props - Component properties
+ * @param props.user - GitHub user data
+ * @param props.isWinner - Whether this user won the comparison
+ * @param props.score - User's percentile score
+ * @param props.isComparing - Whether in comparison mode
+ * @param props.hasCompetitor - Whether there is another user to compare against
+ * @returns The rendered user section
  */
 export function UserSection({ user, isWinner, score, isComparing, hasCompetitor }: UserSectionProps) {
   return (
