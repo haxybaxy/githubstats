@@ -8,55 +8,71 @@ import { motion } from 'framer-motion';
 
 /**
  * Props for the FilterControls component
- * @interface FilterControlsProps
  */
 interface FilterControlsProps {
-  /** Current search query string */
+  /** Current search query for filtering repositories */
   searchQuery: string;
   /** Currently selected programming language filter */
   selectedLanguage: string;
-  /** Current sort criteria */
+  /** Current sort criteria (stars, forks, or updated) */
   sortBy: 'stars' | 'forks' | 'updated';
-  /** Current sort order */
+  /** Current sort direction (ascending or descending) */
   sortOrder: 'asc' | 'desc';
-  /** List of available programming languages */
+  /** Array of available programming languages to filter by */
   languages: string[];
-  /** Callback for when search query changes */
+  /** Callback when search input changes
+   * @param value - New search query
+   */
   onSearchChange: (value: string) => void;
-  /** Callback for when language filter changes */
+  /** Callback when language filter changes
+   * @param value - Selected language
+   */
   onLanguageChange: (value: string) => void;
-  /** Callback for when sort criteria changes */
+  /** Callback when sort criteria changes
+   * @param value - New sort criteria
+   */
   onSortByChange: (value: 'stars' | 'forks' | 'updated') => void;
-  /** Callback for when sort order changes */
+  /** Callback when sort order is toggled */
   onSortOrderChange: () => void;
 }
 
 /**
- * Component that provides filtering and sorting controls for repository list
+ * Renders a set of controls for filtering and sorting repositories
  *
- * This component renders:
- * - Search input for filtering repositories by name
- * - Language selector for filtering by programming language
- * - Sort criteria selector (stars, forks, update date)
- * - Sort order toggle button
+ * Features:
+ * - Search input with icon for filtering by name
+ * - Language dropdown with all available programming languages
+ * - Sort criteria selector (stars, forks, updated)
+ * - Animated sort direction toggle
+ * - Responsive layout (stacks on mobile)
+ * - Dark mode support
+ * - Accessible form controls
  *
- * @param {FilterControlsProps} props - Component properties
- * @returns {JSX.Element} The rendered filter controls
+ * Visual Elements:
+ * - Search input with magnifying glass icon
+ * - Language dropdown with filter icon
+ * - Sort criteria dropdown
+ * - Animated sort direction toggle button
+ * - Consistent hover and focus states
+ * - Responsive container with proper spacing
  *
- * @example
- * ```tsx
- * <FilterControls
- *   searchQuery=""
- *   selectedLanguage=""
- *   sortBy="stars"
- *   sortOrder="desc"
- *   languages={["JavaScript", "TypeScript"]}
- *   onSearchChange={setSearchQuery}
- *   onLanguageChange={setLanguage}
- *   onSortByChange={setSortBy}
- *   onSortOrderChange={toggleSortOrder}
- * />
- * ```
+ * Accessibility:
+ * - Proper ARIA labels for all controls
+ * - Keyboard navigation support
+ * - Clear visual focus indicators
+ * - Semantic HTML structure
+ *
+ * @param props - Component properties
+ * @param props.searchQuery - Current search filter text
+ * @param props.selectedLanguage - Currently selected language filter
+ * @param props.sortBy - Current sort criteria
+ * @param props.sortOrder - Current sort direction
+ * @param props.languages - Available language options
+ * @param props.onSearchChange - Search input change handler
+ * @param props.onLanguageChange - Language selection handler
+ * @param props.onSortByChange - Sort criteria change handler
+ * @param props.onSortOrderChange - Sort direction toggle handler
+ * @returns The filter controls component
  */
 export function FilterControls({
   searchQuery,
