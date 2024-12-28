@@ -2,7 +2,7 @@ import { Repository } from '../../types/github';
 import { RepositoryCard } from '../RepositoryCard';
 import { FilterControls } from './FilterControls';
 import { Pagination } from './Pagination';
-import { useRepositoryFiltering } from './hooks/useRepositoryFiltering';
+import { useRepositoryFiltering } from '../../hooks/useRepositoryFiltering';
 
 /**
  * Props for the RepositoryList component

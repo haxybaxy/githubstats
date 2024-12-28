@@ -1,6 +1,6 @@
 import { useQuery, ApolloError } from '@apollo/client';
-import { User } from '../../../types/github';
-import { GET_USER_INFO, GET_USER_CONTRIBUTIONS, GET_USER_REPOS } from '../../../graphql/queries';
+import { User } from '../types/github';
+import { GET_USER_INFO, GET_USER_CONTRIBUTIONS, GET_USER_REPOS } from '../graphql/queries';
 
 /**
  * Result object returned by the useUserQueries hook
