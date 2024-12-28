@@ -40,6 +40,9 @@ const baseUser = {
       weeks: [],
     },
   },
+  socialAccounts: {
+    nodes: []
+  }
 };
 
 export const Default: Story = {

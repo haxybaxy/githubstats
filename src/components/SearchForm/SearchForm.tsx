@@ -19,6 +19,8 @@ export interface SearchFormProps {
   placeholder: string;
   /** Loading state indicator */
   isLoading?: boolean;
+  /** Optional className for the form */
+  className?: string;
 }
 
 // Add type for search result user
@@ -57,11 +59,13 @@ export const SearchForm = ({
   onUsernameChange,
   onSubmit,
   placeholder = "Search GitHub username",
-  isLoading = false
+  isLoading = false,
+  className = ""
 }: SearchFormProps) => {
   const [searchTerm, setSearchTerm] = useState(username);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const suggestionRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Debounced search query
   const { data, loading: searchLoading } = useQuery(SEARCH_USERS, {
@@ -96,6 +100,22 @@ export const SearchForm = ({
     };
   }, [debouncedOnChange]);
 
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      // Only trigger if typing in an input/textarea isn't already happening
+      if (
+        e.key === '/' &&
+        !['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement).tagName)
+      ) {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+    return () => document.removeEventListener('keydown', handleKeyPress);
+  }, []);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);          // Update local state immediately
@@ -117,27 +137,28 @@ export const SearchForm = ({
         setShowSuggestions(false);
         onSubmit(e);
       }}
-      className="my-8 max-w-[500px] relative"
+      className={`my-8 w-full sm:max-w-[500px] relative ${className}`}
       role="search"
       aria-label="Search GitHub users"
       data-testid="search-form"
     >
-      <div className="relative flex items-center gap-2">
-        <div className="relative flex-1">
+      <div className="relative flex flex-col sm:flex-row items-center gap-2">
+        <div className="relative flex-1 w-full">
           {/* Search icon */}
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400">
+          <div className="absolute left-3 top-[50%] -translate-y-[50%] text-gray-500 dark:text-gray-400 flex items-center">
             <MagnifyingGlassIcon className="h-5 w-5" />
           </div>
 
-          {/* Username input field */}
+          {/* Username input field with shortcut indicator */}
           <input
+            ref={inputRef}
             type="text"
             value={searchTerm}
             onChange={handleInputChange}
             onFocus={() => setShowSuggestions(true)}
             placeholder={placeholder}
             disabled={isLoading}
-            className="w-full pl-10 pr-3 py-[7px] border border-gray-300 dark:border-gray-600
+            className="w-full pl-10 pr-12 h-9 border border-gray-300 dark:border-gray-600
                        rounded-md text-sm bg-transparent
                        focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500
                        disabled:bg-gray-50 dark:disabled:bg-gray-700
@@ -147,6 +168,13 @@ export const SearchForm = ({
             aria-disabled={isLoading}
             autoComplete="off"
           />
+
+          {/* Keyboard shortcut indicator */}
+          <div className="absolute right-3 top-[50%] -translate-y-[50%] pointer-events-none flex items-center">
+            <kbd className="inline-flex items-center justify-center px-1.5 h-5 text-xs font-medium
+                           text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700
+                           border border-gray-300 dark:border-gray-600 rounded shadow-sm">/</kbd>
+          </div>
 
           {/* Suggestions dropdown */}
           {showSuggestions && searchTerm.length >= 2 && (
@@ -199,8 +227,8 @@ export const SearchForm = ({
 
           {/* Loading spinner */}
           {isLoading && (
-            <div className="absolute right-3 top-1/2 -translate-y-1/2">
-              <svg className="h-4 w-4 text-gray-500 animate-[spin_1s_linear_infinite]" viewBox="0 0 24 24">
+            <div className="absolute right-12 top-1/2 -translate-y-1/2">
+              <svg className="h-5 w-5 text-gray-500 animate-[spin_1s_linear_infinite]" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
               </svg>
@@ -212,7 +240,7 @@ export const SearchForm = ({
         <button
           type="submit"
           disabled={isLoading}
-          className="px-4 py-[7px] text-sm font-semibold text-white bg-green-600 hover:bg-green-700
+          className="w-full sm:w-auto px-4 py-[7px] text-sm font-semibold text-white bg-green-600 hover:bg-green-700
                    disabled:bg-green-300 disabled:cursor-not-allowed
                    rounded-md transition-colors duration-200"
         >

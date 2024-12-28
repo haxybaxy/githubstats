@@ -2,13 +2,16 @@ import { User } from '../../types/github';
 import crownIcon from '../../assets/crown.svg';
 import {
   PeopleIcon,
+  PersonIcon,
   LocationIcon,
   LinkExternalIcon,
   RepoIcon,
   StarIcon,
   GitCommitIcon,
   IssueOpenedIcon,
-  GitPullRequestIcon
+  GitPullRequestIcon,
+  BriefcaseIcon,
+  InfoIcon
 } from '@primer/octicons-react';
 
 /**
@@ -97,7 +100,9 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
   ];
 
   return (
-    <div className="mb-8 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800">
+    <div className={`mb-8 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 ${
+      isWinner ? 'shadow-[0_0_15px_rgba(255,215,0,0.5)]' : ''
+    }`}>
       {/* User profile section */}
       <div className="p-6">
         <div className="flex items-start space-x-4">
@@ -134,14 +139,22 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
                 )}
               </div>
               {score !== undefined && (
-                <div className={`text-sm font-medium px-3 py-1 rounded-full ${
-                  isComparing && hasCompetitor
-                    ? isWinner
-                      ? 'bg-green-100 text-green-800 dark:bg-green-800/30 dark:text-green-300'
-                      : 'bg-red-100 text-red-800 dark:bg-red-800/30 dark:text-red-300'
-                    : 'bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-300'
-                }`}>
-                  Percentile: {score.toFixed(1)}
+                <div className="flex items-center gap-1">
+                  <div className={`text-sm font-medium px-3 py-1 rounded-full ${
+                    isComparing && hasCompetitor
+                      ? isWinner
+                        ? 'bg-green-100 text-green-800 dark:bg-green-800/30 dark:text-green-300'
+                        : 'bg-red-100 text-red-800 dark:bg-red-800/30 dark:text-red-300'
+                      : 'bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-300'
+                  }`}>
+                    Percentile: {score.toFixed(1)}
+                  </div>
+                  <div className="group relative">
+                    <InfoIcon className="h-4 w-4 text-gray-500 dark:text-gray-400 cursor-help" />
+                    <div className="hidden group-hover:block absolute z-10 w-64 px-4 py-2 text-sm text-gray-500 bg-white dark:bg-gray-700 dark:text-gray-300 rounded-lg shadow-lg border border-gray-200 dark:border-gray-600 -left-[270px] top-0">
+                      This percentile score indicates how this user ranks compared to other GitHub users based on various metrics including commits, stars, and contributions.
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
@@ -154,7 +167,9 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
                   {user.followers.totalCount}
                 </span>
                 <span>followers</span>
-                <span className="mx-1">·</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <PersonIcon className="h-4 w-4" />
                 <span className="font-medium text-gray-900 dark:text-white">
                   {user.following.totalCount}
                 </span>
@@ -181,6 +196,20 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
                   </a>
                 </div>
               )}
+
+              {user.socialAccounts?.nodes.find(account => account.provider === 'LINKEDIN')?.url && (
+                <div className="flex items-center gap-1">
+                  <BriefcaseIcon className="h-4 w-4" />
+                  <a
+                    href={user.socialAccounts.nodes.find(account => account.provider === 'LINKEDIN')?.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline dark:text-blue-400"
+                  >
+                    LinkedIn
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -188,17 +217,23 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
 
       {/* Statistics grid */}
       <div className="border-t border-gray-200 dark:border-gray-700">
-        <div className="grid grid-cols-2 md:grid-cols-5 divide-x divide-y md:divide-y-0 divide-gray-200 dark:divide-gray-700">
-          {stats.map((stat) => (
+        <div className="grid grid-cols-2 md:grid-cols-5 divide-x md:divide-y-0 dark:divide-gray-700">
+          {stats.map((stat, index) => (
             <div
               key={stat.label}
-              className="p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+              className={`p-3 md:p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors flex flex-col h-full ${
+                index === stats.length - 1 ? 'col-span-2 md:col-span-1' : ''
+              } ${
+                index > 1 ? 'border-t border-gray-200 dark:border-gray-700 md:border-t-0' : ''
+              }`}
             >
-              <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-1">
+              <div className={`flex flex-col items-center ${
+                isComparing ? 'md:flex-col' : 'md:flex-row md:gap-1.5'
+              } text-gray-600 dark:text-gray-400`}>
                 {stat.icon}
-                <h3 className="text-sm">{stat.label}</h3>
+                <h3 className="text-sm leading-tight">{stat.label}</h3>
               </div>
-              <p className="text-lg font-semibold text-gray-900 dark:text-white">
+              <p className="text-base md:text-lg font-semibold text-gray-900 dark:text-white mt-auto pt-1">
                 {stat.value.toLocaleString()}
               </p>
             </div>
