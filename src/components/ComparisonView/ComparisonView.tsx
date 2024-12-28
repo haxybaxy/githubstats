@@ -2,7 +2,7 @@ import { useComparisonState } from '../../hooks/useComparisonState';
 import { useUserQueries } from '../../hooks/useUserQueries';
 import { ComparisonControls } from './ComparisonControls';
 import { ErrorDisplay } from './ErrorDisplay';
-import { UserSection } from '../UserSection/UserSection';
+import { UserSection } from '../UserSection';
 import { RepositoryList } from '../RepositoryList/RepositoryList';
 import { useGitHubRank } from '../../hooks/useGitHubRank';
 import { motion } from 'framer-motion';
