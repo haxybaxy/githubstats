@@ -10,7 +10,8 @@ import {
   GitCommitIcon,
   IssueOpenedIcon,
   GitPullRequestIcon,
-  BriefcaseIcon
+  BriefcaseIcon,
+  InfoIcon
 } from '@primer/octicons-react';
 
 /**
@@ -138,14 +139,22 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
                 )}
               </div>
               {score !== undefined && (
-                <div className={`text-sm font-medium px-3 py-1 rounded-full ${
-                  isComparing && hasCompetitor
-                    ? isWinner
-                      ? 'bg-green-100 text-green-800 dark:bg-green-800/30 dark:text-green-300'
-                      : 'bg-red-100 text-red-800 dark:bg-red-800/30 dark:text-red-300'
-                    : 'bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-300'
-                }`}>
-                  Percentile: {score.toFixed(1)}
+                <div className="flex items-center gap-1">
+                  <div className={`text-sm font-medium px-3 py-1 rounded-full ${
+                    isComparing && hasCompetitor
+                      ? isWinner
+                        ? 'bg-green-100 text-green-800 dark:bg-green-800/30 dark:text-green-300'
+                        : 'bg-red-100 text-red-800 dark:bg-red-800/30 dark:text-red-300'
+                      : 'bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-300'
+                  }`}>
+                    Percentile: {score.toFixed(1)}
+                  </div>
+                  <div className="group relative">
+                    <InfoIcon className="h-4 w-4 text-gray-500 dark:text-gray-400 cursor-help" />
+                    <div className="hidden group-hover:block absolute z-10 w-64 px-4 py-2 text-sm text-gray-500 bg-white dark:bg-gray-700 dark:text-gray-300 rounded-lg shadow-lg border border-gray-200 dark:border-gray-600 -left-[270px] top-0">
+                      This percentile score indicates how this user ranks compared to other GitHub users based on various metrics including commits, stars, and contributions.
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
