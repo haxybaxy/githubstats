@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComparisonView } from '../components/ComparisonView/ComparisonView';
 import { ApolloProvider, ApolloClient, InMemoryCache, ApolloLink, Observable } from '@apollo/client';
-import { GET_USER_INFO, GET_USER_CONTRIBUTIONS, GET_USER_REPOS, SEARCH_USERS } from '../graphql/queries';
 
 // Create mock data for the search functionality
 const searchMockData = {
