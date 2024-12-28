@@ -187,7 +187,7 @@ export function UserSection({ user, isWinner, score, isComparing, hasCompetitor 
                 <div className="flex items-center gap-1">
                   <LinkExternalIcon className="h-4 w-4" />
                   <a
-                    href={user.websiteUrl}
+                    href={user.websiteUrl.startsWith('http') ? user.websiteUrl : `https://${user.websiteUrl}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:underline dark:text-blue-400"
