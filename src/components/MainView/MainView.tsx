@@ -1,15 +1,22 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ComparisonView } from '../ComparisonView';
+import { TopHeader } from './TopHeader';
+import { BackgroundEffects } from './BackgroundEffects';
 import { Logo } from './Logo';
 
 export const MainView = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
 
   return (
-    <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <motion.div
-      className="flex flex-col items-center"
+    <div className="min-h-screen w-screen bg-gradient-to-br from-slate-100 to-white dark:from-gray-900 dark:to-gray-800 pb-6 relative overflow-hidden">
+
+      <BackgroundEffects />
+      <TopHeader />
+
+      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="flex flex-col items-center"
       initial={{ y: "30vh" }}
       animate={{ y: isSearchActive ? 0 : "30vh" }}
       transition={{
@@ -54,8 +61,9 @@ export const MainView = () => {
             {/* Comparison results will appear here */}
           </motion.div>
         )}
-      </AnimatePresence>
-    </motion.div>
-  </main>
+        </AnimatePresence>
+      </motion.div>
+    </main>
+  </div>
   )
 }
