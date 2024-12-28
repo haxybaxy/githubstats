@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { RepositoryList } from './RepositoryList';
+import { RepositoryList } from '../components/RepositoryList/RepositoryList';
 import { MockedProvider } from '@apollo/client/testing';
-import { GET_REPO_COMMITS } from '../../graphql/queries';
+import { GET_REPO_COMMITS } from '../graphql/queries';
 
 // Reuse the same commit mock generator
 const createCommitMock = (owner: string, repoName: string) => {

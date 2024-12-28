@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Repository } from '../../../types/github';
+import { Repository } from '../types/github';
 
 /**
  * Custom hook for filtering and sorting repository data

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { UserSection } from './UserSection';
+import { UserSection } from '../components/UserSection/UserSection';
 
 const meta = {
   title: 'Components/UserSection',
@@ -72,15 +72,5 @@ export const Loser: Story = {
     score: 65.5,
     isComparing: true,
     hasCompetitor: true,
-  },
-};
-
-export const ComparingWithoutCompetitor: Story = {
-  args: {
-    user: baseUser,
-    isWinner: false,
-    score: 75.5,
-    isComparing: true,
-    hasCompetitor: false,
   },
 };

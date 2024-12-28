@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FilterControls } from './FilterControls';
+import { FilterControls } from '../components/RepositoryList/FilterControls';
 
 const meta = {
   title: 'Components/FilterControls',

@@ -1,7 +1,7 @@
-import { useComparisonState } from './hooks/useComparisonState';
-import { useUserQueries } from './hooks/useUserQueries';
-import { ComparisonControls } from './components/ComparisonControls';
-import { ErrorDisplay } from './components/ErrorDisplay';
+import { useComparisonState } from '../../hooks/useComparisonState';
+import { useUserQueries } from '../../hooks/useUserQueries';
+import { ComparisonControls } from './ComparisonControls';
+import { ErrorDisplay } from './ErrorDisplay';
 import { UserSection } from '../UserSection/UserSection';
 import { RepositoryList } from '../RepositoryList/RepositoryList';
 import { useGitHubRank } from '../../hooks/useGitHubRank';
