@@ -4,24 +4,19 @@ import { SearchUser } from '../../types/search';
  * Props for the SearchSuggestions component
  *
  * @interface SearchSuggestionsProps
+ * @property {boolean} searchLoading - Loading state for search operation
+ * @property {SearchUser[]} searchData - Search results data containing user nodes
+ * @property {(login: string) => void} onSuggestionClick - Callback when a suggestion is clicked
+ * @property {React.RefObject<HTMLDivElement>} suggestionRef - Ref for dropdown container
  */
-interface SearchSuggestionsProps {
-  /** Loading state for search operation */
+export interface SearchSuggestionsProps {
   searchLoading: boolean;
-
-  /** Search results data containing user nodes */
   searchData: {
     search: {
       nodes: SearchUser[];
     };
   } | null;
-
-  /** Callback when a suggestion is clicked
-   * @param login - The selected user's GitHub login
-   */
   onSuggestionClick: (login: string) => void;
-
-  /** Ref for handling click outside behavior */
   suggestionRef: React.RefObject<HTMLDivElement>;
 }
 

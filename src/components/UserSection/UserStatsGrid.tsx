@@ -11,12 +11,11 @@ import {
  * Props interface for the UserStatsGrid component
  *
  * @interface UserStatsGridProps
+ * @property {User} user - The GitHub user data containing statistics
+ * @property {boolean} isComparing - Whether the component is in comparison mode
  */
-interface UserStatsGridProps {
-  /** The GitHub user data containing statistics */
+export interface UserStatsGridProps {
   user: User;
-
-  /** Whether the component is in comparison mode */
   isComparing: boolean;
 }
 

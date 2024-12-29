@@ -6,8 +6,13 @@ import { UserStatsGrid } from './UserStatsGrid';
  * Props for the UserSection component
  *
  * @interface UserSectionProps
+ * @property {User} user - GitHub user data containing profile and statistics information
+ * @property {boolean} isWinner - Whether this user won the comparison
+ * @property {number} [score] - User's percentile score (optional)
+ * @property {boolean} isComparing - Whether the component is in comparison mode
+ * @property {boolean} [hasCompetitor] - Whether there is another user to compare against
  */
-interface UserSectionProps {
+export interface UserSectionProps {
   /** GitHub user data containing profile and statistics information */
   user: User;
 

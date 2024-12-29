@@ -3,32 +3,32 @@ import { useState } from 'react';
 /**
  * Interface for the comparison state
  * @interface ComparisonState
+ * @property {string} username1 - Input value for first username
+ * @property {string} username2 - Input value for second username
+ * @property {string} searchedUsername1 - Currently searched first username
+ * @property {string} searchedUsername2 - Currently searched second username
+ * @property {boolean} isComparing - Whether comparison mode is active
  */
-interface ComparisonState {
-  /** Input value for first username */
+export interface ComparisonState {
   username1: string;
-  /** Input value for second username */
   username2: string;
-  /** Currently searched first username */
   searchedUsername1: string;
-  /** Currently searched second username */
   searchedUsername2: string;
-  /** Whether comparison mode is active */
   isComparing: boolean;
 }
 
 /**
  * Interface for the hook's return value
  * @interface ComparisonStateHook
+ * @property {ComparisonState} state - Current state object
+ * @property {React.Dispatch<React.SetStateAction<ComparisonState>>} setState - State setter function
+ * @property {(e: React.FormEvent) => void} handleSearch - Handler for form submission
+ * @property {() => void} toggleComparing - Handler for toggling comparison mode
  */
-interface ComparisonStateHook {
-  /** Current state object */
+export interface ComparisonStateHook {
   state: ComparisonState;
-  /** State setter function */
   setState: React.Dispatch<React.SetStateAction<ComparisonState>>;
-  /** Handler for form submission */
   handleSearch: (e: React.FormEvent) => void;
-  /** Handler for toggling comparison mode */
   toggleComparing: () => void;
 }
 

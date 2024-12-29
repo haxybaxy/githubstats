@@ -6,13 +6,13 @@ import { GET_USER_INFO, GET_USER_CONTRIBUTIONS, GET_USER_REPOS } from '../graphq
  * Result object returned by the useUserQueries hook
  *
  * @interface UserQueryResult
+ * @property {User | null} userData Combined user data from all queries, null if any query fails or is loading*
+ * @property {boolean} loading Whether any of the queries are still loading
+ * @property {ApolloError | null} error Error from any of the queries, null if all successful
  */
-interface UserQueryResult {
-  /** Combined user data from all queries, null if any query fails or is loading */
+export interface UserQueryResult {
   userData: User | null;
-  /** Whether any of the queries are still loading */
   loading: boolean;
-  /** Error from any of the queries, null if all successful */
   error: ApolloError | null;
 }
 

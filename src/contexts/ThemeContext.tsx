@@ -4,11 +4,11 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
  * Context type definition for theme management
  *
  * @interface ThemeContextType
+ * @property {boolean} isDarkMode - Current dark mode state
+ * @property {() => void} toggleDarkMode - Function to toggle between light and dark modes
  */
-type ThemeContextType = {
-  /** Current dark mode state */
+export interface ThemeContextType  {
   isDarkMode: boolean;
-  /** Function to toggle between light and dark modes */
   toggleDarkMode: () => void;
 };
 

@@ -11,8 +11,9 @@ import {
  * Props interface for the UserSocialStats component
  *
  * @interface UserSocialStatsProps
+ * @property {User} user - The GitHub user data containing social information
  */
-interface UserSocialStatsProps {
+export interface UserSocialStatsProps {
   /** The GitHub user data containing social information */
   user: User;
 }

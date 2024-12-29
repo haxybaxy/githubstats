@@ -4,17 +4,13 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
  * Props for the Pagination component
  *
  * @interface PaginationProps
+ * @property {number} currentPage - Current page number (1-based indexing)
+ * @property {number} totalPages - Total number of available pages
+ * @property {(page: number) => void} onPageChange - Callback function triggered when page number changes
  */
-interface PaginationProps {
-  /** Current page number (1-based indexing) */
+export interface PaginationProps {
   currentPage: number;
-
-  /** Total number of available pages */
   totalPages: number;
-
-  /** Callback function triggered when page number changes
-   * @param page - The new page number
-   */
   onPageChange: (page: number) => void;
 }
 

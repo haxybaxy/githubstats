@@ -12,11 +12,9 @@ import { useEffect } from 'react';
  * Props for the ComparisonView component
  *
  * @interface ComparisonViewProps
+ * @property {boolean} isSearchActive - Whether a search is currently active
  */
-interface ComparisonViewProps {
-  /** Callback function to notify parent of search state changes
-   * @param isSearchActive - Whether a search is currently active
-   */
+export interface ComparisonViewProps {
   onSearchStateChange: (isSearchActive: boolean) => void;
 }
 

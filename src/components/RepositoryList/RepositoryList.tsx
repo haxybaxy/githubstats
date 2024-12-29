@@ -8,18 +8,15 @@ import { useRepositoryFiltering } from '../../hooks/useRepositoryFiltering';
  * Props for the RepositoryList component
  *
  * @interface RepositoryListProps
+ * @property {Repository[]} repositories - Array of repository data from GitHub
+ * @property {boolean} loading - Loading state indicator
+ * @property {Error} [error] - Error object if any error occurred
+ * @property {string} owner - Repository owner's username
  */
-interface RepositoryListProps {
-  /** Array of repository data from GitHub */
+export interface RepositoryListProps {
   repositories: Repository[];
-
-  /** Loading state indicator */
   loading: boolean;
-
-  /** Error object if any error occurred */
   error?: Error;
-
-  /** Repository owner's username */
   owner: string;
 }
 

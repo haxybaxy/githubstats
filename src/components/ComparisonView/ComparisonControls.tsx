@@ -4,39 +4,25 @@ import { SearchForm } from '../SearchForm/SearchForm';
  * Props for the ComparisonControls component
  *
  * @interface ComparisonControlsProps
+ * @property {string} username1 - Username for the first user
+ * @property {string} username2 - Username for the second user
+ * @property {boolean} isComparing - Whether comparison mode is active
+ * @property {boolean} loading1 - Loading state for the first user's data
+ * @property {boolean} loading2 - Loading state for the second user's data
+ * @property {(value: string) => void} onUsernameChange1 - Callback for when the first username changes
+ * @property {(value: string) => void} onUsernameChange2 - Callback for when the second username changes
+ * @property {(e: React.FormEvent) => void} onSubmit - Callback for form submission
+ * @property {() => void} onToggleComparing - Callback for toggling comparison mode
  */
-interface ComparisonControlsProps {
-  /** Username for the first user */
+export interface ComparisonControlsProps {
   username1: string;
-
-  /** Username for the second user */
   username2: string;
-
-  /** Whether comparison mode is active */
   isComparing: boolean;
-
-  /** Loading state for the first user's data */
   loading1: boolean;
-
-  /** Loading state for the second user's data */
   loading2: boolean;
-
-  /** Callback for when the first username changes
-   * @param value - The new username value
-   */
   onUsernameChange1: (value: string) => void;
-
-  /** Callback for when the second username changes
-   * @param value - The new username value
-   */
   onUsernameChange2: (value: string) => void;
-
-  /** Callback for form submission
-   * @param e - The form event
-   */
   onSubmit: (e: React.FormEvent) => void;
-
-  /** Callback for toggling comparison mode */
   onToggleComparing: () => void;
 }
 

@@ -7,21 +7,17 @@ import { UserSocialStats } from './UserSocialStats';
  * Props for the UserProfile component
  *
  * @interface UserProfileProps
+ * @property {User} user - The GitHub user data
+ * @property {boolean} isWinner - Whether this user is the winner in a comparison
+ * @property {number | undefined} score - User's percentile score
+ * @property {boolean} isComparing - Whether the component is in comparison mode
+ * @property {boolean} [hasCompetitor] - Whether there is another user to compare against
  */
-interface UserProfileProps {
-  /** The GitHub user data */
+export interface UserProfileProps {
   user: User;
-
-  /** Whether this user is the winner in a comparison */
   isWinner: boolean;
-
-  /** User's percentile score */
   score: number | undefined;
-
-  /** Whether the component is in comparison mode */
   isComparing: boolean;
-
-  /** Whether there is another user to compare against */
   hasCompetitor?: boolean;
 }
 

@@ -2,11 +2,9 @@
  * Props for the Logo component
  *
  * @interface LogoProps
+ * @property {number} size - Size of the logo in pixels (defaults to 30)
  */
-interface LogoProps {
-  /** Size of the logo in pixels (defaults to 30)
-   * Controls both width and height of the SVG
-   */
+export interface LogoProps {
   size?: number;
 }
 
