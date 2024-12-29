@@ -1,7 +1,29 @@
+/**
+ * Props for the Logo component
+ */
 interface LogoProps {
+  /** Size of the logo in pixels (defaults to 30) */
   size?: number;
 }
 
+/**
+ * Renders the application logo as an SVG
+ *
+ * Features:
+ * - Scalable vector graphic that maintains quality at any size
+ * - Dark mode support with automatic color switching
+ * - Configurable size through props
+ * - Accessible SVG with proper ARIA attributes
+ *
+ * @param props - Component properties
+ * @param props.size - Width and height of the logo in pixels
+ * @returns The rendered logo SVG
+ *
+ * @example
+ * ```tsx
+ * <Logo size={42} />
+ * ```
+ */
 export const Logo = ({ size = 30 }: LogoProps) => {
   return (
   <svg

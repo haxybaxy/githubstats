@@ -1,12 +1,36 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
+/**
+ * Context type definition for theme management
+ */
 type ThemeContextType = {
+  /** Current dark mode state */
   isDarkMode: boolean;
+  /** Function to toggle between light and dark modes */
   toggleDarkMode: () => void;
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+/**
+ * Provider component for managing application theme state
+ *
+ * Features:
+ * - Persistent theme storage in localStorage
+ * - System theme preference detection
+ * - Smooth transition animations
+ * - Automatic class management
+ *
+ * Theme Management:
+ * - Detects and applies system preference
+ * - Persists user preference
+ * - Handles theme transitions
+ * - Manages dark mode classes
+ *
+ * @param props - Component properties
+ * @param props.children - Child components to wrap with theme context
+ * @returns The theme provider component
+ */
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem('theme');

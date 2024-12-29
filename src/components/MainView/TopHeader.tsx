@@ -1,5 +1,29 @@
 import { ThemeToggle } from "./ThemeToggle";
 import { Logo } from "./Logo";
+
+/**
+ * Header component displayed at the top of the application
+ *
+ * Features:
+ * - Fixed positioning at top of viewport
+ * - Responsive layout with max-width container
+ * - Logo and application title
+ * - Theme toggle integration
+ * - Dark mode support
+ *
+ * Layout:
+ * - Horizontal layout with space-between alignment
+ * - Left section: Logo and title
+ * - Right section: Theme toggle
+ * - Responsive padding and spacing
+ *
+ * Visual Elements:
+ * - Border bottom separator
+ * - Background with theme colors
+ * - Consistent spacing and alignment
+ *
+ * @returns The header component
+ */
 export const TopHeader = () => {
   return (
     <div className="relative z-10">

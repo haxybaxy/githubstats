@@ -2,6 +2,24 @@ import { useTheme } from '../../contexts/ThemeContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SunIcon, MoonIcon } from '@heroicons/react/24/solid';
 
+/**
+ * Toggle button component for switching between light and dark themes
+ *
+ * Features:
+ * - Smooth icon rotation animations
+ * - Interactive tap feedback
+ * - Automatic theme synchronization
+ * - Accessible button controls
+ * - Dynamic icon switching
+ *
+ * Visual States:
+ * - Light mode: Moon icon
+ * - Dark mode: Sun icon
+ * - Hover and tap animations
+ * - Transition effects
+ *
+ * @returns The theme toggle button component
+ */
 export function ThemeToggle() {
   const { isDarkMode, toggleDarkMode } = useTheme();
 

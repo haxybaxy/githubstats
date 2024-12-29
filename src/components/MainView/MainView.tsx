@@ -5,7 +5,32 @@ import { TopHeader } from './TopHeader';
 import { BackgroundEffects } from './BackgroundEffects';
 import { Logo } from './Logo';
 
+/**
+ * Main application view component that handles layout and animations
+ *
+ * Features:
+ * - Responsive layout with max-width container
+ * - Animated background effects
+ * - Smooth transitions for search state
+ * - Dark mode compatible gradients
+ * - Animated content positioning
+ *
+ * Layout Structure:
+ * - Background gradient and effects
+ * - Top header with theme toggle
+ * - Centered content area
+ * - Animated title section
+ * - Search and comparison interface
+ *
+ * Animation States:
+ * - Initial load animation
+ * - Search active/inactive transitions
+ * - Results appearance/disappearance
+ *
+ * @returns The main application view
+ */
 export const MainView = () => {
+  /** State to track if search interface is active */
   const [isSearchActive, setIsSearchActive] = useState(false);
 
   return (

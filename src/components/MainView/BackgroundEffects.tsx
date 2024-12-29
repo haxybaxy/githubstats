@@ -1,3 +1,39 @@
+/**
+ * Renders decorative background effects for the application
+ *
+ * Features:
+ * - Animated gradient blobs
+ * - Noise texture overlay
+ * - Dark mode compatible colors
+ * - Smooth animations
+ * - Performance optimized rendering
+ *
+ * Visual Elements:
+ * - Multiple gradient blobs with different colors:
+ *   - Purple-blues (#58a6ff, #1f6feb in dark mode)
+ *   - Blues with purple tint (#3fb950, #238636 in dark mode)
+ *   - Purpletones and yellow (#2ea043, #388bfd in dark mode)
+ * - SVG noise texture for added depth
+ *
+ * Animation Details:
+ * - Blob animations with different delays (1000ms to 6000ms)
+ * - Smooth transitions between positions
+ * - Subtle opacity changes
+ * - Mix-blend-mode effects for color interaction
+ *
+ * Layout:
+ * - Fixed positioning to cover entire viewport
+ * - Z-index management for proper layering
+ * - Responsive sizing and positioning
+ * - Proper overflow handling
+ *
+ * Performance Optimizations:
+ * - Low-opacity overlays
+ * - Optimized SVG noise pattern
+ * - Minimal DOM elements
+ *
+ * @returns The background effects component
+ */
 export const BackgroundEffects = () => {
   return (
     <>
