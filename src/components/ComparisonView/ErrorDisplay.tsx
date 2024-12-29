@@ -2,7 +2,6 @@ import { ApolloError } from '@apollo/client';
 
 /**
  * Props for the ErrorDisplay component
- * @interface ErrorDisplayProps
  */
 interface ErrorDisplayProps {
   /** The Apollo error object to display */
@@ -12,22 +11,58 @@ interface ErrorDisplayProps {
 /**
  * Component to display GraphQL errors in a consistent format
  *
- * This component handles different types of GitHub API errors and displays
- * them in a user-friendly format with appropriate styling.
+ * Features:
+ * - User-friendly error message conversion
+ * - Consistent error styling
+ * - Accessible error presentation
+ * - Icon-based visual indicators
+ * - Support for multiple error types
  *
- * @param {ErrorDisplayProps} props - Component properties
- * @returns {JSX.Element} The rendered error display
+ * Error Types Handled:
+ * - User not found errors
+ * - Authentication failures
+ * - API rate limiting
+ * - Network errors
+ * - Generic fallback errors
+ *
+ * Visual Elements:
+ * - Error icon
+ * - Colored border indicator
+ * - Formatted message text
+ * - Alert role for accessibility
+ * - Proper spacing and layout
+ *
+ * Accessibility:
+ * - Semantic HTML structure
+ * - ARIA roles and attributes
+ * - Color contrast compliance
+ * - Screen reader support
+ *
+ * @param props - Component properties
+ * @param props.error - Apollo error object to process and display
+ * @returns The rendered error display
  *
  * @example
  * ```tsx
- * <ErrorDisplay error={new ApolloError({ ... })} />
+ * <ErrorDisplay
+ *   error={new ApolloError({
+ *     errorMessage: 'Could not resolve to a User'
+ *   })}
+ * />
  * ```
  */
 export function ErrorDisplay({ error }: ErrorDisplayProps) {
   /**
    * Converts Apollo errors into user-friendly messages
-   * @param {ApolloError} error - The Apollo error object to process
-   * @returns {string} A user-friendly error message
+   *
+   * Error Mapping:
+   * - User not found -> Suggests checking username
+   * - Bad credentials -> Suggests checking API token
+   * - Rate limit -> Suggests waiting
+   * - Others -> Generic error message
+   *
+   * @param error - The Apollo error object to process
+   * @returns A user-friendly error message string
    */
   const getErrorMessage = (error: ApolloError): string => {
     if (error.message.includes('Could not resolve to a User')) {

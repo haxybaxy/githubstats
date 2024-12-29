@@ -9,22 +9,58 @@ import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 
 /**
+ * Props for the ComparisonView component
+ */
+interface ComparisonViewProps {
+  /** Callback function to notify parent of search state changes */
+  onSearchStateChange: (isSearchActive: boolean) => void;
+}
+
+/**
  * ComparisonView component that allows users to compare GitHub profiles
  *
- * This component orchestrates the comparison of two GitHub users by:
- * - Managing user input and search state
- * - Fetching user data from GitHub's API
- * - Calculating and displaying comparison results
- * - Rendering user profiles and repository lists
+ * Features:
+ * - Single or dual user profile comparison
+ * - Real-time data fetching from GitHub API
+ * - Animated transitions between states
+ * - Responsive grid layout
+ * - Score calculation and winner determination
+ * - Repository list display for each user
  *
- * @returns {JSX.Element} The rendered comparison view
+ * Component Structure:
+ * - Error display section for API errors
+ * - Search controls for user input
+ * - User comparison grid
+ *   - User sections with profile information
+ *   - Repository lists for each user
+ *
+ * State Management:
+ * - Handles user input and search state
+ * - Manages loading states
+ * - Tracks comparison mode
+ * - Coordinates data fetching
+ *
+ * Animation Features:
+ * - Smooth fade-in transitions
+ * - Staggered content loading
+ * - Layout animations for grid changes
+ *
+ * Error Handling:
+ * - Displays user-friendly error messages
+ * - Handles API rate limiting
+ * - Manages network errors
+ * - Validates user input
+ *
+ * @param props - Component properties
+ * @param props.onSearchStateChange - Callback for search state changes
+ * @returns The rendered comparison view
  *
  * @example
  * ```tsx
- * <ComparisonView />
+ * <ComparisonView onSearchStateChange={(isActive) => setSearchActive(isActive)} />
  * ```
  */
-export function ComparisonView({ onSearchStateChange }: any) {
+export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
 
   const { state, setState, handleSearch, toggleComparing } = useComparisonState();
 

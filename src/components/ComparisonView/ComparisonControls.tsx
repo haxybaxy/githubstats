@@ -28,14 +28,49 @@ interface ComparisonControlsProps {
 /**
  * Component that renders the comparison controls including search forms and comparison toggle
  *
- * This component is responsible for:
- * - Rendering search forms for both users
- * - Handling the comparison toggle button
- * - Managing loading states during searches
- * - Providing user input functionality
+ * Features:
+ * - Dual search forms for user comparison
+ * - Dynamic form visibility based on comparison mode
+ * - Loading state indicators
+ * - Responsive layout adaptation
+ * - Toggle button for comparison mode
  *
- * @param {ComparisonControlsProps} props - Component properties
- * @returns {JSX.Element} The rendered comparison controls
+ * Visual Elements:
+ * - Primary search form (always visible)
+ * - Secondary search form (visible in comparison mode)
+ * - VS/Remove VS toggle button
+ * - Loading spinners during data fetch
+ * - Responsive spacing and alignment
+ *
+ * State Handling:
+ * - Manages input field values
+ * - Tracks loading states
+ * - Controls comparison mode toggle
+ * - Handles form submissions
+ *
+ * Layout Behavior:
+ * - Stacks vertically on mobile
+ * - Horizontal alignment on desktop
+ * - Proper spacing between elements
+ * - Centered alignment within container
+ *
+ * Accessibility:
+ * - Proper form labeling
+ * - Loading state announcements
+ * - Keyboard navigation support
+ * - Clear button purposes
+ *
+ * @param props - Component properties
+ * @param props.username1 - First username input value
+ * @param props.username2 - Second username input value
+ * @param props.isComparing - Whether comparison mode is active
+ * @param props.loading1 - Loading state for first user
+ * @param props.loading2 - Loading state for second user
+ * @param props.onUsernameChange1 - Handler for first username changes
+ * @param props.onUsernameChange2 - Handler for second username changes
+ * @param props.onSubmit - Form submission handler
+ * @param props.onToggleComparing - Comparison mode toggle handler
+ * @returns The rendered comparison controls
  *
  * @example
  * ```tsx
