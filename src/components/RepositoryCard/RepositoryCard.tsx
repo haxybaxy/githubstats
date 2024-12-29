@@ -5,26 +5,48 @@ import { StarIcon, RepoForkedIcon } from '@primer/octicons-react';
 /**
  * Props for the RepositoryCard component
  * @interface RepositoryCardProps
+ * @property {Repository} repository - Repository data from GitHub containing details like name, description, stats
+ * @property {string} owner - Repository owner's username
  */
 export interface RepositoryCardProps {
-  /** Repository data from GitHub */
   repository: Repository;
-  /** Repository owner's username */
   owner: string;
 }
 
 /**
  * Component that displays detailed information about a GitHub repository
  *
- * This component renders:
- * - Repository name with link
- * - Repository description
+ * Features:
+ * - Repository name with direct link to GitHub
+ * - Repository description with line clamping
  * - Primary programming language with color indicator
- * - Star and fork counts
- * - Commit activity chart
+ * - Star and fork counts with links to respective pages
+ * - Last update timestamp
+ * - Commit activity visualization
  *
- * @param {RepositoryCardProps} props - Component properties
- * @returns {JSX.Element} The rendered repository card
+ * Visual Elements:
+ * - Responsive card layout with proper spacing
+ * - Dark mode support
+ * - Hover states for interactive elements
+ * - Color-coded language indicator
+ * - Truncated description for long text
+ *
+ * Accessibility:
+ * - Semantic HTML structure
+ * - Proper ARIA labels for icons
+ * - External link indicators
+ * - Keyboard navigation support
+ *
+ * Layout Structure:
+ * - Card container with rounded corners and border
+ * - Flexbox layout for content organization
+ * - Grid system for responsive behavior
+ * - Auto-height with minimum constraints
+ *
+ * @param props - Component properties
+ * @param props.repository - Repository data from GitHub
+ * @param props.owner - Repository owner's username
+ * @returns The rendered repository card
  *
  * @example
  * ```tsx

@@ -1,12 +1,38 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-type ThemeContextType = {
+/**
+ * Context type definition for theme management
+ *
+ * @interface ThemeContextType
+ * @property {boolean} isDarkMode - Current dark mode state
+ * @property {() => void} toggleDarkMode - Function to toggle between light and dark modes
+ */
+export interface ThemeContextType  {
   isDarkMode: boolean;
   toggleDarkMode: () => void;
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+/**
+ * Provider component for managing application theme state
+ *
+ * Features:
+ * - Persistent theme storage in localStorage
+ * - System theme preference detection
+ * - Smooth transition animations
+ * - Automatic class management
+ *
+ * Theme Management:
+ * - Detects and applies system preference
+ * - Persists user preference
+ * - Handles theme transitions
+ * - Manages dark mode classes
+ *
+ * @param props - Component properties
+ * @param props.children - Child components to wrap with theme context
+ * @returns The theme provider component
+ */
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -51,6 +77,32 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
+/**
+ * Custom hook for accessing theme context
+ *
+ * Provides access to the current theme state and toggle function.
+ * Must be used within a ThemeProvider component.
+ *
+ * Features:
+ * - Type-safe theme state access
+ * - Theme toggle functionality
+ * - Error handling for usage outside provider
+ *
+ * @throws {Error} When used outside of ThemeProvider
+ * @returns {ThemeContextType} The current theme context
+ *
+ * @example
+ * ```tsx
+ * function MyComponent() {
+ *   const { isDarkMode, toggleDarkMode } = useTheme();
+ *   return (
+ *     <button onClick={toggleDarkMode}>
+ *       Current theme: {isDarkMode ? 'dark' : 'light'}
+ *     </button>
+ *   );
+ * }
+ * ```
+ */
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (context === undefined) {

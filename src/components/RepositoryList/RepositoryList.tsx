@@ -1,36 +1,61 @@
 import { Repository } from '../../types/github';
-import { RepositoryCard } from '../RepositoryCard';
+import { RepositoryCard } from '../RepositoryCard/RepositoryCard';
 import { FilterControls } from './FilterControls';
 import { Pagination } from './Pagination';
 import { useRepositoryFiltering } from '../../hooks/useRepositoryFiltering';
 
 /**
  * Props for the RepositoryList component
+ *
  * @interface RepositoryListProps
+ * @property {Repository[]} repositories - Array of repository data from GitHub
+ * @property {boolean} loading - Loading state indicator
+ * @property {Error} [error] - Error object if any error occurred
+ * @property {string} owner - Repository owner's username
  */
-interface RepositoryListProps {
-  /** Array of repository data from GitHub */
+export interface RepositoryListProps {
   repositories: Repository[];
-  /** Loading state indicator */
   loading: boolean;
-  /** Error object if any error occurred */
   error?: Error;
-  /** Repository owner's username */
   owner: string;
 }
 
 /**
  * Component that displays a filterable, sortable list of repositories
  *
- * This component provides:
- * - Filtering by repository name
- * - Filtering by programming language
+ * Features:
+ * - Full-text search filtering by repository name
+ * - Programming language filtering
  * - Sorting by stars, forks, or update date
- * - Pagination controls
+ * - Ascending/descending sort order toggle
+ * - Pagination with configurable page size
  * - Loading and error states
+ * - Responsive grid layout
  *
- * @param {RepositoryListProps} props - Component properties
- * @returns {JSX.Element} The rendered repository list with controls
+ * Component Structure:
+ * - FilterControls: Search, language filter, and sort controls
+ * - Repository Grid: Responsive grid of RepositoryCard components
+ * - Pagination: Page navigation controls
+ *
+ * States Handled:
+ * - Loading: Shows loading indicator
+ * - Error: Displays error message
+ * - Empty: Shows appropriate message when no repositories match filters
+ * - Filtered: Updates display based on current filters
+ *
+ * Filter Capabilities:
+ * - Text search in repository names
+ * - Language-based filtering
+ * - Multiple sort criteria
+ * - Sort direction toggle
+ * - Pagination controls
+ *
+ * @param props - Component properties
+ * @param props.repositories - Array of GitHub repositories to display
+ * @param props.loading - Whether repositories are currently loading
+ * @param props.error - Error object if fetch failed
+ * @param props.owner - Username of repository owner
+ * @returns The rendered repository list with controls
  *
  * @example
  * ```tsx
@@ -42,9 +67,19 @@ interface RepositoryListProps {
  * />
  * ```
  */
-export function RepositoryList({ repositories, loading, error, owner }: RepositoryListProps) {
+export function RepositoryList({
+  repositories,
+  loading,
+  error,
+  owner
+}: RepositoryListProps) {
   /**
    * Hook providing filtering and sorting functionality
+   * Manages state for:
+   * - Search query
+   * - Language filter
+   * - Sort criteria and order
+   * - Pagination
    */
   const {
     searchQuery,
@@ -63,11 +98,15 @@ export function RepositoryList({ repositories, loading, error, owner }: Reposito
 
   /**
    * Get filtered, sorted, and paginated repositories
+   * Returns:
+   * - paginatedRepos: Current page of filtered/sorted repositories
+   * - totalCount: Total number of repositories after filtering
    */
   const { paginatedRepos, totalCount } = getFilteredAndSortedRepos();
 
   /**
-   * Calculate total number of pages
+   * Calculate total number of pages based on filtered count
+   * Uses fixed page size of 10 repositories per page
    */
   const totalPages = Math.ceil(totalCount / 10);
 
@@ -86,7 +125,7 @@ export function RepositoryList({ repositories, loading, error, owner }: Reposito
         onSortOrderChange={() => setSortOrder(order => order === 'asc' ? 'desc' : 'asc')}
       />
 
-      {/* Repository grid */}
+      {/* Repository grid with responsive layout */}
       <div className="mt-8 grid gap-4 sm:gap-6 lg:grid-cols-2">
         {/* Loading state */}
         {loading && (

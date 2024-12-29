@@ -3,44 +3,54 @@ import { useState } from 'react';
 /**
  * Interface for the comparison state
  * @interface ComparisonState
+ * @property {string} username1 - Input value for first username
+ * @property {string} username2 - Input value for second username
+ * @property {string} searchedUsername1 - Currently searched first username
+ * @property {string} searchedUsername2 - Currently searched second username
+ * @property {boolean} isComparing - Whether comparison mode is active
  */
-interface ComparisonState {
-  /** Input value for first username */
+export interface ComparisonState {
   username1: string;
-  /** Input value for second username */
   username2: string;
-  /** Currently searched first username */
   searchedUsername1: string;
-  /** Currently searched second username */
   searchedUsername2: string;
-  /** Whether comparison mode is active */
   isComparing: boolean;
 }
 
 /**
  * Interface for the hook's return value
  * @interface ComparisonStateHook
+ * @property {ComparisonState} state - Current state object
+ * @property {React.Dispatch<React.SetStateAction<ComparisonState>>} setState - State setter function
+ * @property {(e: React.FormEvent) => void} handleSearch - Handler for form submission
+ * @property {() => void} toggleComparing - Handler for toggling comparison mode
  */
-interface ComparisonStateHook {
-  /** Current state object */
+export interface ComparisonStateHook {
   state: ComparisonState;
-  /** State setter function */
   setState: React.Dispatch<React.SetStateAction<ComparisonState>>;
-  /** Handler for form submission */
   handleSearch: (e: React.FormEvent) => void;
-  /** Handler for toggling comparison mode */
   toggleComparing: () => void;
 }
 
 /**
  * Custom hook for managing comparison state between two GitHub users
  *
- * This hook manages:
- * - Input values for both usernames
- * - Searched username values
- * - Comparison mode state
- * - Form submission handling
- * - Comparison mode toggling
+ * Features:
+ * - Manages input and search state for two usernames
+ * - Handles comparison mode toggling
+ * - Provides form submission handling
+ * - Maintains search history
+ *
+ * State Management:
+ * - Tracks current input values
+ * - Stores searched username history
+ * - Controls comparison mode
+ * - Handles state updates
+ *
+ * Form Handling:
+ * - Prevents default form submission
+ * - Updates searched usernames
+ * - Manages form state
  *
  * @returns {ComparisonStateHook} State and handlers for comparison functionality
  *

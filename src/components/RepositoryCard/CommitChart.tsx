@@ -24,36 +24,60 @@ ChartJS.register(
 
 /**
  * Props for the CommitChart component
+ *
  * @interface CommitChartProps
+ * @property {string} owner - Repository owner's username
+ * @property {string} repoName - Name of the repository
  */
-interface CommitChartProps {
-  /** Repository owner's username */
+export interface CommitChartProps {
   owner: string;
-  /** Repository name */
   repoName: string;
 }
 
 /**
- * Component that displays a line chart showing commit activity over time
+ * Displays a line chart showing repository commit activity over the last 90 days
  *
- * This component:
- * - Fetches commit data for a repository
- * - Processes the data into a daily commit count
- * - Renders a line chart showing commit frequency
- * - Handles loading and error states
- * - Provides interactive tooltips
+ * Features:
+ * - Fetches commit history using GitHub GraphQL API
+ * - Displays daily commit frequency as a line chart
+ * - Interactive tooltips showing date and commit count
+ * - Smooth line transitions with tension
+ * - Area fill for visual emphasis
+ * - Responsive design that maintains aspect ratio
  *
- * @param {CommitChartProps} props - Component properties
- * @returns {JSX.Element} The rendered commit chart
+ * Visual States:
+ * - Loading: Shows animated placeholder
+ * - Error: Displays appropriate error message
+ * - Empty: Shows message when no commit data available
+ * - Rate Limited: Special message for API rate limiting
+ *
+ * Chart Configuration:
+ * - 90-day time window
+ * - Hidden axes for clean appearance
+ * - No data points for smoother look
+ * - Nearest point interaction mode
+ * - Custom tooltip formatting
+ *
+ * Error Handling:
+ * - API rate limit detection
+ * - Rendering error fallback
+ * - Console error logging
+ * - Cache-first data strategy
+ *
+ * @param props - Component properties
+ * @param props.owner - Repository owner's username
+ * @param props.repoName - Name of the repository
+ * @returns The rendered commit chart or appropriate fallback
  *
  * @example
  * ```tsx
- * <CommitChart owner="octocat" repoName="Hello-World" />
+ * <CommitChart owner="facebook" repoName="react" />
  * ```
  */
 export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
   /**
-   * Fetch commit data from GitHub API
+   * Fetch commit data from GitHub API with caching strategy
+   * Uses cache-first policy to minimize API calls
    */
   const { loading, error, data } = useQuery(GET_REPO_COMMITS, {
     variables: {
@@ -93,7 +117,10 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
 
   /**
    * Process commit data into daily counts
-   * @type {Object.<string, number>}
+   * Creates a mapping of dates to number of commits
+   *
+   * @param commits - Array of commit data from GitHub API
+   * @returns Object mapping dates to commit counts
    */
   const commitsByDay = commits.reduce((acc: { [key: string]: number }, commit: { committedDate: string }) => {
     const date = new Date(commit.committedDate).toISOString().split('T')[0];
@@ -103,7 +130,9 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
 
   /**
    * Generate array of dates for the last 90 days
-   * @type {string[]}
+   * Used as x-axis labels and for data alignment
+   *
+   * @returns Array of ISO date strings
    */
   const dates = Array.from({ length: 90 }, (_, i) => {
     const d = new Date();
@@ -112,7 +141,8 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
   }).reverse();
 
   /**
-   * Chart data configuration
+   * Chart configuration and options
+   * Defines visual appearance and behavior of the chart
    */
   const chartData = {
     labels: dates,

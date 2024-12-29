@@ -3,12 +3,18 @@ import { gql } from '@apollo/client';
 /**
  * Query to fetch basic user information from GitHub
  *
- * Returns:
- * - User's name and login
- * - Avatar URL
- * - Bio and location
- * - Website and Twitter links
- * - Follower and following counts
+ * Returns comprehensive user profile data including:
+ * - Basic Information:
+ *   - User's name and login
+ *   - Avatar URL
+ *   - Bio and location
+ * - Social Links:
+ *   - Website URL
+ *   - Twitter username
+ *   - Other social accounts (first 10)
+ * - Network Statistics:
+ *   - Follower count
+ *   - Following count
  *
  * @example
  * ```tsx
@@ -46,13 +52,19 @@ export const GET_USER_INFO = gql`
 /**
  * Query to fetch user's contribution statistics
  *
- * Returns:
- * - Total commit contributions
- * - Total pull request contributions
- * - Total issue contributions
- * - Total repository contributions
- * - Contribution calendar data
- * - Pull request and issue counts
+ * Returns detailed contribution data including:
+ * - Contribution Counts:
+ *   - Total commit contributions
+ *   - Total pull request contributions
+ *   - Total issue contributions
+ *   - Total repository contributions
+ * - Contribution Calendar:
+ *   - Daily contribution data
+ *   - Weekly aggregated data
+ *   - Total contributions
+ * - Activity Metrics:
+ *   - Pull request count
+ *   - Issue count
  *
  * @example
  * ```tsx
@@ -92,17 +104,26 @@ export const GET_USER_CONTRIBUTIONS = gql`
 /**
  * Query to fetch user's repository information
  *
- * Returns:
- * - Total repository count
- * - Repository details:
+ * Returns detailed repository data including:
+ * - Repository Overview:
+ *   - Total repository count
+ *   - Repository details for first 100 repos
+ * - Repository Details:
  *   - Name and description
  *   - URL
  *   - Star and fork counts
  *   - Last update time
- *   - Primary language
+ * - Language Information:
+ *   - Primary language with color
  *   - Top 10 languages used
  *
- * @note Fetches first 100 repositories, sorted by stars
+ * Query Parameters:
+ * - Fetches first 100 repositories
+ * - Sorted by stars (descending)
+ * - Only includes repositories where user is owner
+ * - Excludes archived repositories
+ *
+ *  Fetches first 100 repositories, sorted by stars
  *
  * @example
  * ```tsx
@@ -151,10 +172,15 @@ export const GET_USER_REPOS = gql`
 /**
  * Query to fetch repository commit history
  *
- * Returns:
+ * Returns commit data including:
  * - Commit dates for the default branch
  * - Limited to commits since 2024-01-01
  * - Maximum of 100 commits
+ *
+ * Query Parameters:
+ * - Repository owner and name
+ * - Date filter (since 2024-01-01)
+ * - Limit of 100 commits
  *
  * @example
  * ```tsx
@@ -186,7 +212,23 @@ export const GET_REPO_COMMITS = gql`
 
 /**
  * Query to search for users as typing
- * Limited to 5 results for performance
+ *
+ * Returns basic user information for search results:
+ * - Login (username)
+ * - Display name
+ * - Avatar URL
+ *
+ * Query Parameters:
+ * - Search query string
+ * - Limited to 5 results for performance
+ * - Only returns USER type results
+ *
+ * @example
+ * ```tsx
+ * const { data } = useQuery(SEARCH_USERS, {
+ *   variables: { query: "octo" }
+ * });
+ * ```
  */
 export const SEARCH_USERS = gql`
   query SearchUsers($query: String!) {

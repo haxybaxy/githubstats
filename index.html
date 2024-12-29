@@ -5,6 +5,11 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GitHub Stats</title>
+    <meta name="color-scheme" content="light dark">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
     <script>
       (function() {
         const savedTheme = localStorage.getItem('theme');
@@ -16,10 +21,5 @@
         }
       })();
     </script>
-    <meta name="color-scheme" content="light dark">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

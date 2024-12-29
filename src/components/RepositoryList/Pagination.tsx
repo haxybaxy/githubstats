@@ -1,28 +1,56 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
+
 /**
  * Props for the Pagination component
+ *
  * @interface PaginationProps
+ * @property {number} currentPage - Current page number (1-based indexing)
+ * @property {number} totalPages - Total number of available pages
+ * @property {(page: number) => void} onPageChange - Callback function triggered when page number changes
  */
-interface PaginationProps {
-  /** Current page number */
+export interface PaginationProps {
   currentPage: number;
-  /** Total number of pages */
   totalPages: number;
-  /** Callback for when page changes */
   onPageChange: (page: number) => void;
 }
 
 /**
- * Component that renders pagination controls for repository list
+ * Renders pagination controls for navigating through paginated content
  *
- * This component provides:
- * - Previous/Next page navigation
- * - Current page indicator
- * - Total pages display
- * - Automatic hiding when only one page exists
+ * Features:
+ * - Previous/Next page navigation buttons
+ * - Current page and total pages indicator
+ * - Automatic disabling of buttons at boundaries
+ * - Accessibility support with ARIA labels
+ * - Dark mode compatible styling
+ * - Responsive design
+ * - Auto-hides when only one page exists
  *
- * @param {PaginationProps} props - Component properties
- * @returns {JSX.Element | null} The rendered pagination controls or null if only one page
+ * Visual Elements:
+ * - Previous button with left chevron icon
+ * - Next button with right chevron icon
+ * - Current page / total pages display
+ * - Focus states for keyboard navigation
+ * - Disabled states for boundary conditions
+ *
+ * Accessibility:
+ * - Semantic navigation structure
+ * - ARIA labels for buttons
+ * - Keyboard navigation support
+ * - Clear focus indicators
+ * - Disabled state announcements
+ *
+ * Boundary Handling:
+ * - Disables Previous button on first page
+ * - Disables Next button on last page
+ * - Prevents navigation beyond valid range
+ * - Returns null when totalPages <= 1
+ *
+ * @param props - Component properties
+ * @param props.currentPage - Current active page number
+ * @param props.totalPages - Total number of available pages
+ * @param props.onPageChange - Callback function when page changes
+ * @returns The pagination controls, or null if only one page exists
  *
  * @example
  * ```tsx
@@ -33,7 +61,11 @@ interface PaginationProps {
  * />
  * ```
  */
-export function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
+export function Pagination({
+  currentPage,
+  totalPages,
+  onPageChange
+}: PaginationProps) {
   if (totalPages <= 1) return null;
 
   return (

@@ -1,41 +1,68 @@
-import { SearchForm } from '../SearchForm';
+import { SearchForm } from '../SearchForm/SearchForm';
 
 /**
  * Props for the ComparisonControls component
+ *
  * @interface ComparisonControlsProps
+ * @property {string} username1 - Username for the first user
+ * @property {string} username2 - Username for the second user
+ * @property {boolean} isComparing - Whether comparison mode is active
+ * @property {boolean} loading1 - Loading state for the first user's data
+ * @property {boolean} loading2 - Loading state for the second user's data
+ * @property {(value: string) => void} onUsernameChange1 - Callback for when the first username changes
+ * @property {(value: string) => void} onUsernameChange2 - Callback for when the second username changes
+ * @property {(e: React.FormEvent) => void} onSubmit - Callback for form submission
+ * @property {() => void} onToggleComparing - Callback for toggling comparison mode
  */
-interface ComparisonControlsProps {
-  /** Username for the first user */
+export interface ComparisonControlsProps {
   username1: string;
-  /** Username for the second user */
   username2: string;
-  /** Whether comparison mode is active */
   isComparing: boolean;
-  /** Loading state for the first user's data */
   loading1: boolean;
-  /** Loading state for the second user's data */
   loading2: boolean;
-  /** Callback for when the first username changes */
   onUsernameChange1: (value: string) => void;
-  /** Callback for when the second username changes */
   onUsernameChange2: (value: string) => void;
-  /** Callback for form submission */
   onSubmit: (e: React.FormEvent) => void;
-  /** Callback for toggling comparison mode */
   onToggleComparing: () => void;
 }
 
 /**
  * Component that renders the comparison controls including search forms and comparison toggle
  *
- * This component is responsible for:
- * - Rendering search forms for both users
- * - Handling the comparison toggle button
- * - Managing loading states during searches
- * - Providing user input functionality
+ * Features:
+ * - Dual search forms for user comparison
+ * - Dynamic form visibility based on comparison mode
+ * - Loading state indicators
+ * - Responsive layout adaptation
+ * - Toggle button for comparison mode
  *
- * @param {ComparisonControlsProps} props - Component properties
- * @returns {JSX.Element} The rendered comparison controls
+ * Visual Elements:
+ * - Primary search form (always visible)
+ * - Secondary search form (visible in comparison mode)
+ * - VS/Remove VS toggle button
+ * - Loading spinners during data fetch
+ * - Responsive spacing and alignment
+ *
+ * State Handling:
+ * - Manages input field values
+ * - Tracks loading states
+ * - Controls comparison mode toggle
+ * - Handles form submissions
+ *
+ * Layout Behavior:
+ * - Stacks vertically on mobile
+ * - Horizontal alignment on desktop
+ * - Proper spacing between elements
+ * - Centered alignment within container
+ *
+ * Accessibility:
+ * - Proper form labeling
+ * - Loading state announcements
+ * - Keyboard navigation support
+ * - Clear button purposes
+ *
+ * @param props - Component properties
+ * @returns The rendered comparison controls
  *
  * @example
  * ```tsx
