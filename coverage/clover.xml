@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1735482188756" clover="3.2.0">
-  <project timestamp="1735482188756" name="All files">
-    <metrics statements="243" coveredstatements="134" conditionals="184" coveredconditionals="43" methods="82" coveredmethods="36" elements="509" coveredelements="213" complexity="0" loc="243" ncloc="243" packages="8" files="25" classes="25"/>
+<coverage generated="1735484010418" clover="3.2.0">
+  <project timestamp="1735484010418" name="All files">
+    <metrics statements="241" coveredstatements="117" conditionals="184" coveredconditionals="57" methods="82" coveredmethods="33" elements="507" coveredelements="207" complexity="0" loc="241" ncloc="241" packages="8" files="25" classes="25"/>
     <package name="components.ComparisonView">
       <metrics statements="24" coveredstatements="0" conditionals="46" coveredconditionals="0" methods="11" coveredmethods="0"/>
       <file name="ComparisonControls.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/ComparisonView/ComparisonControls.tsx">
@@ -150,33 +150,30 @@
       </file>
     </package>
     <package name="components.SearchForm">
-      <metrics statements="25" coveredstatements="13" conditionals="19" coveredconditionals="5" methods="9" coveredmethods="2"/>
+      <metrics statements="22" coveredstatements="0" conditionals="19" coveredconditionals="0" methods="9" coveredmethods="0"/>
       <file name="SearchForm.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/SearchForm/SearchForm.tsx">
-        <metrics statements="20" coveredstatements="12" conditionals="9" coveredconditionals="5" methods="5" coveredmethods="2"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
-        <line num="75" count="3" type="stmt"/>
-        <line num="77" count="3" type="stmt"/>
+        <metrics statements="17" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
         <line num="79" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
         <line num="81" count="0" type="stmt"/>
-        <line num="84" count="3" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
         <line num="85" count="0" type="stmt"/>
         <line num="86" count="0" type="stmt"/>
         <line num="87" count="0" type="stmt"/>
-        <line num="90" count="3" type="stmt"/>
-        <line num="93" count="2" type="stmt"/>
-        <line num="94" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="95" count="1" type="stmt"/>
-        <line num="96" count="1" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="94" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
         <line num="117" count="0" type="stmt"/>
       </file>
       <file name="SearchSuggestions.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/SearchForm/SearchSuggestions.tsx">
-        <metrics statements="5" coveredstatements="1" conditionals="10" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="70" count="1" type="stmt"/>
+        <metrics statements="5" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="70" count="0" type="stmt"/>
         <line num="76" count="0" type="cond" truecount="0" falsecount="4"/>
         <line num="78" count="0" type="stmt"/>
         <line num="94" count="0" type="stmt"/>
@@ -221,16 +218,18 @@
       </file>
     </package>
     <package name="hooks">
-      <metrics statements="106" coveredstatements="83" conditionals="40" coveredconditionals="12" methods="29" coveredmethods="20"/>
+      <metrics statements="107" coveredstatements="79" conditionals="40" coveredconditionals="31" methods="29" coveredmethods="19"/>
       <file name="useComparisonState.ts" path="/Users/zaidsaheb/Desktop/gitstats/src/hooks/useComparisonState.ts">
-        <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
-        <line num="79" count="0" type="stmt"/>
-        <line num="91" count="0" type="stmt"/>
-        <line num="92" count="0" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
-        <line num="103" count="0" type="stmt"/>
-        <line num="104" count="0" type="stmt"/>
-        <line num="112" count="0" type="stmt"/>
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="79" count="9" type="stmt"/>
+        <line num="91" count="9" type="stmt"/>
+        <line num="92" count="1" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
+        <line num="103" count="9" type="stmt"/>
+        <line num="104" count="2" type="stmt"/>
+        <line num="112" count="9" type="stmt"/>
       </file>
       <file name="useGitHubRank.ts" path="/Users/zaidsaheb/Desktop/gitstats/src/hooks/useGitHubRank.ts">
         <metrics statements="35" coveredstatements="35" conditionals="5" coveredconditionals="5" methods="6" coveredmethods="6"/>
@@ -302,46 +301,45 @@
         <line num="83" count="10" type="stmt"/>
       </file>
       <file name="useSearch.ts" path="/Users/zaidsaheb/Desktop/gitstats/src/hooks/useSearch.ts">
-        <metrics statements="29" coveredstatements="23" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="7"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="3" type="stmt"/>
-        <line num="8" count="3" type="stmt"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
-        <line num="12" count="3" type="stmt"/>
-        <line num="18" count="3" type="stmt"/>
+        <metrics statements="25" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
-        <line num="24" count="3" type="stmt"/>
-        <line num="25" count="3" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
         <line num="26" count="0" type="cond" truecount="0" falsecount="3"/>
         <line num="27" count="0" type="stmt"/>
-        <line num="31" count="3" type="stmt"/>
-        <line num="32" count="3" type="stmt"/>
-        <line num="35" count="3" type="stmt"/>
-        <line num="36" count="3" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
         <line num="37" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="41" count="0" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
-        <line num="46" count="3" type="stmt"/>
-        <line num="47" count="3" type="stmt"/>
-        <line num="50" count="3" type="stmt"/>
-        <line num="51" count="3" type="stmt"/>
-        <line num="52" count="3" type="stmt"/>
-        <line num="56" count="3" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
       </file>
       <file name="useUserQueries.ts" path="/Users/zaidsaheb/Desktop/gitstats/src/hooks/useUserQueries.ts">
-        <metrics statements="7" coveredstatements="0" conditionals="19" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="65" count="0" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="77" count="0" type="stmt"/>
-        <line num="83" count="0" type="cond" truecount="0" falsecount="5"/>
-        <line num="92" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="93" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="95" count="0" type="stmt"/>
+        <metrics statements="10" coveredstatements="10" conditionals="19" coveredconditionals="19" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="65" count="3" type="stmt"/>
+        <line num="71" count="3" type="stmt"/>
+        <line num="77" count="3" type="stmt"/>
+        <line num="83" count="3" type="cond" truecount="5" falsecount="0"/>
+        <line num="92" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="93" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="95" count="3" type="stmt"/>
       </file>
     </package>
   </project>
