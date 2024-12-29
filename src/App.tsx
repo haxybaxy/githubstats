@@ -1,5 +1,5 @@
 import { ThemeProvider } from './contexts/ThemeContext';
-import { MainView } from './components/MainView';
+import { MainView } from './components/MainView/MainView';
 
 function App() {
   return (

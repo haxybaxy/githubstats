@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ComparisonView } from '../ComparisonView';
+import { ComparisonView } from '../ComparisonView/ComparisonView';
 import { TopHeader } from './TopHeader';
 import { BackgroundEffects } from './BackgroundEffects';
 import { Logo } from './Logo';

@@ -1,4 +1,4 @@
-import { SearchForm } from '../SearchForm';
+import { SearchForm } from '../SearchForm/SearchForm';
 
 /**
  * Props for the ComparisonControls component
