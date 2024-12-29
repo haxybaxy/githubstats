@@ -75,7 +75,7 @@ describe('FilterControls', () => {
 
     render(<FilterControls {...initialProps} />);
 
-    expect(screen.getByLabelText('Search repositories')).toHaveValue('initial search');
+    expect(screen.getByLabelText('Find a repository')).toHaveValue('initial search');
     expect(screen.getByLabelText('Filter by language')).toHaveValue('TypeScript');
     expect(screen.getByLabelText('Sort by')).toHaveValue('updated');
     expect(screen.getByLabelText('Sort ascending')).toBeInTheDocument();
