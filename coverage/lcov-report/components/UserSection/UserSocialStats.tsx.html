@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -195,6 +195,7 @@
 <a name='L130'></a><a href='#L130'>130</a>
 <a name='L131'></a><a href='#L131'>131</a>
 <a name='L132'></a><a href='#L132'>132</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -269,9 +270,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -307,13 +309,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -401,9 +401,9 @@ export interface UserSocialStatsProps {
  * /&gt;
  * ```
  */
-export function <span class="fstat-no" title="function not covered" >UserSocialStats(</span>{ user }: UserSocialStatsProps) {
-<span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600 dark:text-gray-400"&gt;
+export function UserSocialStats({ user }: UserSocialStatsProps) {
+  return (
+    &lt;div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600 dark:text-gray-400" data-testid="social-stats"&gt;
               &lt;div className="flex items-center gap-1"&gt;
                 &lt;PeopleIcon className="h-4 w-4" /&gt;
                 &lt;span className="font-medium text-gray-900 dark:text-white"&gt;
@@ -440,11 +440,11 @@ export function <span class="fstat-no" title="function not covered" >UserSocialS
                 &lt;/div&gt;
               )}
 &nbsp;
-              {user.socialAccounts?.nodes.find(<span class="fstat-no" title="function not covered" >account </span>=&gt; <span class="cstat-no" title="statement not covered" >account.provider === 'LINKEDIN')</span>?.url &amp;&amp; (
+              {user.socialAccounts?.nodes.find(account =&gt; account.provider === 'LINKEDIN')?.url &amp;&amp; (
                 &lt;div className="flex items-center gap-1"&gt;
                   &lt;BriefcaseIcon className="h-4 w-4" /&gt;
                   &lt;a
-                    href={user.socialAccounts.nodes.find(<span class="fstat-no" title="function not covered" >account </span>=&gt; <span class="cstat-no" title="statement not covered" >account.provider === 'LINKEDIN')</span>?.url}
+                    href={user.socialAccounts.nodes.find(account =&gt; account.provider === 'LINKEDIN')?.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:underline dark:text-blue-400"
@@ -463,7 +463,7 @@ export function <span class="fstat-no" title="function not covered" >UserSocialS
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-29T15:15:22.347Z
+                at 2024-12-29T15:29:55.669Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -119,7 +119,7 @@ export function UserStatsGrid({
   ];
 
   return (
-    <div className="border-t border-gray-200 dark:border-gray-700">
+    <div className="border-t border-gray-200 dark:border-gray-700" data-testid="stats-grid">
         <div className="grid grid-cols-2 md:grid-cols-5 divide-x md:divide-y-0 dark:divide-gray-700">
           {stats.map((stat, index) => (
             <div

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1735485322363" clover="3.2.0">
-  <project timestamp="1735485322363" name="All files">
-    <metrics statements="244" coveredstatements="142" conditionals="184" coveredconditionals="74" methods="82" coveredmethods="42" elements="510" coveredelements="258" complexity="0" loc="244" ncloc="244" packages="8" files="25" classes="25"/>
+<coverage generated="1735486195688" clover="3.2.0">
+  <project timestamp="1735486195688" name="All files">
+    <metrics statements="252" coveredstatements="159" conditionals="184" coveredconditionals="101" methods="82" coveredmethods="49" elements="518" coveredelements="309" complexity="0" loc="252" ncloc="252" packages="8" files="25" classes="25"/>
     <package name="components.ComparisonView">
       <metrics statements="24" coveredstatements="0" conditionals="46" coveredconditionals="0" methods="11" coveredmethods="0"/>
       <file name="ComparisonControls.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/ComparisonView/ComparisonControls.tsx">
@@ -184,28 +184,36 @@
       </file>
     </package>
     <package name="components.UserSection">
-      <metrics statements="10" coveredstatements="0" conditionals="30" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <metrics statements="18" coveredstatements="17" conditionals="30" coveredconditionals="27" methods="8" coveredmethods="7"/>
       <file name="UserProfile.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/UserSection/UserProfile.tsx">
-        <metrics statements="1" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="89" count="0" type="stmt"/>
+        <metrics statements="5" coveredstatements="5" conditionals="14" coveredconditionals="13" methods="1" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
+        <line num="89" count="5" type="stmt"/>
       </file>
       <file name="UserSection.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/UserSection/UserSection.tsx">
         <metrics statements="1" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="100" count="0" type="stmt"/>
       </file>
       <file name="UserSocialStats.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/UserSection/UserSocialStats.tsx">
-        <metrics statements="3" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="116" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="120" count="0" type="stmt"/>
+        <metrics statements="5" coveredstatements="5" conditionals="8" coveredconditionals="8" methods="3" coveredmethods="3"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="77" count="2" type="stmt"/>
+        <line num="78" count="9" type="stmt"/>
+        <line num="116" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="120" count="9" type="stmt"/>
       </file>
       <file name="UserStatsGrid.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/UserSection/UserStatsGrid.tsx">
-        <metrics statements="5" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="81" count="0" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
-        <line num="121" count="0" type="stmt"/>
-        <line num="125" count="0" type="stmt"/>
+        <metrics statements="7" coveredstatements="7" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="3"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="81" count="3" type="stmt"/>
+        <line num="82" count="9" type="stmt"/>
+        <line num="93" count="3" type="stmt"/>
+        <line num="121" count="3" type="stmt"/>
+        <line num="125" count="15" type="stmt"/>
       </file>
     </package>
     <package name="graphql">

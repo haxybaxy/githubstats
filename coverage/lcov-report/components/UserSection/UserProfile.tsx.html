@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">92.85% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>13/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -214,6 +214,9 @@
 <a name='L149'></a><a href='#L149'>149</a>
 <a name='L150'></a><a href='#L150'>150</a>
 <a name='L151'></a><a href='#L151'>151</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -291,17 +294,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -444,17 +444,17 @@ export interface UserProfileProps {
  * /&gt;
  * ```
  */
-export function <span class="fstat-no" title="function not covered" >UserProfile(</span>{
+export function UserProfile({
   user,
   isWinner,
   score,
   isComparing,
   hasCompetitor
 }: UserProfileProps) {
-<span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;div className="flex items-start space-x-4"&gt;
+  return (
+    &lt;div className="flex items-start space-x-4" data-testid="user-profile"&gt;
           {/* Avatar with optional winner crown */}
-          &lt;div className="relative flex-shrink-0"&gt;
+          &lt;div className="relative flex-shrink-0" data-testid="avatar-container"&gt;
             &lt;img
               src={user.avatarUrl}
               alt={user.login}
@@ -470,11 +470,11 @@ export function <span class="fstat-no" title="function not covered" >UserProfile
           &lt;/div&gt;
 &nbsp;
           {/* User info and social links */}
-          &lt;div className="flex-grow min-w-0"&gt;
+          &lt;div className="flex-grow min-w-0" data-testid="user-info"&gt;
             &lt;div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4"&gt;
               &lt;div className="min-w-0"&gt;
                 &lt;h2 className="text-xl text-left font-semibold text-gray-900 dark:text-white truncate"&gt;
-                  {user.name || user.login}
+                  {user.name || <span class="branch-1 cbranch-no" title="branch not covered" >user.login}</span>
                 &lt;/h2&gt;
                 &lt;h3 className="text-base text-left text-gray-600 dark:text-gray-400 mb-2"&gt;
                   {user.login}
@@ -520,7 +520,7 @@ export function <span class="fstat-no" title="function not covered" >UserProfile
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-29T15:15:22.347Z
+                at 2024-12-29T15:29:55.669Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

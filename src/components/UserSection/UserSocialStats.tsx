@@ -76,7 +76,7 @@ export interface UserSocialStatsProps {
  */
 export function UserSocialStats({ user }: UserSocialStatsProps) {
   return (
-    <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600 dark:text-gray-400">
+    <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600 dark:text-gray-400" data-testid="social-stats">
               <div className="flex items-center gap-1">
                 <PeopleIcon className="h-4 w-4" />
                 <span className="font-medium text-gray-900 dark:text-white">

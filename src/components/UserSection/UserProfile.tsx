@@ -87,9 +87,9 @@ export function UserProfile({
   hasCompetitor
 }: UserProfileProps) {
   return (
-    <div className="flex items-start space-x-4">
+    <div className="flex items-start space-x-4" data-testid="user-profile">
           {/* Avatar with optional winner crown */}
-          <div className="relative flex-shrink-0">
+          <div className="relative flex-shrink-0" data-testid="avatar-container">
             <img
               src={user.avatarUrl}
               alt={user.login}
@@ -105,7 +105,7 @@ export function UserProfile({
           </div>
 
           {/* User info and social links */}
-          <div className="flex-grow min-w-0">
+          <div className="flex-grow min-w-0" data-testid="user-info">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
               <div className="min-w-0">
                 <h2 className="text-xl text-left font-semibold text-gray-900 dark:text-white truncate">
