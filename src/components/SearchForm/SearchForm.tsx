@@ -1,8 +1,59 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { SearchFormProps } from '../../types/search';
-import { useSearch } from './useSearch';
+import { useSearch } from '../../hooks/useSearch';
 import { SearchSuggestions } from './SearchSuggestions';
 
+/**
+ * Search form component for GitHub username search
+ *
+ * Features:
+ * - Real-time search suggestions
+ * - Debounced search input
+ * - Loading states
+ * - Keyboard shortcuts
+ * - Dark mode support
+ * - Responsive design
+ *
+ * Visual Elements:
+ * - Search icon
+ * - Input field with placeholder
+ * - Keyboard shortcut indicator
+ * - Loading spinner
+ * - Search button
+ * - Suggestions dropdown
+ *
+ * Interaction States:
+ * - Input focus/blur handling
+ * - Loading state display
+ * - Suggestion selection
+ * - Form submission
+ *
+ * Accessibility:
+ * - ARIA labels and roles
+ * - Keyboard navigation
+ * - Focus management
+ * - Screen reader support
+ * - Disabled state handling
+ *
+ * @param props - Component properties extending SearchFormProps
+ * @param props.username - Current username value
+ * @param props.onUsernameChange - Username change handler
+ * @param props.onSubmit - Form submission handler
+ * @param props.placeholder - Input placeholder text
+ * @param props.isLoading - Loading state indicator
+ * @param props.className - Additional CSS classes
+ * @returns The search form component
+ *
+ * @example
+ * ```tsx
+ * <SearchForm
+ *   username="octocat"
+ *   onUsernameChange={(value) => setUsername(value)}
+ *   onSubmit={handleSearch}
+ *   isLoading={false}
+ * />
+ * ```
+ */
 export const SearchForm = ({
   username,
   onUsernameChange,

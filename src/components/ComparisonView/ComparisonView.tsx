@@ -112,7 +112,7 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
    */
   useEffect(() => {
     // Only trigger the animation if we have valid user data and no errors
-    const isValidSearch = user1Data && !error1;
+    const isValidSearch = !!(user1Data && !error1);
     onSearchStateChange(isValidSearch);
   }, [user1Data, error1, onSearchStateChange]);
 

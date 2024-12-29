@@ -2,7 +2,11 @@ import { SearchUser } from '../../types/search';
 
 interface SearchSuggestionsProps {
   searchLoading: boolean;
-  searchData: any;
+  searchData: {
+    search: {
+      nodes: SearchUser[];
+    };
+  } | null;
   onSuggestionClick: (login: string) => void;
   suggestionRef: React.RefObject<HTMLDivElement>;
 }

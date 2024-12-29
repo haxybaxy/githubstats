@@ -65,7 +65,7 @@ export function useUserQueries(username: string, skip: boolean): UserQueryResult
     : null;
 
   // Combine loading and error states
-  const loading = loadingInfo || loadingContrib || loadingRepos;
+  const loading = loadingInfo || loadingContrib || loadingRepos || false;
   const error = errorInfo || errorContrib || errorRepos || null;
 
   return { userData, loading, error };

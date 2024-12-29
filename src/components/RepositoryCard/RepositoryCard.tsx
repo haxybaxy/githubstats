@@ -6,7 +6,7 @@ import { StarIcon, RepoForkedIcon } from '@primer/octicons-react';
  * Props for the RepositoryCard component
  * @interface RepositoryCardProps
  */
-interface RepositoryCardProps {
+export interface RepositoryCardProps {
   /** Repository data from GitHub containing details like name, description, stats */
   repository: Repository;
   /** Repository owner's username */

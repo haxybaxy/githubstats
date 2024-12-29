@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { useEffect, useRef, useState } from 'react';
 import debounce from 'lodash/debounce';
-import { SEARCH_USERS } from '../../graphql/queries';
+import { SEARCH_USERS } from '../graphql/queries';
 
 export const useSearch = (username: string, onUsernameChange: (username: string) => void) => {
   const [searchTerm, setSearchTerm] = useState(username);
