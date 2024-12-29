@@ -68,6 +68,12 @@ export function Pagination({
 }: PaginationProps) {
   if (totalPages <= 1) return null;
 
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      onPageChange(newPage);
+    }
+  };
+
   return (
     <nav
       role="navigation"
@@ -75,8 +81,8 @@ export function Pagination({
       className="mt-6 mb-4 flex items-center justify-center gap-3 text-sm"
     >
       <button
-        onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-        disabled={currentPage === 1}
+        onClick={() => handlePageChange(currentPage - 1)}
+        disabled={currentPage <= 1}
         className="inline-flex items-center gap-1 px-3 py-1.5
                    border border-gray-300 dark:border-gray-600
                    rounded-md bg-white dark:bg-gray-700
@@ -86,6 +92,7 @@ export function Pagination({
                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
                    transition-colors duration-200"
         aria-label="Previous page"
+        data-testid="pagination-prev"
       >
         <ChevronLeftIcon className="h-4 w-4" />
         <span>Prev</span>
@@ -96,8 +103,8 @@ export function Pagination({
       </span>
 
       <button
-        onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-        disabled={currentPage === totalPages}
+        onClick={() => handlePageChange(currentPage + 1)}
+        disabled={currentPage >= totalPages}
         className="inline-flex items-center gap-1 px-3 py-1.5
                    border border-gray-300 dark:border-gray-600
                    rounded-md bg-white dark:bg-gray-700
@@ -107,6 +114,7 @@ export function Pagination({
                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
                    transition-colors duration-200"
         aria-label="Next page"
+        data-testid="pagination-next"
       >
         <span>Next</span>
         <ChevronRightIcon className="h-4 w-4" />
