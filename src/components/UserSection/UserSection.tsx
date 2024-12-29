@@ -100,7 +100,7 @@ export function UserSection({
   return (
     <div className={`mb-8 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 ${
       isWinner ? 'shadow-[0_0_15px_rgba(255,215,0,0.5)]' : ''
-    }`}>
+    }`} data-testid="user-section">
       {/* User profile section */}
       <div className="p-6">
         <UserProfile user={user} isWinner={isWinner} score={score} isComparing={isComparing} hasCompetitor={hasCompetitor} />

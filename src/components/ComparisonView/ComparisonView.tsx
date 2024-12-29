@@ -121,7 +121,7 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
   }, [user1Data, error1, onSearchStateChange]);
 
   return (
-    <div className="text-center">
+    <div data-testid="comparison-view" className="text-center">
       {/* Error Display Section */}
       {(error1 || error2) && (
         <div className="max-w-2xl mx-auto">
