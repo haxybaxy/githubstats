@@ -219,27 +219,8 @@
 <a name='L154'></a><a href='#L154'>154</a>
 <a name='L155'></a><a href='#L155'>155</a>
 <a name='L156'></a><a href='#L156'>156</a>
-<a name='L157'></a><a href='#L157'>157</a>
-<a name='L158'></a><a href='#L158'>158</a>
-<a name='L159'></a><a href='#L159'>159</a>
-<a name='L160'></a><a href='#L160'>160</a>
-<a name='L161'></a><a href='#L161'>161</a>
-<a name='L162'></a><a href='#L162'>162</a>
-<a name='L163'></a><a href='#L163'>163</a>
-<a name='L164'></a><a href='#L164'>164</a>
-<a name='L165'></a><a href='#L165'>165</a>
-<a name='L166'></a><a href='#L166'>166</a>
-<a name='L167'></a><a href='#L167'>167</a>
-<a name='L168'></a><a href='#L168'>168</a>
-<a name='L169'></a><a href='#L169'>169</a>
-<a name='L170'></a><a href='#L170'>170</a>
-<a name='L171'></a><a href='#L171'>171</a>
-<a name='L172'></a><a href='#L172'>172</a>
-<a name='L173'></a><a href='#L173'>173</a>
-<a name='L174'></a><a href='#L174'>174</a>
-<a name='L175'></a><a href='#L175'>175</a>
-<a name='L176'></a><a href='#L176'>176</a>
-<a name='L177'></a><a href='#L177'>177</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L157'></a><a href='#L157'>157</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -257,27 +238,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">28x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -416,6 +376,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useMemo } from 'react';
+import { User } from '../types/github';
 &nbsp;
 /**
  * Calculates the cumulative distribution function for an exponential distribution
@@ -436,52 +397,31 @@ function logNormalCdf(x: number): number {
 }
 &nbsp;
 /**
- * Interface for GitHub user data required for ranking
- * @interface GitHubUser
- */
-interface GitHubUser {
-  /** User's contribution collection data */
-  contributionsCollection: {
-    /** Total number of commit contributions */
-    totalCommitContributions: number;
-  };
-  /** User's repositories data */
-  repositories: {
-    /** Total number of repositories */
-    totalCount: number;
-    /** Array of repository stargazer counts */
-    totalStargazers: { stargazerCount: number }[];
-  };
-  /** User's followers data */
-  followers: {
-    /** Total number of followers */
-    totalCount: number;
-  };
-  /** User's pull requests data */
-  pullRequests: {
-    /** Total number of pull requests */
-    totalCount: number;
-  };
-  /** User's issues data */
-  issues: {
-    /** Total number of issues */
-    totalCount: number;
-  };
-}
-&nbsp;
-/**
  * Custom hook that calculates and compares GitHub user rankings
  *
- * This hook:
- * - Calculates individual scores for different metrics (commits, PRs, etc.)
+ * Features:
+ * - Calculates individual scores for different metrics
  * - Applies weights to each metric
  * - Computes percentile scores
- * - Determines the winner in a comparison
- * - Logs detailed scoring information to the console
+ * - Determines winner in comparison
  *
- * @param {GitHubUser | null} user1 - First GitHub user data
- * @param {GitHubUser | null} user2 - Second GitHub user data
- * @returns {Object | null} Ranking results including scores and winner
+ * Metrics Used:
+ * - Commit contributions
+ * - Pull requests
+ * - Issues
+ * - Code reviews
+ * - Repository stars
+ * - Followers
+ *
+ * Score Calculation:
+ * - Uses exponential CDF for activity metrics
+ * - Uses log-normal CDF for popularity metrics
+ * - Applies weighted averaging
+ * - Converts to percentile
+ *
+ * @param user1 - First GitHub user data
+ * @param user2 - Second GitHub user data
+ * @returns Ranking results including scores and winner, or null if data missing
  *
  * @example
  * ```tsx
@@ -491,7 +431,7 @@ interface GitHubUser {
  * }
  * ```
  */
-export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null) {
+export function useGitHubRank(user1: User | null, user2: User | null) {
   return useMemo(() =&gt; {
     if (!user1 || !user2) return null;
 &nbsp;
@@ -501,7 +441,7 @@ export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null
      * @param {string} userLabel - Label for console logging
      * @returns {number} User's percentile score
      */
-    const calculateUserScore = (user: GitHubUser) =&gt; {
+    const calculateUserScore = (user: User) =&gt; {
       // Extract metrics
       const commits = user.contributionsCollection.totalCommitContributions;
       const stars = user.repositories.totalStargazers.reduce(
@@ -598,7 +538,7 @@ export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-29T12:05:05.244Z
+                at 2024-12-29T14:19:05.467Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -23,7 +23,14 @@ const config = {
   testPathIgnorePatterns: ['/node_modules/'],
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
-    '!src/**/*.d.ts'
+    '!src/**/*.d.ts',
+    '!src/stories/**/*',
+    '!src/index.{ts,tsx}',
+    '!src/setupTests.{ts,tsx}',
+    '!src/App.{ts,tsx}',
+    '!src/main.{ts,tsx}',
+    '!src/apollo-client.ts',
+    '!src/contexts/ThemeContext.{ts,tsx}',
   ]
 };
 
