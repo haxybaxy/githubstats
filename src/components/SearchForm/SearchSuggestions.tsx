@@ -79,6 +79,7 @@ export const SearchSuggestions = ({
     <div
       ref={suggestionRef}
       className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg max-h-60 overflow-auto"
+      data-testid="search-suggestions"
     >
       {searchLoading ? (
         <div className="px-4 py-2 text-sm text-gray-500 dark:text-gray-400">
@@ -96,6 +97,7 @@ export const SearchSuggestions = ({
               type="button"
               onClick={() => onSuggestionClick(user.login)}
               className="w-full px-4 py-2 flex items-center gap-3 text-left hover:bg-gray-100 dark:hover:bg-gray-700/50 focus:bg-gray-100 dark:focus:bg-gray-700/50"
+              data-testid={`suggestion-${user.login}`}
             >
               <img
                 src={user.avatarUrl}

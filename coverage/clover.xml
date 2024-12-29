@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1735484010418" clover="3.2.0">
-  <project timestamp="1735484010418" name="All files">
-    <metrics statements="241" coveredstatements="117" conditionals="184" coveredconditionals="57" methods="82" coveredmethods="33" elements="507" coveredelements="207" complexity="0" loc="241" ncloc="241" packages="8" files="25" classes="25"/>
+<coverage generated="1735485322363" clover="3.2.0">
+  <project timestamp="1735485322363" name="All files">
+    <metrics statements="244" coveredstatements="142" conditionals="184" coveredconditionals="74" methods="82" coveredmethods="42" elements="510" coveredelements="258" complexity="0" loc="244" ncloc="244" packages="8" files="25" classes="25"/>
     <package name="components.ComparisonView">
       <metrics statements="24" coveredstatements="0" conditionals="46" coveredconditionals="0" methods="11" coveredmethods="0"/>
       <file name="ComparisonControls.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/ComparisonView/ComparisonControls.tsx">
@@ -150,34 +150,37 @@
       </file>
     </package>
     <package name="components.SearchForm">
-      <metrics statements="22" coveredstatements="0" conditionals="19" coveredconditionals="0" methods="9" coveredmethods="0"/>
+      <metrics statements="25" coveredstatements="25" conditionals="19" coveredconditionals="17" methods="9" coveredmethods="9"/>
       <file name="SearchForm.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/SearchForm/SearchForm.tsx">
-        <metrics statements="17" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="5" coveredmethods="0"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="77" count="0" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="79" count="0" type="stmt"/>
-        <line num="80" count="0" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
-        <line num="84" count="0" type="stmt"/>
-        <line num="85" count="0" type="stmt"/>
-        <line num="86" count="0" type="stmt"/>
-        <line num="87" count="0" type="stmt"/>
-        <line num="90" count="0" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
-        <line num="94" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="95" count="0" type="stmt"/>
-        <line num="96" count="0" type="stmt"/>
-        <line num="117" count="0" type="stmt"/>
+        <metrics statements="20" coveredstatements="20" conditionals="9" coveredconditionals="7" methods="5" coveredmethods="5"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="75" count="6" type="stmt"/>
+        <line num="77" count="6" type="stmt"/>
+        <line num="78" count="2" type="stmt"/>
+        <line num="79" count="2" type="stmt"/>
+        <line num="80" count="2" type="stmt"/>
+        <line num="81" count="2" type="stmt"/>
+        <line num="84" count="6" type="stmt"/>
+        <line num="85" count="1" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="87" count="1" type="stmt"/>
+        <line num="90" count="6" type="stmt"/>
+        <line num="93" count="2" type="stmt"/>
+        <line num="94" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="95" count="1" type="stmt"/>
+        <line num="96" count="1" type="stmt"/>
+        <line num="117" count="1" type="stmt"/>
       </file>
       <file name="SearchSuggestions.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/SearchForm/SearchSuggestions.tsx">
-        <metrics statements="5" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="70" count="0" type="stmt"/>
-        <line num="76" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="94" count="0" type="stmt"/>
-        <line num="97" count="0" type="stmt"/>
+        <metrics statements="5" coveredstatements="5" conditionals="10" coveredconditionals="10" methods="4" coveredmethods="4"/>
+        <line num="70" count="2" type="stmt"/>
+        <line num="76" count="7" type="cond" truecount="4" falsecount="0"/>
+        <line num="78" count="7" type="stmt"/>
+        <line num="95" count="6" type="stmt"/>
+        <line num="98" count="2" type="stmt"/>
       </file>
     </package>
     <package name="components.UserSection">
