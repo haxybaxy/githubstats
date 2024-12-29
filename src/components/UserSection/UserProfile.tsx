@@ -4,23 +4,65 @@ import { InfoIcon } from '@primer/octicons-react';
 import { UserSocialStats } from './UserSocialStats';
 
 /**
- * Props interface for the UserProfile component
+ * Props for the UserProfile component
+ *
+ * @interface UserProfileProps
  */
 interface UserProfileProps {
   /** The GitHub user data */
   user: User;
+
   /** Whether this user is the winner in a comparison */
   isWinner: boolean;
+
   /** User's percentile score */
   score: number | undefined;
+
   /** Whether the component is in comparison mode */
   isComparing: boolean;
+
   /** Whether there is another user to compare against */
   hasCompetitor?: boolean;
 }
 
 /**
  * Displays a user's profile information including their avatar, name, bio, and social stats
+ *
+ * Features:
+ * - Avatar display with optional winner crown
+ * - User name and login display
+ * - Bio with line clamping
+ * - Social statistics
+ * - Score display with tooltip
+ * - Dark mode support
+ * - Responsive layout
+ *
+ * Visual Elements:
+ * - User avatar with border
+ * - Winner crown (when applicable)
+ * - Name and username
+ * - Truncated bio
+ * - Score badge with tooltip
+ * - Social stats display
+ *
+ * States:
+ * - Normal display
+ * - Winner state with crown
+ * - Comparison mode with score
+ * - Loading placeholders
+ *
+ * Score Display:
+ * - Color-coded based on comparison result
+ * - Tooltip with explanation
+ * - Percentile formatting
+ * - Conditional rendering
+ *
+ * Accessibility:
+ * - Semantic HTML structure
+ * - ARIA labels
+ * - Tooltip keyboard access
+ * - Screen reader support
+ * - Color contrast compliance
  *
  * @param props - Component properties
  * @param props.user - GitHub user data
@@ -29,8 +71,25 @@ interface UserProfileProps {
  * @param props.isComparing - Whether in comparison mode
  * @param props.hasCompetitor - Whether there is another user to compare against
  * @returns The rendered user profile
+ *
+ * @example
+ * ```tsx
+ * <UserProfile
+ *   user={userData}
+ *   isWinner={true}
+ *   score={98.5}
+ *   isComparing={true}
+ *   hasCompetitor={true}
+ * />
+ * ```
  */
-export function UserProfile({ user, isWinner, score, isComparing, hasCompetitor }: UserProfileProps) {
+export function UserProfile({
+  user,
+  isWinner,
+  score,
+  isComparing,
+  hasCompetitor
+}: UserProfileProps) {
   return (
     <div className="flex items-start space-x-4">
           {/* Avatar with optional winner crown */}

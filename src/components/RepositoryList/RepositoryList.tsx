@@ -6,15 +6,19 @@ import { useRepositoryFiltering } from '../../hooks/useRepositoryFiltering';
 
 /**
  * Props for the RepositoryList component
+ *
  * @interface RepositoryListProps
  */
 interface RepositoryListProps {
   /** Array of repository data from GitHub */
   repositories: Repository[];
+
   /** Loading state indicator */
   loading: boolean;
+
   /** Error object if any error occurred */
   error?: Error;
+
   /** Repository owner's username */
   owner: string;
 }
@@ -42,6 +46,13 @@ interface RepositoryListProps {
  * - Empty: Shows appropriate message when no repositories match filters
  * - Filtered: Updates display based on current filters
  *
+ * Filter Capabilities:
+ * - Text search in repository names
+ * - Language-based filtering
+ * - Multiple sort criteria
+ * - Sort direction toggle
+ * - Pagination controls
+ *
  * @param props - Component properties
  * @param props.repositories - Array of GitHub repositories to display
  * @param props.loading - Whether repositories are currently loading
@@ -59,7 +70,12 @@ interface RepositoryListProps {
  * />
  * ```
  */
-export function RepositoryList({ repositories, loading, error, owner }: RepositoryListProps) {
+export function RepositoryList({
+  repositories,
+  loading,
+  error,
+  owner
+}: RepositoryListProps) {
   /**
    * Hook providing filtering and sorting functionality
    * Manages state for:

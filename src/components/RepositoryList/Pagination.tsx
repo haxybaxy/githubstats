@@ -2,12 +2,16 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 
 /**
  * Props for the Pagination component
+ *
+ * @interface PaginationProps
  */
 interface PaginationProps {
   /** Current page number (1-based indexing) */
   currentPage: number;
+
   /** Total number of available pages */
   totalPages: number;
+
   /** Callback function triggered when page number changes
    * @param page - The new page number
    */
@@ -33,13 +37,39 @@ interface PaginationProps {
  * - Focus states for keyboard navigation
  * - Disabled states for boundary conditions
  *
+ * Accessibility:
+ * - Semantic navigation structure
+ * - ARIA labels for buttons
+ * - Keyboard navigation support
+ * - Clear focus indicators
+ * - Disabled state announcements
+ *
+ * Boundary Handling:
+ * - Disables Previous button on first page
+ * - Disables Next button on last page
+ * - Prevents navigation beyond valid range
+ * - Returns null when totalPages <= 1
+ *
  * @param props - Component properties
  * @param props.currentPage - Current active page number
  * @param props.totalPages - Total number of available pages
  * @param props.onPageChange - Callback function when page changes
  * @returns The pagination controls, or null if only one page exists
+ *
+ * @example
+ * ```tsx
+ * <Pagination
+ *   currentPage={1}
+ *   totalPages={5}
+ *   onPageChange={(page) => setCurrentPage(page)}
+ * />
+ * ```
  */
-export function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
+export function Pagination({
+  currentPage,
+  totalPages,
+  onPageChange
+}: PaginationProps) {
   if (totalPages <= 1) return null;
 
   return (

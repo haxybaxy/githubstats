@@ -24,10 +24,13 @@ ChartJS.register(
 
 /**
  * Props for the CommitChart component
+ *
+ * @interface CommitChartProps
  */
 interface CommitChartProps {
   /** Repository owner's username */
   owner: string;
+
   /** Repository name */
   repoName: string;
 }

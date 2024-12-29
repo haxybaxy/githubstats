@@ -123,7 +123,7 @@ export const GET_USER_CONTRIBUTIONS = gql`
  * - Only includes repositories where user is owner
  * - Excludes archived repositories
  *
- * @note Fetches first 100 repositories, sorted by stars
+ *  Fetches first 100 repositories, sorted by stars
  *
  * @example
  * ```tsx

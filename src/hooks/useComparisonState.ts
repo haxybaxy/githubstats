@@ -35,12 +35,22 @@ interface ComparisonStateHook {
 /**
  * Custom hook for managing comparison state between two GitHub users
  *
- * This hook manages:
- * - Input values for both usernames
- * - Searched username values
- * - Comparison mode state
- * - Form submission handling
- * - Comparison mode toggling
+ * Features:
+ * - Manages input and search state for two usernames
+ * - Handles comparison mode toggling
+ * - Provides form submission handling
+ * - Maintains search history
+ *
+ * State Management:
+ * - Tracks current input values
+ * - Stores searched username history
+ * - Controls comparison mode
+ * - Handles state updates
+ *
+ * Form Handling:
+ * - Prevents default form submission
+ * - Updates searched usernames
+ * - Manages form state
  *
  * @returns {ComparisonStateHook} State and handlers for comparison functionality
  *

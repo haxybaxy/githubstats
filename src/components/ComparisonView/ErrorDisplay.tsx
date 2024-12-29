@@ -2,9 +2,13 @@ import { ApolloError } from '@apollo/client';
 
 /**
  * Props for the ErrorDisplay component
+ *
+ * @interface ErrorDisplayProps
  */
 interface ErrorDisplayProps {
-  /** The Apollo error object to display */
+  /** The Apollo error object to display
+   * Contains error information from GraphQL queries
+   */
   error: ApolloError;
 }
 

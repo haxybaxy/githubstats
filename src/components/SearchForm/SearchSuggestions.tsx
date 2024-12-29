@@ -1,16 +1,77 @@
 import { SearchUser } from '../../types/search';
 
+/**
+ * Props for the SearchSuggestions component
+ *
+ * @interface SearchSuggestionsProps
+ */
 interface SearchSuggestionsProps {
+  /** Loading state for search operation */
   searchLoading: boolean;
+
+  /** Search results data containing user nodes */
   searchData: {
     search: {
       nodes: SearchUser[];
     };
   } | null;
+
+  /** Callback when a suggestion is clicked
+   * @param login - The selected user's GitHub login
+   */
   onSuggestionClick: (login: string) => void;
+
+  /** Ref for handling click outside behavior */
   suggestionRef: React.RefObject<HTMLDivElement>;
 }
 
+/**
+ * Displays a dropdown list of GitHub user search suggestions
+ *
+ * Features:
+ * - Real-time search results display
+ * - Loading state handling
+ * - Empty state messaging
+ * - User avatar and name display
+ * - Click outside detection
+ * - Dark mode support
+ *
+ * Visual States:
+ * - Loading: Shows loading indicator
+ * - Empty: Displays "No users found" message
+ * - Results: List of matching users with avatars
+ * - Error: Handles null data gracefully
+ *
+ * Interaction:
+ * - Click selection of users
+ * - Hover states for items
+ * - Focus management
+ * - Click outside to dismiss
+ *
+ * Accessibility:
+ * - Proper ARIA roles
+ * - Keyboard navigation
+ * - Screen reader support
+ * - Focus management
+ * - Loading state announcements
+ *
+ * @param props - Component properties
+ * @param props.searchLoading - Whether search is in progress
+ * @param props.searchData - Search results data
+ * @param props.onSuggestionClick - Callback for suggestion selection
+ * @param props.suggestionRef - Ref for dropdown container
+ * @returns The search suggestions dropdown
+ *
+ * @example
+ * ```tsx
+ * <SearchSuggestions
+ *   searchLoading={isLoading}
+ *   searchData={data}
+ *   onSuggestionClick={(login) => handleSelection(login)}
+ *   suggestionRef={dropdownRef}
+ * />
+ * ```
+ */
 export const SearchSuggestions = ({
   searchLoading,
   searchData,

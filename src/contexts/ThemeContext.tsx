@@ -2,6 +2,8 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 /**
  * Context type definition for theme management
+ *
+ * @interface ThemeContextType
  */
 type ThemeContextType = {
   /** Current dark mode state */
@@ -75,6 +77,32 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
+/**
+ * Custom hook for accessing theme context
+ *
+ * Provides access to the current theme state and toggle function.
+ * Must be used within a ThemeProvider component.
+ *
+ * Features:
+ * - Type-safe theme state access
+ * - Theme toggle functionality
+ * - Error handling for usage outside provider
+ *
+ * @throws {Error} When used outside of ThemeProvider
+ * @returns {ThemeContextType} The current theme context
+ *
+ * @example
+ * ```tsx
+ * function MyComponent() {
+ *   const { isDarkMode, toggleDarkMode } = useTheme();
+ *   return (
+ *     <button onClick={toggleDarkMode}>
+ *       Current theme: {isDarkMode ? 'dark' : 'light'}
+ *     </button>
+ *   );
+ * }
+ * ```
+ */
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (context === undefined) {

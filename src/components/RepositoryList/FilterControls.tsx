@@ -8,30 +8,40 @@ import { motion } from 'framer-motion';
 
 /**
  * Props for the FilterControls component
+ *
+ * @interface FilterControlsProps
  */
 interface FilterControlsProps {
   /** Current search query for filtering repositories */
   searchQuery: string;
+
   /** Currently selected programming language filter */
   selectedLanguage: string;
+
   /** Current sort criteria (stars, forks, or updated) */
   sortBy: 'stars' | 'forks' | 'updated';
+
   /** Current sort direction (ascending or descending) */
   sortOrder: 'asc' | 'desc';
+
   /** Array of available programming languages to filter by */
   languages: string[];
+
   /** Callback when search input changes
    * @param value - New search query
    */
   onSearchChange: (value: string) => void;
+
   /** Callback when language filter changes
    * @param value - Selected language
    */
   onLanguageChange: (value: string) => void;
+
   /** Callback when sort criteria changes
    * @param value - New sort criteria
    */
   onSortByChange: (value: 'stars' | 'forks' | 'updated') => void;
+
   /** Callback when sort order is toggled */
   onSortOrderChange: () => void;
 }
@@ -73,6 +83,21 @@ interface FilterControlsProps {
  * @param props.onSortByChange - Sort criteria change handler
  * @param props.onSortOrderChange - Sort direction toggle handler
  * @returns The filter controls component
+ *
+ * @example
+ * ```tsx
+ * <FilterControls
+ *   searchQuery=""
+ *   selectedLanguage=""
+ *   sortBy="stars"
+ *   sortOrder="desc"
+ *   languages={['JavaScript', 'TypeScript', 'Python']}
+ *   onSearchChange={(query) => setSearch(query)}
+ *   onLanguageChange={(lang) => setLanguage(lang)}
+ *   onSortByChange={(sort) => setSortBy(sort)}
+ *   onSortOrderChange={() => toggleSortOrder()}
+ * />
+ * ```
  */
 export function FilterControls({
   searchQuery,

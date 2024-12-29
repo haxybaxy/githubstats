@@ -9,10 +9,13 @@ import {
 
 /**
  * Props interface for the UserStatsGrid component
+ *
+ * @interface UserStatsGridProps
  */
 interface UserStatsGridProps {
-  /** The GitHub user data */
+  /** The GitHub user data containing statistics */
   user: User;
+
   /** Whether the component is in comparison mode */
   isComparing: boolean;
 }
@@ -20,20 +23,58 @@ interface UserStatsGridProps {
 /**
  * Displays a grid of user statistics including commits, stars, PRs, issues, and repositories
  *
- * The grid adapts its layout based on screen size and whether it's in comparison mode.
- * Each statistic is displayed with an icon and value.
+ * Features:
+ * - Responsive grid layout
+ * - Icon-based statistics display
+ * - Automatic number formatting
+ * - Dark mode support
+ * - Comparison mode layout
+ * - Hover state effects
  *
- * Layout behavior:
+ * Grid Layout:
  * - Mobile: 2 columns with last item spanning full width
  * - Desktop: 5 equal columns
- * - Comparison mode: Icons stack vertically instead of horizontal alignment
+ * - Comparison mode: Icons stack vertically
+ * - Proper borders and dividers
+ *
+ * Statistics Displayed:
+ * - Total Commits (with GitCommit icon)
+ * - Total Stars (with Star icon)
+ * - Total PRs (with GitPullRequest icon)
+ * - Total Issues (with IssueOpened icon)
+ * - Total Repositories (with Repo icon)
+ *
+ * Visual Features:
+ * - Icon and label alignment
+ * - Hover state highlighting
+ * - Consistent spacing
+ * - Border separators
+ * - Number formatting
+ *
+ * Accessibility:
+ * - Semantic HTML structure
+ * - ARIA labels for statistics
+ * - Screen reader support
+ * - Color contrast compliance
+ * - Focus management
  *
  * @param props - Component properties
  * @param props.user - GitHub user data containing statistics
- * @param props.isComparing - Whether in comparison mode, affects layout
+ * @param props.isComparing - Whether in comparison mode
  * @returns The rendered statistics grid
+ *
+ * @example
+ * ```tsx
+ * <UserStatsGrid
+ *   user={userData}
+ *   isComparing={false}
+ * />
+ * ```
  */
-export function UserStatsGrid({ user, isComparing }: UserStatsGridProps) {
+export function UserStatsGrid({
+  user,
+  isComparing
+}: UserStatsGridProps) {
   /**
    * Calculates the total number of stars across all repositories
    * Reduces the stargazer counts from each repository into a single sum

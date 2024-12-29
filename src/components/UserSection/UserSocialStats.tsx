@@ -9,9 +9,11 @@ import {
 
 /**
  * Props interface for the UserSocialStats component
+ *
+ * @interface UserSocialStatsProps
  */
 interface UserSocialStatsProps {
-  /** The GitHub user data */
+  /** The GitHub user data containing social information */
   user: User;
 }
 
@@ -26,14 +28,50 @@ interface UserSocialStatsProps {
  * - Links to LinkedIn profile if available in social accounts
  * - All external links open in new tabs with security attributes
  *
+ * Visual Elements:
+ * - Follower count with people icon
+ * - Following count with person icon
+ * - Location with pin icon
+ * - Website link with external link icon
+ * - LinkedIn link with briefcase icon
+ *
  * Layout:
- * - Items wrap automatically based on available space
+ * - Flex container with wrapping
  * - Consistent spacing between items
- * - Icons aligned with text content
+ * - Responsive design
+ * - Icon alignment with text
+ *
+ * Link Handling:
+ * - External links open in new tabs
+ * - Security attributes for external links
+ * - URL sanitization and formatting
+ * - Conditional link rendering
+ *
+ * Accessibility:
+ * - Semantic HTML structure
+ * - ARIA labels for icons
+ * - Screen reader support
+ * - Proper link attributes
+ * - Color contrast compliance
  *
  * @param props - Component properties
  * @param props.user - GitHub user data containing social information
  * @returns The rendered social statistics
+ *
+ * @example
+ * ```tsx
+ * <UserSocialStats
+ *   user={{
+ *     followers: { totalCount: 100 },
+ *     following: { totalCount: 50 },
+ *     location: "San Francisco",
+ *     websiteUrl: "github.com",
+ *     socialAccounts: {
+ *       nodes: [{ provider: "LINKEDIN", url: "https://linkedin.com/in/user" }]
+ *     }
+ *   }}
+ * />
+ * ```
  */
 export function UserSocialStats({ user }: UserSocialStatsProps) {
   return (

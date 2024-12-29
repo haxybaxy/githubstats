@@ -10,9 +10,13 @@ import { useEffect } from 'react';
 
 /**
  * Props for the ComparisonView component
+ *
+ * @interface ComparisonViewProps
  */
 interface ComparisonViewProps {
-  /** Callback function to notify parent of search state changes */
+  /** Callback function to notify parent of search state changes
+   * @param isSearchActive - Whether a search is currently active
+   */
   onSearchStateChange: (isSearchActive: boolean) => void;
 }
 
@@ -57,7 +61,9 @@ interface ComparisonViewProps {
  *
  * @example
  * ```tsx
- * <ComparisonView onSearchStateChange={(isActive) => setSearchActive(isActive)} />
+ * <ComparisonView
+ *   onSearchStateChange={(isActive) => setSearchActive(isActive)}
+ * />
  * ```
  */
 export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {

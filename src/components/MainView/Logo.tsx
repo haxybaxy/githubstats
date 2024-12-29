@@ -1,8 +1,12 @@
 /**
  * Props for the Logo component
+ *
+ * @interface LogoProps
  */
 interface LogoProps {
-  /** Size of the logo in pixels (defaults to 30) */
+  /** Size of the logo in pixels (defaults to 30)
+   * Controls both width and height of the SVG
+   */
   size?: number;
 }
 
@@ -14,6 +18,23 @@ interface LogoProps {
  * - Dark mode support with automatic color switching
  * - Configurable size through props
  * - Accessible SVG with proper ARIA attributes
+ *
+ * Visual Elements:
+ * - Custom path-based icon
+ * - Responsive scaling
+ * - Theme-aware coloring
+ * - Proper viewBox configuration
+ *
+ * Accessibility:
+ * - Semantic SVG structure
+ * - Proper ARIA attributes
+ * - Color contrast compliance
+ * - Screen reader support
+ *
+ * Theme Support:
+ * - Light mode colors
+ * - Dark mode colors
+ * - Smooth transitions
  *
  * @param props - Component properties
  * @param props.size - Width and height of the logo in pixels
