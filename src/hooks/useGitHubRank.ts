@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { User } from '../types/github';
 
 /**
  * Calculates the cumulative distribution function for an exponential distribution
@@ -19,52 +20,31 @@ function logNormalCdf(x: number): number {
 }
 
 /**
- * Interface for GitHub user data required for ranking
- * @interface GitHubUser
- */
-interface GitHubUser {
-  /** User's contribution collection data */
-  contributionsCollection: {
-    /** Total number of commit contributions */
-    totalCommitContributions: number;
-  };
-  /** User's repositories data */
-  repositories: {
-    /** Total number of repositories */
-    totalCount: number;
-    /** Array of repository stargazer counts */
-    totalStargazers: { stargazerCount: number }[];
-  };
-  /** User's followers data */
-  followers: {
-    /** Total number of followers */
-    totalCount: number;
-  };
-  /** User's pull requests data */
-  pullRequests: {
-    /** Total number of pull requests */
-    totalCount: number;
-  };
-  /** User's issues data */
-  issues: {
-    /** Total number of issues */
-    totalCount: number;
-  };
-}
-
-/**
  * Custom hook that calculates and compares GitHub user rankings
  *
- * This hook:
- * - Calculates individual scores for different metrics (commits, PRs, etc.)
+ * Features:
+ * - Calculates individual scores for different metrics
  * - Applies weights to each metric
  * - Computes percentile scores
- * - Determines the winner in a comparison
- * - Logs detailed scoring information to the console
+ * - Determines winner in comparison
  *
- * @param {GitHubUser | null} user1 - First GitHub user data
- * @param {GitHubUser | null} user2 - Second GitHub user data
- * @returns {Object | null} Ranking results including scores and winner
+ * Metrics Used:
+ * - Commit contributions
+ * - Pull requests
+ * - Issues
+ * - Code reviews
+ * - Repository stars
+ * - Followers
+ *
+ * Score Calculation:
+ * - Uses exponential CDF for activity metrics
+ * - Uses log-normal CDF for popularity metrics
+ * - Applies weighted averaging
+ * - Converts to percentile
+ *
+ * @param user1 - First GitHub user data
+ * @param user2 - Second GitHub user data
+ * @returns Ranking results including scores and winner, or null if data missing
  *
  * @example
  * ```tsx
@@ -74,7 +54,7 @@ interface GitHubUser {
  * }
  * ```
  */
-export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null) {
+export function useGitHubRank(user1: User | null, user2: User | null) {
   return useMemo(() => {
     if (!user1 || !user2) return null;
 
@@ -84,7 +64,7 @@ export function useGitHubRank(user1: GitHubUser | null, user2: GitHubUser | null
      * @param {string} userLabel - Label for console logging
      * @returns {number} User's percentile score
      */
-    const calculateUserScore = (user: GitHubUser) => {
+    const calculateUserScore = (user: User) => {
       // Extract metrics
       const commits = user.contributionsCollection.totalCommitContributions;
       const stars = user.repositories.totalStargazers.reduce(
