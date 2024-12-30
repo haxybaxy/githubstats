@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -194,7 +194,10 @@
 <a name='L129'></a><a href='#L129'>129</a>
 <a name='L130'></a><a href='#L130'>130</a>
 <a name='L131'></a><a href='#L131'>131</a>
-<a name='L132'></a><a href='#L132'>132</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -275,6 +278,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -285,8 +289,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -406,7 +412,7 @@ export interface ComparisonControlsProps {
  * /&gt;
  * ```
  */
-export function <span class="fstat-no" title="function not covered" >ComparisonControls(</span>{
+export function ComparisonControls({
   username1,
   username2,
   isComparing,
@@ -417,8 +423,8 @@ export function <span class="fstat-no" title="function not covered" >ComparisonC
   onSubmit,
   onToggleComparing,
 }: ComparisonControlsProps) {
-<span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-1"&gt;
+  return (
+    &lt;div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-1" data-testid="comparison-controls"&gt;
       {/* First user search form */}
       &lt;SearchForm
         username={username1}
@@ -427,6 +433,7 @@ export function <span class="fstat-no" title="function not covered" >ComparisonC
         placeholder={isComparing ? "Enter first username..." : "Enter username..."}
         isLoading={loading1}
         className="w-full sm:w-auto"
+        dataTestId="search-form-1"
       /&gt;
 &nbsp;
       {/* Comparison toggle button */}
@@ -438,6 +445,7 @@ export function <span class="fstat-no" title="function not covered" >ComparisonC
             : 'bg-blue-500 hover:bg-blue-600'
         } text-white`}
         aria-label={isComparing ? "Remove comparison" : "Enable comparison"}
+        data-testid="toggle-comparison-button"
       &gt;
         {isComparing ? 'Remove VS' : 'VS'}
       &lt;/button&gt;
@@ -451,6 +459,7 @@ export function <span class="fstat-no" title="function not covered" >ComparisonC
           placeholder="Enter second username..."
           isLoading={loading2}
           className="w-full sm:w-auto"
+          dataTestId="search-form-2"
         /&gt;
       )}
     &lt;/div&gt;
@@ -463,7 +472,7 @@ export function <span class="fstat-no" title="function not covered" >ComparisonC
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-29T22:43:07.766Z
+                at 2024-12-30T02:08:20.391Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
