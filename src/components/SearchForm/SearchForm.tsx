@@ -60,7 +60,8 @@ export const SearchForm = ({
   onSubmit,
   placeholder = "Search GitHub username",
   isLoading = false,
-  className = ""
+  className = "",
+  dataTestId = "search-form"
 }: SearchFormProps) => {
   const {
     searchTerm,
@@ -98,7 +99,7 @@ export const SearchForm = ({
       className={`my-8 w-full sm:max-w-[500px] ${className}`}
       role="search"
       aria-label="Search GitHub users"
-      data-testid="search-form"
+      data-testid={dataTestId || "search-form"}
     >
       <div className="relative flex flex-col sm:flex-row items-center gap-2">
         <div className="relative flex-1 w-full">
