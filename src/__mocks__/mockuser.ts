@@ -1,4 +1,4 @@
-import { User } from '../../src/types/github';
+import { User } from '../types/github';
 
 export const mockUser: User = {
   login: 'testuser',
