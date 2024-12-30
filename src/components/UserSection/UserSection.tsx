@@ -7,9 +7,7 @@ import { UserStatsGrid } from './UserStatsGrid';
  *
  * @interface UserSectionProps
  * @property {User} user - GitHub user data containing profile and statistics information
- * @property {boolean} isWinner - Whether this user won the comparison
  * @property {number} [score] - User's percentile score (optional)
- * @property {boolean} isComparing - Whether the component is in comparison mode
  * @property {boolean} [hasCompetitor] - Whether there is another user to compare against
  * @property {string} [dataTestId] - Optional data-testid for testing
  */
@@ -100,8 +98,6 @@ export function UserSection({
   user,
   isWinner,
   score,
-  isComparing,
-  hasCompetitor,
   dataTestId = 'user-section'
 }: UserSectionProps) {
   return (
@@ -110,11 +106,11 @@ export function UserSection({
     }`} data-testid={dataTestId}>
       {/* User profile section */}
       <div className="p-6">
-        <UserProfile user={user} isWinner={isWinner} score={score} isComparing={isComparing} hasCompetitor={hasCompetitor} />
+        <UserProfile user={user} score={score}  />
       </div>
 
       {/* Statistics grid */}
-      <UserStatsGrid user={user} isComparing={isComparing} />
+      <UserStatsGrid user={user}  />
 
     </div>
   );

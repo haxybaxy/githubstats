@@ -1,5 +1,4 @@
 import { User } from '../../types/github';
-import crownIcon from '../../assets/crown.svg';
 import { InfoIcon } from '@primer/octicons-react';
 import { UserSocialStats } from './UserSocialStats';
 
@@ -8,17 +7,11 @@ import { UserSocialStats } from './UserSocialStats';
  *
  * @interface UserProfileProps
  * @property {User} user - The GitHub user data
- * @property {boolean} isWinner - Whether this user is the winner in a comparison
  * @property {number | undefined} score - User's percentile score
- * @property {boolean} isComparing - Whether the component is in comparison mode
- * @property {boolean} [hasCompetitor] - Whether there is another user to compare against
  */
 export interface UserProfileProps {
   user: User;
-  isWinner: boolean;
   score: number | undefined;
-  isComparing: boolean;
-  hasCompetitor?: boolean;
 }
 
 /**
@@ -62,10 +55,7 @@ export interface UserProfileProps {
  *
  * @param props - Component properties
  * @param props.user - GitHub user data
- * @param props.isWinner - Whether this user won the comparison
  * @param props.score - User's percentile score
- * @param props.isComparing - Whether in comparison mode
- * @param props.hasCompetitor - Whether there is another user to compare against
  * @returns The rendered user profile
  *
  * @example
@@ -81,10 +71,7 @@ export interface UserProfileProps {
  */
 export function UserProfile({
   user,
-  isWinner,
   score,
-  isComparing,
-  hasCompetitor
 }: UserProfileProps) {
   return (
     <div className="flex items-start space-x-4" data-testid="user-profile">
@@ -95,13 +82,6 @@ export function UserProfile({
               alt={user.login}
               className="w-24 h-24 rounded-full border border-gray-200 dark:border-gray-700"
             />
-            {isWinner && (
-              <img
-                src={crownIcon}
-                alt="Winner"
-                className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-10 h-10"
-              />
-            )}
           </div>
 
           {/* User info and social links */}
@@ -122,13 +102,7 @@ export function UserProfile({
               </div>
               {score !== undefined && (
                 <div className="flex items-center gap-1">
-                  <div className={`text-sm font-medium px-3 py-1 rounded-full ${
-                    isComparing && hasCompetitor
-                      ? isWinner
-                        ? 'bg-green-100 text-green-800 dark:bg-green-800/30 dark:text-green-300'
-                        : 'bg-red-100 text-red-800 dark:bg-red-800/30 dark:text-red-300'
-                      : 'bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-300'
-                  }`}>
+                  <div className={`text-sm font-medium px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-300`}>
                     Percentile: {score.toFixed(1)}
                   </div>
                   <div className="group relative">

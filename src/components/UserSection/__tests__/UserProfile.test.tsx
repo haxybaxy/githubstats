@@ -20,20 +20,11 @@ describe('UserProfile', () => {
     expect(screen.getByText(mockUser.bio)).toBeInTheDocument(); // Bio
   });
 
-  it('displays winner crown when isWinner is true', () => {
-    render(<UserProfile {...defaultProps} isWinner={true} />);
-
-    expect(screen.getByAltText('Winner')).toBeInTheDocument();
-  });
-
   it('displays score with correct styling when comparing and winning', () => {
     render(
       <UserProfile
         {...defaultProps}
         score={98.5}
-        isComparing={true}
-        hasCompetitor={true}
-        isWinner={true}
       />
     );
 
@@ -41,27 +32,13 @@ describe('UserProfile', () => {
     expect(scoreElement).toHaveClass('bg-green-100', 'text-green-800');
   });
 
-  it('displays score with correct styling when comparing and losing', () => {
-    render(
-      <UserProfile
-        {...defaultProps}
-        score={45.5}
-        isComparing={true}
-        hasCompetitor={true}
-        isWinner={false}
-      />
-    );
 
-    const scoreElement = screen.getByText('Percentile: 45.5');
-    expect(scoreElement).toHaveClass('bg-red-100', 'text-red-800');
-  });
 
   it('shows tooltip on info icon hover', async () => {
     render(
       <UserProfile
         {...defaultProps}
         score={98.5}
-        isComparing={true}
       />
     );
 
