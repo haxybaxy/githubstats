@@ -97,6 +97,7 @@ export function ErrorDisplay({ error }: ErrorDisplayProps) {
           onClick={() => setIsVisible(false)}
           className="ml-auto text-white hover:text-gray-200"
           aria-label="Close error message"
+          data-testid="error-close-button"
         >
           ✕
         </button>
