@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1735573306949" clover="3.2.0">
-  <project timestamp="1735573306949" name="All files">
-    <metrics statements="288" coveredstatements="247" conditionals="192" coveredconditionals="165" methods="83" coveredmethods="69" elements="563" coveredelements="481" complexity="0" loc="288" ncloc="288" packages="8" files="25" classes="25"/>
+<coverage generated="1735574149584" clover="3.2.0">
+  <project timestamp="1735574149584" name="All files">
+    <metrics statements="259" coveredstatements="247" conditionals="184" coveredconditionals="165" methods="77" coveredmethods="69" elements="520" coveredelements="481" complexity="0" loc="259" ncloc="259" packages="8" files="24" classes="24"/>
     <package name="components.ComparisonView">
       <metrics statements="41" coveredstatements="38" conditionals="47" coveredconditionals="45" methods="12" coveredmethods="7"/>
       <file name="ComparisonControls.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/ComparisonView/ComparisonControls.tsx">
@@ -97,39 +97,7 @@
       </file>
     </package>
     <package name="components.RepositoryCard">
-      <metrics statements="33" coveredstatements="4" conditionals="20" coveredconditionals="11" methods="7" coveredmethods="1"/>
-      <file name="CommitChart.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/RepositoryCard/CommitChart.tsx">
-        <metrics statements="29" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="77" count="0" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
-        <line num="94" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="97" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="98" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="99" count="0" type="stmt"/>
-        <line num="105" count="0" type="stmt"/>
-        <line num="106" count="0" type="stmt"/>
-        <line num="109" count="0" type="stmt"/>
-        <line num="110" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="111" count="0" type="stmt"/>
-        <line num="125" count="0" type="stmt"/>
-        <line num="126" count="0" type="stmt"/>
-        <line num="127" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="128" count="0" type="stmt"/>
-        <line num="137" count="0" type="stmt"/>
-        <line num="138" count="0" type="stmt"/>
-        <line num="139" count="0" type="stmt"/>
-        <line num="140" count="0" type="stmt"/>
-        <line num="147" count="0" type="stmt"/>
-        <line num="151" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="164" count="0" type="stmt"/>
-        <line num="193" count="0" type="stmt"/>
-        <line num="199" count="0" type="stmt"/>
-        <line num="223" count="0" type="stmt"/>
-        <line num="224" count="0" type="stmt"/>
-        <line num="230" count="0" type="stmt"/>
-        <line num="231" count="0" type="stmt"/>
-      </file>
+      <metrics statements="4" coveredstatements="4" conditionals="12" coveredconditionals="11" methods="1" coveredmethods="1"/>
       <file name="RepositoryCard.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/RepositoryCard/RepositoryCard.tsx">
         <metrics statements="4" coveredstatements="4" conditionals="12" coveredconditionals="11" methods="1" coveredmethods="1"/>
         <line num="2" count="2" type="stmt"/>
