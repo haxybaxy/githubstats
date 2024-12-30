@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { UserSocialStats } from '../UserSocialStats';
-import { mockUser } from '../../../__mocks__/mockuser';
+import { mockUser } from '../../../__mocks__/mockUser';
 
 describe('UserSocialStats', () => {
   it('renders followers and following counts', () => {

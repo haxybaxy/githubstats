@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { UserProfile } from '../UserProfile';
-import { mockUser } from '../../../__mocks__/mockuser';
+import { mockUser } from '../../../__mocks__/mockUser';
 
 describe('UserProfile', () => {
   const defaultProps = {

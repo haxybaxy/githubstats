@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { UserSection } from '../UserSection';
-import { mockUser } from '../../../__mocks__/mockuser';
+import { mockUser } from '../../../__mocks__/mockUser';
 
 describe('UserSection', () => {
   const defaultProps = {

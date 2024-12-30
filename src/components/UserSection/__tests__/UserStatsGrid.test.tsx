@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { UserStatsGrid } from '../UserStatsGrid';
-import { mockUser } from '../../../__mocks__/mockuser';
+import { mockUser } from '../../../__mocks__/mockUser';
 
 describe('UserStatsGrid', () => {
   it('renders all statistics with correct values', () => {
