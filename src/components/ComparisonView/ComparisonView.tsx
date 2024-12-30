@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useUserQueries } from '../../hooks/useUserQueries';
-import { ComparisonControls } from './ComparisonControls';
+import { SearchForm } from '../SearchForm/SearchForm';
 import { ErrorDisplay } from './ErrorDisplay';
 import { UserSection } from '../UserSection/UserSection';
 import { RepositoryList } from '../RepositoryList/RepositoryList';
@@ -55,13 +55,18 @@ export function ComparisonView({ onSearchStateChange, initialUsername }: Compari
         </div>
       )}
 
-      {/* Search Controls Section */}
-      <ComparisonControls
-        username={username}
-        loading={loading}
-        onUsernameChange={setUsername}
-        onSubmit={handleSearchSubmit}
-      />
+      {/* Search Controls Section - Moved directly into ComparisonView */}
+      <div className="flex justify-center items-center mt-1" data-testid="comparison-controls">
+        <SearchForm
+          username={username}
+          onUsernameChange={setUsername}
+          onSubmit={handleSearchSubmit}
+          placeholder="Enter username..."
+          isLoading={loading}
+          className="w-full sm:w-auto"
+          dataTestId="search-form"
+        />
+      </div>
 
       {/* User Section */}
       {userData && (
