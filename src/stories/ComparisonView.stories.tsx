@@ -263,3 +263,24 @@ export const PrePopulated: Story = {
     },
   ]
 };
+
+export const WithError: Story = {
+  args: {
+    onSearchStateChange: (state: boolean) => console.log('Search state:', state),
+    initialUsername: 'octocat'
+  },
+  decorators: [
+    (Story) => {
+      const errorMock = {
+        request: { query: GET_USER_INFO, variables: { username: 'octocat' } },
+        error: new Error('Rate limit exceeded. Please try again later.')
+      };
+
+      return (
+        <MockedProvider mocks={[errorMock]} addTypename={true}>
+          <Story />
+        </MockedProvider>
+      );
+    },
+  ]
+};
