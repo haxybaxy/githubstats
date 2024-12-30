@@ -5,7 +5,6 @@ import { ErrorDisplay } from './ErrorDisplay';
 import { UserSection } from '../UserSection/UserSection';
 import { RepositoryList } from '../RepositoryList/RepositoryList';
 import { motion } from 'framer-motion';
-import { useArgs } from '@storybook/preview-api';
 
 /**
  * Props for the ComparisonView component
@@ -75,10 +74,7 @@ export function ComparisonView({ onSearchStateChange, initialUsername }: Compari
         >
           <UserSection
             user={userData}
-            isWinner={false}
             score={undefined}
-            isComparing={false}
-            hasCompetitor={false}
           />
           <motion.div
             initial={{ opacity: 0 }}

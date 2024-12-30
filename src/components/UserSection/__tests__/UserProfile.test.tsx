@@ -5,10 +5,7 @@ import { mockUser } from '../../../__mocks__/mockUser';
 describe('UserProfile', () => {
   const defaultProps = {
     user: mockUser,
-    isWinner: false,
     score: undefined,
-    isComparing: false,
-    hasCompetitor: false,
   };
 
   it('renders basic user information', () => {

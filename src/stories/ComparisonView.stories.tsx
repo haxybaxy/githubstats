@@ -146,7 +146,10 @@ const mockUserReposData = {
       login: 'octocat',
       repositories: {
         totalCount: 8,
-        totalStargazers: [{ stargazerCount: 500, __typename: 'Repository' }],
+        totalStargazers: [
+          { stargazerCount: 500, __typename: 'Repository' },
+          { stargazerCount: 300, __typename: 'Repository' }
+        ],
         nodes: [
           {
             id: '1',
@@ -171,6 +174,36 @@ const mockUserReposData = {
             stargazerCount: 500,
             forkCount: 200,
             updatedAt: '2024-03-20T12:00:00Z',
+            __typename: 'Repository'
+          },
+          {
+            id: '2',
+            name: 'git-stats',
+            description: 'A beautiful GitHub statistics analyzer and visualizer',
+            url: 'https://github.com/octocat/git-stats',
+            primaryLanguage: {
+              name: 'TypeScript',
+              color: '#2b7489',
+              __typename: 'Language'
+            },
+            languages: {
+              nodes: [
+                {
+                  name: 'TypeScript',
+                  color: '#2b7489',
+                  __typename: 'Language'
+                },
+                {
+                  name: 'JavaScript',
+                  color: '#f1e05a',
+                  __typename: 'Language'
+                }
+              ],
+              __typename: 'LanguageConnection'
+            },
+            stargazerCount: 300,
+            forkCount: 150,
+            updatedAt: '2024-03-19T15:30:00Z',
             __typename: 'Repository'
           }
         ],
