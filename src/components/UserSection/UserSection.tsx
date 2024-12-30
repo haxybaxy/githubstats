@@ -11,7 +11,7 @@ import { UserStatsGrid } from './UserStatsGrid';
  * @property {number} [score] - User's percentile score (optional)
  * @property {boolean} isComparing - Whether the component is in comparison mode
  * @property {boolean} [hasCompetitor] - Whether there is another user to compare against
- * @property {string} [data-testid] - Optional data-testid for testing
+ * @property {string} [dataTestId] - Optional data-testid for testing
  */
 export interface UserSectionProps {
   /** GitHub user data containing profile and statistics information */
@@ -30,7 +30,7 @@ export interface UserSectionProps {
   hasCompetitor?: boolean;
 
   /** Optional data-testid for testing */
-  'data-testid'?: string;
+  dataTestId?: string;
 }
 
 /**
@@ -81,7 +81,7 @@ export interface UserSectionProps {
  * @param props.score - User's percentile score
  * @param props.isComparing - Whether in comparison mode
  * @param props.hasCompetitor - Whether there is another user to compare against
- * @param props.data-testid - Optional data-testid for testing
+ * @param props.dataTestId - Optional data-testid for testing
  * @returns The rendered user section
  *
  * @example
@@ -92,7 +92,7 @@ export interface UserSectionProps {
  *   score={98.5}
  *   isComparing={true}
  *   hasCompetitor={true}
- *   data-testid="user-section"
+ *   dataTestId="user-section"
  * />
  * ```
  */
@@ -102,7 +102,7 @@ export function UserSection({
   score,
   isComparing,
   hasCompetitor,
-  dataTestId: dataTestId = 'user-section'
+  dataTestId = 'user-section'
 }: UserSectionProps) {
   return (
     <div className={`mb-8 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 ${
