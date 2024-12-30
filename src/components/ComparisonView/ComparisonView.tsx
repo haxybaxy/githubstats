@@ -1,64 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useUserQueries } from '../../hooks/useUserQueries';
 import { ComparisonControls } from './ComparisonControls';
 import { ErrorDisplay } from './ErrorDisplay';
 import { UserSection } from '../UserSection/UserSection';
 import { RepositoryList } from '../RepositoryList/RepositoryList';
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
+import { useArgs } from '@storybook/preview-api';
 
 /**
  * Props for the ComparisonView component
  */
 export interface ComparisonViewProps {
   onSearchStateChange: (isSearchActive: boolean) => void;
+  initialUsername?: string;
 }
 
 /**
  * View component that displays GitHub profile information
- *
- * Features:
- * - Single user profile display
- * - Real-time data fetching from GitHub API
- * - Animated transitions between states
- * - Repository list display
- *
- * Component Structure:
- * - Error display section for API errors
- * - Search controls for user input
- * - User profile section
- *   - Profile information
- *   - Repository list
- *
- * State Management:
- * - Handles user input and search state
- * - Manages loading states
- * - Coordinates data fetching
- *
- * Animation Features:
- * - Smooth fade-in transitions
- * - Staggered content loading
- *
- * Error Handling:
- * - Displays user-friendly error messages
- * - Handles API rate limiting
- * - Manages network errors
- * - Validates user input
- *
- * @param props - Component properties
- * @param props.onSearchStateChange - Callback for search state changes
- * @returns The rendered profile view
- *
- * @example
- * ```tsx
- * <ComparisonView
- *   onSearchStateChange={(isActive) => setSearchActive(isActive)}
- * />
- * ```
  */
-export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
-  const [username, setUsername] = useState('');
-  const [searchedUsername, setSearchedUsername] = useState('');
+export function ComparisonView({ onSearchStateChange, initialUsername }: ComparisonViewProps) {
+  const [username, setUsername] = useState(initialUsername || '');
+  const [searchedUsername, setSearchedUsername] = useState(initialUsername || '');
 
   /**
    * Fetch data for the user
