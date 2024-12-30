@@ -91,7 +91,7 @@ export const CommitChart = ({ owner, repoName }: CommitChartProps) => {
   });
 
   // Handle loading state
-  if (loading) return <div className="h-[100px] animate-pulse bg-gray-200 dark:bg-gray-800 rounded"></div>;
+  if (loading) return <div className="h-[100px] animate-pulse bg-gray-200 dark:bg-gray-700 rounded"></div>;
 
   // Handle error states
   if (error) {
