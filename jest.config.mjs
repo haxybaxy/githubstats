@@ -4,7 +4,7 @@ const config = {
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
-    '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/__mocks__/fileMock.mjs',
+    '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/src/__mocks__/mockImage.ts',
     '@apollo/client': '<rootDir>/src/__mocks__/@apollo/client.ts'
   },
   transform: {
@@ -23,7 +23,14 @@ const config = {
   testPathIgnorePatterns: ['/node_modules/'],
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
-    '!src/**/*.d.ts'
+    '!src/**/*.d.ts',
+    '!src/stories/**/*',
+    '!src/index.{ts,tsx}',
+    '!src/setupTests.{ts,tsx}',
+    '!src/App.{ts,tsx}',
+    '!src/main.{ts,tsx}',
+    '!src/apollo-client.ts',
+    '!src/contexts/ThemeContext.{ts,tsx}',
   ]
 };
 

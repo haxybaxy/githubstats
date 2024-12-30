@@ -170,7 +170,87 @@
 <a name='L105'></a><a href='#L105'>105</a>
 <a name='L106'></a><a href='#L106'>106</a>
 <a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -288,31 +368,71 @@ import {
 &nbsp;
 /**
  * Props interface for the UserStatsGrid component
+ *
+ * @interface UserStatsGridProps
+ * @property {User} user - The GitHub user data containing statistics
+ * @property {boolean} isComparing - Whether the component is in comparison mode
  */
-interface UserStatsGridProps {
-  /** The GitHub user data */
+export interface UserStatsGridProps {
   user: User;
-  /** Whether the component is in comparison mode */
   isComparing: boolean;
 }
 &nbsp;
 /**
  * Displays a grid of user statistics including commits, stars, PRs, issues, and repositories
  *
- * The grid adapts its layout based on screen size and whether it's in comparison mode.
- * Each statistic is displayed with an icon and value.
+ * Features:
+ * - Responsive grid layout
+ * - Icon-based statistics display
+ * - Automatic number formatting
+ * - Dark mode support
+ * - Comparison mode layout
+ * - Hover state effects
  *
- * Layout behavior:
+ * Grid Layout:
  * - Mobile: 2 columns with last item spanning full width
  * - Desktop: 5 equal columns
- * - Comparison mode: Icons stack vertically instead of horizontal alignment
+ * - Comparison mode: Icons stack vertically
+ * - Proper borders and dividers
+ *
+ * Statistics Displayed:
+ * - Total Commits (with GitCommit icon)
+ * - Total Stars (with Star icon)
+ * - Total PRs (with GitPullRequest icon)
+ * - Total Issues (with IssueOpened icon)
+ * - Total Repositories (with Repo icon)
+ *
+ * Visual Features:
+ * - Icon and label alignment
+ * - Hover state highlighting
+ * - Consistent spacing
+ * - Border separators
+ * - Number formatting
+ *
+ * Accessibility:
+ * - Semantic HTML structure
+ * - ARIA labels for statistics
+ * - Screen reader support
+ * - Color contrast compliance
+ * - Focus management
  *
  * @param props - Component properties
  * @param props.user - GitHub user data containing statistics
- * @param props.isComparing - Whether in comparison mode, affects layout
+ * @param props.isComparing - Whether in comparison mode
  * @returns The rendered statistics grid
+ *
+ * @example
+ * ```tsx
+ * &lt;UserStatsGrid
+ *   user={userData}
+ *   isComparing={false}
+ * /&gt;
+ * ```
  */
-export function <span class="fstat-no" title="function not covered" >UserStatsGrid(</span>{ user, isComparing }: UserStatsGridProps) {
+export function <span class="fstat-no" title="function not covered" >UserStatsGrid(</span>{
+  user,
+  isComparing
+}: UserStatsGridProps) {
   /**
    * Calculates the total number of stars across all repositories
    * Reduces the stargazer counts from each repository into a single sum
@@ -391,7 +511,7 @@ export function <span class="fstat-no" title="function not covered" >UserStatsGr
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-29T12:05:05.244Z
+                at 2024-12-29T14:19:05.467Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

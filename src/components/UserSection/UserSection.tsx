@@ -11,6 +11,7 @@ import { UserStatsGrid } from './UserStatsGrid';
  * @property {number} [score] - User's percentile score (optional)
  * @property {boolean} isComparing - Whether the component is in comparison mode
  * @property {boolean} [hasCompetitor] - Whether there is another user to compare against
+ * @property {string} [dataTestId] - Optional data-testid for testing
  */
 export interface UserSectionProps {
   /** GitHub user data containing profile and statistics information */
@@ -27,6 +28,9 @@ export interface UserSectionProps {
 
   /** Whether there is another user to compare against */
   hasCompetitor?: boolean;
+
+  /** Optional data-testid for testing */
+  dataTestId?: string;
 }
 
 /**
@@ -77,6 +81,7 @@ export interface UserSectionProps {
  * @param props.score - User's percentile score
  * @param props.isComparing - Whether in comparison mode
  * @param props.hasCompetitor - Whether there is another user to compare against
+ * @param props.dataTestId - Optional data-testid for testing
  * @returns The rendered user section
  *
  * @example
@@ -87,6 +92,7 @@ export interface UserSectionProps {
  *   score={98.5}
  *   isComparing={true}
  *   hasCompetitor={true}
+ *   dataTestId="user-section"
  * />
  * ```
  */
@@ -95,12 +101,13 @@ export function UserSection({
   isWinner,
   score,
   isComparing,
-  hasCompetitor
+  hasCompetitor,
+  dataTestId = 'user-section'
 }: UserSectionProps) {
   return (
     <div className={`mb-8 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 ${
       isWinner ? 'shadow-[0_0_15px_rgba(255,215,0,0.5)]' : ''
-    }`}>
+    }`} data-testid={dataTestId}>
       {/* User profile section */}
       <div className="p-6">
         <UserProfile user={user} isWinner={isWinner} score={score} isComparing={isComparing} hasCompetitor={hasCompetitor} />

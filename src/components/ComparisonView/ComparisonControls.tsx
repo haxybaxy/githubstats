@@ -91,7 +91,7 @@ export function ComparisonControls({
   onToggleComparing,
 }: ComparisonControlsProps) {
   return (
-    <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-1">
+    <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-1" data-testid="comparison-controls">
       {/* First user search form */}
       <SearchForm
         username={username1}
@@ -100,6 +100,7 @@ export function ComparisonControls({
         placeholder={isComparing ? "Enter first username..." : "Enter username..."}
         isLoading={loading1}
         className="w-full sm:w-auto"
+        dataTestId="search-form-1"
       />
 
       {/* Comparison toggle button */}
@@ -111,6 +112,7 @@ export function ComparisonControls({
             : 'bg-blue-500 hover:bg-blue-600'
         } text-white`}
         aria-label={isComparing ? "Remove comparison" : "Enable comparison"}
+        data-testid="toggle-comparison-button"
       >
         {isComparing ? 'Remove VS' : 'VS'}
       </button>
@@ -124,6 +126,7 @@ export function ComparisonControls({
           placeholder="Enter second username..."
           isLoading={loading2}
           className="w-full sm:w-auto"
+          dataTestId="search-form-2"
         />
       )}
     </div>

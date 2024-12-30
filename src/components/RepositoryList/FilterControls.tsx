@@ -113,7 +113,7 @@ export function FilterControls({
                      placeholder:text-gray-500 dark:placeholder:text-gray-400
                      text-gray-900 dark:text-gray-100
                      focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          aria-label="Search repositories"
+          aria-label="Find a repository"
         />
       </div>
 

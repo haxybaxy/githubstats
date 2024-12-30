@@ -121,12 +121,12 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
   }, [user1Data, error1, onSearchStateChange]);
 
   return (
-    <div className="text-center">
+    <div data-testid="comparison-view" className="text-center">
       {/* Error Display Section */}
       {(error1 || error2) && (
-        <div className="max-w-2xl mx-auto">
-          {error1 && <ErrorDisplay error={error1} />}
-          {error2 && <ErrorDisplay error={error2} />}
+        <div className="max-w-2xl mx-auto" data-testid="error-section">
+          {error1 && <ErrorDisplay error={error1} data-testid="error-display-1" />}
+          {error2 && <ErrorDisplay error={error2} data-testid="error-display-2" />}
         </div>
       )}
 
@@ -144,7 +144,10 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
       />
 
       {/* User Comparison Grid */}
-      <div className={`grid gap-4 mt-6 ${state.isComparing ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}>
+      <div
+        className={`grid gap-4 mt-6 ${state.isComparing ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}
+        data-testid="comparison-grid"
+      >
         {/* First User Section */}
         {user1Data && (
           <motion.div
@@ -152,6 +155,7 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className={state.isComparing ? '' : 'col-span-full'}
+            data-testid="user1-section"
           >
             <UserSection
               user={user1Data}
@@ -164,6 +168,7 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
+              data-testid="repository-list-1"
             >
               <RepositoryList
                 repositories={user1Data.repositories.nodes || []}
@@ -177,12 +182,13 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
 
         {/* Second User Section */}
         {state.isComparing && (
-          <div>
+          <div data-testid="user2-container">
             {user2Data ? (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
+                data-testid="user2-section"
               >
                 <UserSection
                   user={user2Data}
@@ -195,6 +201,7 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.5 }}
+                  data-testid="repository-list-2"
                 >
                   <RepositoryList
                     repositories={user2Data.repositories.nodes || []}
@@ -205,7 +212,10 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
                 </motion.div>
               </motion.div>
             ) : (
-              <div className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex items-center justify-center h-40">
+              <div
+                className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex items-center justify-center h-40"
+                data-testid="user2-placeholder"
+              >
                 <p className="text-gray-500 dark:text-gray-400">Enter a second username to compare</p>
               </div>
             )}

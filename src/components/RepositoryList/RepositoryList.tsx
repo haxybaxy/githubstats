@@ -12,12 +12,14 @@ import { useRepositoryFiltering } from '../../hooks/useRepositoryFiltering';
  * @property {boolean} loading - Loading state indicator
  * @property {Error} [error] - Error object if any error occurred
  * @property {string} owner - Repository owner's username
+ * @property {string} [data-testid] - Test ID for the repository list
  */
 export interface RepositoryListProps {
   repositories: Repository[];
   loading: boolean;
   error?: Error;
   owner: string;
+  'data-testid'?: string;
 }
 
 /**
@@ -55,6 +57,7 @@ export interface RepositoryListProps {
  * @param props.loading - Whether repositories are currently loading
  * @param props.error - Error object if fetch failed
  * @param props.owner - Username of repository owner
+ * @param props.data-testid - Test ID for the repository list
  * @returns The rendered repository list with controls
  *
  * @example
@@ -71,7 +74,8 @@ export function RepositoryList({
   repositories,
   loading,
   error,
-  owner
+  owner,
+  'data-testid': dataTestId = `repo-list-${owner}`
 }: RepositoryListProps) {
   /**
    * Hook providing filtering and sorting functionality
@@ -111,7 +115,7 @@ export function RepositoryList({
   const totalPages = Math.ceil(totalCount / 10);
 
   return (
-    <>
+    <div data-testid={dataTestId}>
       {/* Filter and sort controls */}
       <FilterControls
         searchQuery={searchQuery}
@@ -153,6 +157,6 @@ export function RepositoryList({
         totalPages={totalPages}
         onPageChange={setCurrentPage}
       />
-    </>
+    </div>
   );
 }

@@ -34,7 +34,7 @@ export const MainView = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
 
   return (
-    <div className="min-h-screen w-screen bg-gradient-to-br from-slate-100 to-white dark:from-gray-900 dark:to-gray-800 pb-6 relative overflow-hidden">
+    <div className="min-h-screen w-screen bg-gradient-to-br from-slate-100 to-white dark:from-gray-900 dark:to-gray-800 pb-6 relative overflow-hidden" data-testid="main-view">
 
       <BackgroundEffects />
       <TopHeader />
@@ -53,6 +53,8 @@ export const MainView = () => {
       {/* Title section */}
       <motion.div
         className="text-center space-y-4"
+        data-testid="title-section"
+        data-state={isSearchActive ? 'transformed' : 'default'}
         animate={{
           opacity: isSearchActive ? 0.7 : 1,
           scale: isSearchActive ? 0.95 : 1

@@ -28,6 +28,9 @@ export interface SearchFormProps {
 
   /** Optional CSS class names for styling */
   className?: string;
+
+  /** Optional data-testid for testing */
+  dataTestId?: string;
 }
 
 /**
