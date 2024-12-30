@@ -1,4 +1,4 @@
-import { useComparisonState } from '../../hooks/useComparisonState';
+import { useState } from 'react';
 import { useUserQueries } from '../../hooks/useUserQueries';
 import { ComparisonControls } from './ComparisonControls';
 import { ErrorDisplay } from './ErrorDisplay';
@@ -57,22 +57,24 @@ export interface ComparisonViewProps {
  * ```
  */
 export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
-  const { state, setState, handleSearch } = useComparisonState();
+  const [username, setUsername] = useState('');
+  const [searchedUsername, setSearchedUsername] = useState('');
 
   /**
    * Fetch data for the user
    */
   const {
-    userData: userData,
+    userData,
     loading,
     error
-  } = useUserQueries(state.searchedUsername1, false);
+  } = useUserQueries(searchedUsername, false);
 
   /**
-   * Update the handleSearch function to only trigger animation on valid search
+   * Handle form submission
    */
-  const handleSearchSubmit = async (e: React.FormEvent) => {
-    handleSearch(e);
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSearchedUsername(username);
   };
 
   /**
@@ -94,9 +96,9 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
 
       {/* Search Controls Section */}
       <ComparisonControls
-        username={state.username1}
+        username={username}
         loading={loading}
-        onUsernameChange={(value) => setState(prev => ({ ...prev, username1: value }))}
+        onUsernameChange={setUsername}
         onSubmit={handleSearchSubmit}
       />
 

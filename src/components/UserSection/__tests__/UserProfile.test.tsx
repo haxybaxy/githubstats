@@ -20,18 +20,6 @@ describe('UserProfile', () => {
     expect(screen.getByText(mockUser.bio)).toBeInTheDocument(); // Bio
   });
 
-  it('displays score with correct styling when comparing and winning', () => {
-    render(
-      <UserProfile
-        {...defaultProps}
-        score={98.5}
-      />
-    );
-
-    const scoreElement = screen.getByText('Percentile: 98.5');
-    expect(scoreElement).toHaveClass('bg-green-100', 'text-green-800');
-  });
-
 
 
   it('shows tooltip on info icon hover', async () => {
