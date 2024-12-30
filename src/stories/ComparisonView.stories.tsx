@@ -3,7 +3,7 @@ import { ComparisonView } from '../components/ComparisonView/ComparisonView';
 import { ApolloProvider } from '@apollo/client';
 import { client } from '../apollo-client';
 import { MockedProvider } from '@apollo/client/testing';
-import { GET_USER_INFO, GET_USER_CONTRIBUTIONS, GET_USER_REPOS } from '../graphql/queries';
+import { GET_USER_INFO, GET_USER_CONTRIBUTIONS, GET_USER_REPOS, GET_REPO_COMMITS } from '../graphql/queries';
 
 const meta = {
   title: 'Components/ComparisonView',
@@ -16,6 +16,53 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+// Helper function to create commit mocks with random patterns
+const createCommitMock = (owner: string, repoName: string) => {
+  const generateDailyCommits = (dayIndex: number) => {
+    const baseCommits = Math.sin((dayIndex / 90) * Math.PI * 4) + 1;
+    const randomFactor = Math.random() * 0.5 + 0.5;
+    return Array.from(
+      { length: Math.round(baseCommits * randomFactor * 3) },
+      () => ({
+        committedDate: new Date(
+          new Date().getTime() - (dayIndex * 24 * 60 * 60 * 1000)
+        ).toISOString(),
+        __typename: 'Commit'
+      })
+    );
+  };
+
+  const commits = Array.from({ length: 90 }, (_, i) => generateDailyCommits(i))
+    .flat();
+
+  return {
+    request: {
+      query: GET_REPO_COMMITS,
+      variables: {
+        owner,
+        name: repoName,
+      },
+    },
+    result: {
+      data: {
+        repository: {
+          defaultBranchRef: {
+            target: {
+              history: {
+                nodes: commits,
+                __typename: 'CommitHistoryConnection'
+              },
+              __typename: 'Commit'
+            },
+            __typename: 'Ref'
+          },
+          __typename: 'Repository'
+        }
+      }
+    }
+  };
+};
 
 // Mock data for a pre-populated user
 const mockUserData = {
@@ -66,6 +113,11 @@ const mockUserData = {
   }
 };
 
+// Create commit mocks for each repository
+const repoCommitMocks = mockUserData.data.user.repositories.nodes.map(repo =>
+  createCommitMock('octocat', repo.name)
+);
+
 // Mock responses for Apollo queries
 const mocks = [
   {
@@ -88,7 +140,8 @@ const mocks = [
       variables: { username: 'octocat' }
     },
     result: mockUserData
-  }
+  },
+  ...repoCommitMocks
 ];
 
 export const Default: Story = {
