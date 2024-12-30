@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComparisonView } from '../components/ComparisonView/ComparisonView';
-import { ApolloProvider } from '@apollo/client';
-import { client } from '../apollo-client';
 import { MockedProvider } from '@apollo/client/testing';
 import { GET_USER_INFO, GET_USER_CONTRIBUTIONS, GET_USER_REPOS, GET_REPO_COMMITS } from '../graphql/queries';
 
@@ -64,38 +62,47 @@ const createCommitMock = (owner: string, repoName: string) => {
   };
 };
 
-// Mock data for a pre-populated user
-const mockUserData = {
+// Base user data that's common across queries
+const baseUserData = {
+  login: 'octocat',
+  name: 'The Octocat',
+  bio: 'Professional cat and GitHub mascot',
+  avatarUrl: 'https://avatars.githubusercontent.com/u/583231',
+  location: 'San Francisco',
+  websiteUrl: 'https://github.blog',
+  twitterUsername: 'github',
+  socialAccounts: {
+    nodes: [
+      {
+        provider: 'TWITTER',
+        url: 'https://twitter.com/github',
+        __typename: 'SocialAccount'
+      }
+    ],
+    __typename: 'SocialAccountConnection'
+  },
+  followers: {
+    totalCount: 8000,
+    __typename: 'FollowerConnection'
+  },
+  following: {
+    totalCount: 9,
+    __typename: 'FollowingConnection'
+  },
+  __typename: 'User'
+};
+
+// Mock data for user info query
+const mockUserInfoData = {
+  data: {
+    user: baseUserData
+  }
+};
+
+// Mock data for user contributions query
+const mockUserContributionsData = {
   data: {
     user: {
-      login: 'octocat',
-      name: 'The Octocat',
-      bio: 'Professional cat and GitHub mascot',
-      avatarUrl: 'https://avatars.githubusercontent.com/u/583231',
-      followers: { totalCount: 8000 },
-      following: { totalCount: 9 },
-      location: 'San Francisco',
-      websiteUrl: 'https://github.blog',
-      twitterUsername: 'github',
-      repositories: {
-        totalCount: 8,
-        totalStargazers: [{ stargazerCount: 500 }],
-        nodes: [
-          {
-            id: '1',
-            name: 'Hello-World',
-            description: 'My first repository on GitHub!',
-            url: 'https://github.com/octocat/Hello-World',
-            primaryLanguage: { name: 'JavaScript', color: '#f1e05a' },
-            languages: { nodes: [] },
-            stargazerCount: 500,
-            forkCount: 200,
-            updatedAt: '2024-03-20T12:00:00Z'
-          }
-        ]
-      },
-      pullRequests: { totalCount: 200 },
-      issues: { totalCount: 100 },
       contributionsCollection: {
         totalCommitContributions: 1500,
         totalPullRequestContributions: 200,
@@ -103,46 +110,81 @@ const mockUserData = {
         totalRepositoryContributions: 8,
         contributionCalendar: {
           totalContributions: 1800,
-          weeks: []
-        }
+          weeks: [
+            {
+              contributionDays: [
+                {
+                  contributionCount: 5,
+                  date: '2024-03-20',
+                  __typename: 'ContributionDay'
+                }
+              ],
+              __typename: 'ContributionWeek'
+            }
+          ],
+          __typename: 'ContributionCalendar'
+        },
+        __typename: 'ContributionsCollection'
       },
-      socialAccounts: {
-        nodes: []
-      }
+      pullRequests: {
+        totalCount: 200,
+        __typename: 'PullRequestConnection'
+      },
+      issues: {
+        totalCount: 100,
+        __typename: 'IssueConnection'
+      },
+      __typename: 'User'
+    }
+  }
+};
+
+// Mock data for user repositories query
+const mockUserReposData = {
+  data: {
+    user: {
+      login: 'octocat',
+      repositories: {
+        totalCount: 8,
+        totalStargazers: [{ stargazerCount: 500, __typename: 'Repository' }],
+        nodes: [
+          {
+            id: '1',
+            name: 'Hello-World',
+            description: 'My first repository on GitHub!',
+            url: 'https://github.com/octocat/Hello-World',
+            primaryLanguage: {
+              name: 'JavaScript',
+              color: '#f1e05a',
+              __typename: 'Language'
+            },
+            languages: {
+              nodes: [
+                {
+                  name: 'JavaScript',
+                  color: '#f1e05a',
+                  __typename: 'Language'
+                }
+              ],
+              __typename: 'LanguageConnection'
+            },
+            stargazerCount: 500,
+            forkCount: 200,
+            updatedAt: '2024-03-20T12:00:00Z',
+            __typename: 'Repository'
+          }
+        ],
+        __typename: 'RepositoryConnection'
+      },
+      __typename: 'User'
     }
   }
 };
 
 // Create commit mocks for each repository
-const repoCommitMocks = mockUserData.data.user.repositories.nodes.map(repo =>
+const repoCommitMocks = mockUserReposData.data.user.repositories.nodes.map(repo =>
   createCommitMock('octocat', repo.name)
 );
-
-// Mock responses for Apollo queries
-const mocks = [
-  {
-    request: {
-      query: GET_USER_INFO,
-      variables: { username: 'octocat' }
-    },
-    result: mockUserData
-  },
-  {
-    request: {
-      query: GET_USER_CONTRIBUTIONS,
-      variables: { username: 'octocat' }
-    },
-    result: mockUserData
-  },
-  {
-    request: {
-      query: GET_USER_REPOS,
-      variables: { username: 'octocat' }
-    },
-    result: mockUserData
-  },
-  ...repoCommitMocks
-];
 
 export const Default: Story = {
   args: {
@@ -150,9 +192,9 @@ export const Default: Story = {
   },
   decorators: [
     (Story) => (
-      <ApolloProvider client={client}>
+      <MockedProvider mocks={[]} addTypename={true}>
         <Story />
-      </ApolloProvider>
+      </MockedProvider>
     ),
   ],
 };
@@ -163,10 +205,28 @@ export const PrePopulated: Story = {
     initialUsername: 'octocat'
   },
   decorators: [
-    (Story) => (
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <Story />
-      </MockedProvider>
-    ),
+    (Story) => {
+      const baseMocks = [
+        {
+          request: { query: GET_USER_INFO, variables: { username: 'octocat' } },
+          result: mockUserInfoData
+        },
+        {
+          request: { query: GET_USER_CONTRIBUTIONS, variables: { username: 'octocat' } },
+          result: mockUserContributionsData
+        },
+        {
+          request: { query: GET_USER_REPOS, variables: { username: 'octocat' } },
+          result: mockUserReposData
+        },
+        ...repoCommitMocks
+      ];
+
+      return (
+        <MockedProvider mocks={[...baseMocks, ...baseMocks, ...baseMocks]} addTypename={true}>
+          <Story />
+        </MockedProvider>
+      );
+    },
   ]
 };
