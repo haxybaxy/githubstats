@@ -4,7 +4,7 @@ const config = {
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
-    '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/__mocks__/fileMock.mjs',
+    '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/src/__mocks__/mockImage.ts',
     '@apollo/client': '<rootDir>/src/__mocks__/@apollo/client.ts'
   },
   transform: {
