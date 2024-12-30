@@ -1,4 +1,21 @@
-import { SearchUser } from '../../types/search';
+/**
+ * Interface representing a GitHub user in search results
+ *
+ * Contains minimal user information needed for search suggestions
+ * and quick user previews. Used in autocomplete and search results.
+ *
+ * @interface SearchUser
+ */
+export interface SearchUser {
+  /** GitHub username (login) */
+  login: string;
+
+  /** User's display name (optional) */
+  name?: string;
+
+  /** URL to user's GitHub avatar */
+  avatarUrl: string;
+}
 
 /**
  * Props for the SearchSuggestions component

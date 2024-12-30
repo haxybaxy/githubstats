@@ -31,6 +31,7 @@ const config = {
     '!src/main.{ts,tsx}',
     '!src/apollo-client.ts',
     '!src/contexts/ThemeContext.{ts,tsx}',
+    '!src/components/RepositoryCard/CommitChart.tsx'
   ]
 };
 

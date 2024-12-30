@@ -3,7 +3,7 @@
  */
 import { render, screen, fireEvent } from '@testing-library/react';
 import { SearchSuggestions } from '../SearchSuggestions';
-import { SearchUser } from '../../../types/search';
+import { SearchUser } from '../SearchSuggestions';
 
 describe('SearchSuggestions', () => {
   const mockOnSuggestionClick = jest.fn();

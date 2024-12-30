@@ -133,12 +133,12 @@ export function RepositoryList({
       <div className="mt-8 grid gap-4 sm:gap-6 lg:grid-cols-2">
         {/* Loading state */}
         {loading && (
-          <p className="text-gray-500">Loading repositories...</p>
+          <p className="text-gray-500 justify-self-center">Loading repositories...</p>
         )}
 
         {/* Error state */}
         {error && (
-          <p className="text-red-500">Error: {error.message}</p>
+          <p className="text-red-500 justify-self-center">Error: {error.message}</p>
         )}
 
         {/* Repository cards */}

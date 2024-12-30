@@ -1,4 +1,5 @@
 import { ApolloError } from '@apollo/client';
+import { useState } from 'react';
 
 /**
  * Props for the ErrorDisplay component
@@ -54,6 +55,10 @@ export interface ErrorDisplayProps {
  * ```
  */
 export function ErrorDisplay({ error }: ErrorDisplayProps) {
+  const [isVisible, setIsVisible] = useState(true);
+
+  if (!isVisible) return null;
+
   /**
    * Converts Apollo errors into user-friendly messages
    *
@@ -80,27 +85,22 @@ export function ErrorDisplay({ error }: ErrorDisplayProps) {
   };
 
   return (
-    <div className="bg-red-50 border-l-4 border-red-500 p-4 my-4" role="alert">
-      <div className="flex">
-        <div className="flex-shrink-0">
-          <svg
-            className="h-5 w-5 text-red-400"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </div>
-        <div className="ml-3">
-          <p className="text-sm text-red-700">
-            {getErrorMessage(error)}
-          </p>
-        </div>
+    <div
+      className="p-4 my-4 text-white bg-red-500 rounded-md"
+      role="alert"
+    >
+      <div className="flex items-center justify-center">
+        <p className="text-sm font-medium">
+          {getErrorMessage(error)}
+        </p>
+        <button
+          onClick={() => setIsVisible(false)}
+          className="ml-auto text-white hover:text-gray-200"
+          aria-label="Close error message"
+          data-testid="error-close-button"
+        >
+          ✕
+        </button>
       </div>
     </div>
   );

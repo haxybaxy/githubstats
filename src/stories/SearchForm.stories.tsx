@@ -1,37 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { SearchForm } from '../components/SearchForm/SearchForm';
-import { ApolloProvider, ApolloClient, InMemoryCache, ApolloLink, Observable } from '@apollo/client';
-
-// Create mock data for the search functionality
-const searchMockData = {
-  search: {
-    nodes: [
-      {
-        login: 'johndoe',
-        name: 'John Doe',
-        avatarUrl: 'https://avatars.githubusercontent.com/u/1234567'
-      },
-      {
-        login: 'janedoe',
-        name: 'Jane Doe',
-        avatarUrl: 'https://avatars.githubusercontent.com/u/7654321'
-      }
-    ]
-  }
-};
-
-// Create Apollo Client with mocked responses
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: new ApolloLink((operation) => {
-    return new Observable((observer) => {
-      if (operation.operationName === 'SearchUsers') {
-        observer.next({ data: searchMockData });
-      }
-      observer.complete();
-    });
-  })
-});
+import { ApolloProvider } from '@apollo/client';
+import { client } from '../apollo-client';
 
 const meta: Meta<typeof SearchForm> = {
   component: SearchForm,
@@ -39,7 +9,6 @@ const meta: Meta<typeof SearchForm> = {
   parameters: {
     layout: 'centered',
   },
-  // Add Apollo Provider decorator
   decorators: [
     (Story) => (
       <ApolloProvider client={client}>
