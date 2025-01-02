@@ -1,4 +1,5 @@
-# GitStats
+# <img src="./public/favicon.svg" alt="GitStats Logo" width="30" height="30" style="vertical-align: middle; margin-left: 5px;"> GitHub Stats <img src="./public/favicon.svg" alt="GitStats Logo" width="30" height="30" style="vertical-align: middle; margin-left: 5px;">
+![Screenshot](./public/screenshot.jpeg "Screenshot")
 
 A modern React application for visualizing and comparing GitHub profiles. GitStats provides beautiful, interactive visualizations of user contributions, repository statistics, and coding patterns. Compare developers, analyze contribution trends, and get insights into coding habits through an intuitive interface.
 
@@ -88,8 +89,6 @@ Storybook provides a sandbox environment for developing and testing components i
 ```bash
 npm run storybook
 ```
-
-Visit `http://localhost:6006` to view the component library.
 
 ## Available Scripts
 
