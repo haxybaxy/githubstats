@@ -14,7 +14,8 @@ Vite React app to view real-time GitHub profile contribution and repository data
 - 📱 Responsive design with dark mode support
 - ⚡ Fast and efficient data loading
 - 🎨 Beautiful UI with smooth animations
-- 📚 Documentation on Github Pages
+- 🤖 Automatic deployment and testing using Github Actions
+- 📚 Documentation deplyed on Github Pages
 - 📊 95% Test coverage
 - 🚀 Deployed on Vercel
 
@@ -29,6 +30,7 @@ Vite React app to view real-time GitHub profile contribution and repository data
 - **Testing**: Jest + React Testing Library
 - **Documentation**: Storybook + TypeDoc
 - **Animation**: Framer Motion
+- **CI/CD and  Automatic Testing**: Github Actions
 
 ## Prerequisites
 
@@ -60,6 +62,8 @@ VITE_GITHUB_TOKEN=your_token_here
 ```bash
 npm run dev
 ```
+
+5. If you want to fork this and run the workflows, you need to add your access token as GH_TOKEN to your repo secrets. 
 
 The application will be available at `http://localhost:5173`
 
@@ -141,11 +145,3 @@ npm run storybook
    - Optimize bundle size
    - Add request batching
    - Implement virtual scrolling for large datasets
-
-## Contributing
-
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
