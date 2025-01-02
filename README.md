@@ -1,16 +1,17 @@
 # <img src="./public/favicon.svg" alt="GitStats Logo" width="30" height="30" style="vertical-align: middle; margin-left: 5px;"> GitHub Stats <img src="./public/favicon.svg" alt="GitStats Logo" width="30" height="30" style="vertical-align: middle; margin-left: 5px;">
 ![Screenshot](./public/screenshot.jpeg "Screenshot")
 
-A modern React application for visualizing and comparing GitHub profiles. GitStats provides beautiful, interactive visualizations of user contributions, repository statistics, and coding patterns. Compare developers, analyze contribution trends, and get insights into coding habits through an intuitive interface.
+Vite React app to view real-time GitHub profile contribution and repository data.
 
 ## Features
 
 - 📊 Real-time GitHub statistics visualization
-- 🔄 Profile comparison capabilities
 - 📈 Interactive contribution graphs
 - 📱 Responsive design with dark mode support
 - ⚡ Fast and efficient data loading
 - 🎨 Beautiful UI with smooth animations
+
+
 
 ## Prerequisites
 
@@ -24,8 +25,8 @@ A modern React application for visualizing and comparing GitHub profiles. GitSta
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/gitstats.git
-cd gitstats
+git clone https://github.com/haxybaxy/githubstats.git
+cd githubstats
 ```
 
 2. Install dependencies:
@@ -33,7 +34,7 @@ cd gitstats
 npm install
 ```
 
-3. Create a `.env` file in the root directory with your GitHub token:
+3. Create a `.env` file in the root directory with your GitHub token (check .env.example for reference):
 ```bash
 VITE_GITHUB_TOKEN=your_token_here
 ```
@@ -47,12 +48,13 @@ The application will be available at `http://localhost:5173`
 
 ### Docker Setup
 
-1. Create a `.env` file as described above
+1. Create a `.env` file as described above 
+(check .env.example for reference)
 
 2. Build and run with Docker:
 ```bash
 # Build the image
-docker build -t gitstats-dev .
+docker build -t githubstats-dev .
 
 # Run the container
 docker run -it \
@@ -90,16 +92,6 @@ Storybook provides a sandbox environment for developing and testing components i
 npm run storybook
 ```
 
-## Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run lint` - Run ESLint
-- `npm run test` - Run tests
-- `npm run test:watch` - Run tests in watch mode
-- `npm run test:coverage` - Run tests with coverage report
-- `npm run storybook` - Start Storybook
-- `npm run docs` - Generate documentation
 
 ## Tech Stack
 
