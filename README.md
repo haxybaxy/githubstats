@@ -3,15 +3,32 @@
 
 Vite React app to view real-time GitHub profile contribution and repository data.
 
-## Features
+[Deployed Website](https://githubstats-murex.vercel.app/)
+
+[Documentation on Github Pages](https://haxybaxy.github.io/githubstats/)
+
+## Feature
 
 - 📊 Real-time GitHub statistics visualization
 - 📈 Interactive contribution graphs
 - 📱 Responsive design with dark mode support
 - ⚡ Fast and efficient data loading
 - 🎨 Beautiful UI with smooth animations
+- 📚 Documentation on Github Pages
+- 📊 95% Test coverage
+- 🚀 Deployed on Vercel
 
 
+## Tech Stack
+
+- **Frontend Framework**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: TailwindCSS
+- **Data Fetching**: Apollo Client (GraphQL)
+- **Visualization**: Chart.js
+- **Testing**: Jest + React Testing Library
+- **Documentation**: Storybook + TypeDoc
+- **Animation**: Framer Motion
 
 ## Prerequisites
 
@@ -19,7 +36,7 @@ Vite React app to view real-time GitHub profile contribution and repository data
 - npm 10.x (if running without Docker)
 - GitHub Personal Access Token (for API access)
 
-## Development Setup
+## Steps to Run
 
 ### Standard Setup (without Docker)
 
@@ -93,16 +110,7 @@ npm run storybook
 ```
 
 
-## Tech Stack
 
-- **Frontend Framework**: React 18 with TypeScript
-- **Build Tool**: Vite
-- **Styling**: TailwindCSS
-- **Data Fetching**: Apollo Client (GraphQL)
-- **Visualization**: Chart.js
-- **Testing**: Jest + React Testing Library
-- **Documentation**: Storybook + TypeDoc
-- **Animation**: Framer Motion
 
 ## Future Improvements
 
