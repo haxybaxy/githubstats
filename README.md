@@ -124,6 +124,7 @@ npm run storybook
    - Add more detailed commit analysis
    - Export statistics as PDF/PNG
    - Add custom date range selection
+   - Implement GitHub API rate limit handling and caching
 
 2. **Technical**
    - Implement data caching for faster loads
@@ -131,6 +132,8 @@ npm run storybook
    - Improve error handling and retry logic
    - Add PWA support
    - Implement real-time updates
+   - Add comprehensive tests for commit line chart component
+   - Add light/dark mode support in Storybook
 
 3. **UI/UX**
    - Add more visualization options
