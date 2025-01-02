@@ -5,10 +5,7 @@ import { mockUser } from '../../../__mocks__/mockUser';
 describe('UserSection', () => {
   const defaultProps = {
     user: mockUser,
-    isWinner: false,
     score: undefined,
-    isComparing: false,
-    hasCompetitor: false,
   };
 
   it('renders all major components', () => {
@@ -22,27 +19,6 @@ describe('UserSection', () => {
 
     // Check for UserStatsGrid
     expect(screen.getByTestId('stats-grid')).toBeInTheDocument();
-  });
-
-  it('applies winner styling when isWinner is true', () => {
-    render(<UserSection {...defaultProps} isWinner={true} />);
-
-    const container = screen.getByTestId('user-section');
-    expect(container).toHaveClass('shadow-[0_0_15px_rgba(255,215,0,0.5)]');
-  });
-
-  it('renders in comparison mode correctly', () => {
-    render(
-      <UserSection
-        {...defaultProps}
-        isComparing={true}
-        hasCompetitor={true}
-        score={95}
-      />
-    );
-
-    // Verify score is displayed
-    expect(screen.getByText('Percentile: 95.0')).toBeInTheDocument();
   });
 
 

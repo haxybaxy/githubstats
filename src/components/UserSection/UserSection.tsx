@@ -7,27 +7,15 @@ import { UserStatsGrid } from './UserStatsGrid';
  *
  * @interface UserSectionProps
  * @property {User} user - GitHub user data containing profile and statistics information
- * @property {boolean} isWinner - Whether this user won the comparison
  * @property {number} [score] - User's percentile score (optional)
- * @property {boolean} isComparing - Whether the component is in comparison mode
- * @property {boolean} [hasCompetitor] - Whether there is another user to compare against
  * @property {string} [dataTestId] - Optional data-testid for testing
  */
 export interface UserSectionProps {
   /** GitHub user data containing profile and statistics information */
   user: User;
 
-  /** Whether this user won the comparison */
-  isWinner: boolean;
-
   /** User's percentile score (optional) */
   score?: number;
-
-  /** Whether the component is in comparison mode */
-  isComparing: boolean;
-
-  /** Whether there is another user to compare against */
-  hasCompetitor?: boolean;
 
   /** Optional data-testid for testing */
   dataTestId?: string;
@@ -77,10 +65,7 @@ export interface UserSectionProps {
  *
  * @param props - Component properties
  * @param props.user - GitHub user data
- * @param props.isWinner - Whether this user won the comparison
  * @param props.score - User's percentile score
- * @param props.isComparing - Whether in comparison mode
- * @param props.hasCompetitor - Whether there is another user to compare against
  * @param props.dataTestId - Optional data-testid for testing
  * @returns The rendered user section
  *
@@ -98,23 +83,18 @@ export interface UserSectionProps {
  */
 export function UserSection({
   user,
-  isWinner,
   score,
-  isComparing,
-  hasCompetitor,
   dataTestId = 'user-section'
 }: UserSectionProps) {
   return (
-    <div className={`mb-8 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 ${
-      isWinner ? 'shadow-[0_0_15px_rgba(255,215,0,0.5)]' : ''
-    }`} data-testid={dataTestId}>
+    <div className={`mb-8 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800`} data-testid={dataTestId}>
       {/* User profile section */}
       <div className="p-6">
-        <UserProfile user={user} isWinner={isWinner} score={score} isComparing={isComparing} hasCompetitor={hasCompetitor} />
+        <UserProfile user={user} score={score}  />
       </div>
 
       {/* Statistics grid */}
-      <UserStatsGrid user={user} isComparing={isComparing} />
+      <UserStatsGrid user={user}  />
 
     </div>
   );

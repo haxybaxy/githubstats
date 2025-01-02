@@ -4,7 +4,7 @@ import { mockUser } from '../../../__mocks__/mockUser';
 
 describe('UserStatsGrid', () => {
   it('renders all statistics with correct values', () => {
-    render(<UserStatsGrid user={mockUser} isComparing={false} />);
+    render(<UserStatsGrid user={mockUser} />);
 
     // Check all stat values are rendered
     expect(screen.getByText(mockUser.contributionsCollection.totalCommitContributions.toLocaleString())).toBeInTheDocument();
@@ -19,13 +19,13 @@ describe('UserStatsGrid', () => {
       0
     );
 
-    render(<UserStatsGrid user={mockUser} isComparing={false} />);
+    render(<UserStatsGrid user={mockUser} />);
 
     expect(screen.getByText(totalStars.toLocaleString())).toBeInTheDocument();
   });
 
   it('applies comparison mode styling', () => {
-    render(<UserStatsGrid user={mockUser} isComparing={true} />);
+    render(<UserStatsGrid user={mockUser} />);
 
     const statContainers = screen.getAllByRole('generic').filter(
       element => element.classList.contains('flex-col')

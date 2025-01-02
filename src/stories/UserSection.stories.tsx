@@ -48,29 +48,6 @@ const baseUser = {
 export const Default: Story = {
   args: {
     user: baseUser,
-    isWinner: false,
     score: 75.5,
-    isComparing: false,
-    hasCompetitor: false,
-  },
-};
-
-export const Winner: Story = {
-  args: {
-    user: baseUser,
-    isWinner: true,
-    score: 85.5,
-    isComparing: true,
-    hasCompetitor: true,
-  },
-};
-
-export const Loser: Story = {
-  args: {
-    user: baseUser,
-    isWinner: false,
-    score: 65.5,
-    isComparing: true,
-    hasCompetitor: true,
   },
 };

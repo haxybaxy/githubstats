@@ -1,68 +1,32 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ComparisonView } from '../components/ComparisonView/ComparisonView';
-import { MockedProvider } from '@apollo/client/testing';
+import { MainView } from '../components/MainView/MainView';
+import type { MainViewProps } from '../components/MainView/MainView';
+import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 import { GET_USER_INFO, GET_USER_CONTRIBUTIONS, GET_USER_REPOS, GET_REPO_COMMITS } from '../graphql/queries';
+import { ThemeProvider } from '../contexts/ThemeContext';
+
+// Create a wrapper component that provides both Apollo and Theme contexts
+const Wrapper = ({ children, mocks = [] }: { children: React.ReactNode, mocks?: readonly MockedResponse[] }) => (
+  <ThemeProvider>
+    <MockedProvider mocks={mocks} addTypename={true}>
+      {children}
+    </MockedProvider>
+  </ThemeProvider>
+);
 
 const meta = {
-  title: 'Components/ComparisonView',
-  component: ComparisonView,
+  title: 'Views/MainView',
+  component: MainView,
   parameters: {
     layout: 'fullscreen',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof ComparisonView>;
+} satisfies Meta<MainViewProps>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Helper function to create commit mocks with random patterns
-const createCommitMock = (owner: string, repoName: string) => {
-  const generateDailyCommits = (dayIndex: number) => {
-    const baseCommits = Math.sin((dayIndex / 90) * Math.PI * 4) + 1;
-    const randomFactor = Math.random() * 0.5 + 0.5;
-    return Array.from(
-      { length: Math.round(baseCommits * randomFactor * 3) },
-      () => ({
-        committedDate: new Date(
-          new Date().getTime() - (dayIndex * 24 * 60 * 60 * 1000)
-        ).toISOString(),
-        __typename: 'Commit'
-      })
-    );
-  };
-
-  const commits = Array.from({ length: 90 }, (_, i) => generateDailyCommits(i))
-    .flat();
-
-  return {
-    request: {
-      query: GET_REPO_COMMITS,
-      variables: {
-        owner,
-        name: repoName,
-      },
-    },
-    result: {
-      data: {
-        repository: {
-          defaultBranchRef: {
-            target: {
-              history: {
-                nodes: commits,
-                __typename: 'CommitHistoryConnection'
-              },
-              __typename: 'Commit'
-            },
-            __typename: 'Ref'
-          },
-          __typename: 'Repository'
-        }
-      }
-    }
-  };
-};
-
-// Base user data that's common across queries
+// Reuse the mock data from ComparisonView stories
 const baseUserData = {
   login: 'octocat',
   name: 'The Octocat',
@@ -92,14 +56,10 @@ const baseUserData = {
   __typename: 'User'
 };
 
-// Mock data for user info query
 const mockUserInfoData = {
-  data: {
-    user: baseUserData
-  }
+  data: { user: baseUserData }
 };
 
-// Mock data for user contributions query
 const mockUserContributionsData = {
   data: {
     user: {
@@ -139,7 +99,6 @@ const mockUserContributionsData = {
   }
 };
 
-// Mock data for user repositories query
 const mockUserReposData = {
   data: {
     user: {
@@ -214,31 +173,70 @@ const mockUserReposData = {
   }
 };
 
-// Create commit mocks for each repository
+// Helper function to create commit mocks
+const createCommitMock = (owner: string, repoName: string) => {
+  const generateDailyCommits = (dayIndex: number) => {
+    const baseCommits = Math.sin((dayIndex / 90) * Math.PI * 4) + 1;
+    const randomFactor = Math.random() * 0.5 + 0.5;
+    return Array.from(
+      { length: Math.round(baseCommits * randomFactor * 3) },
+      () => ({
+        committedDate: new Date(
+          new Date().getTime() - (dayIndex * 24 * 60 * 60 * 1000)
+        ).toISOString(),
+        __typename: 'Commit'
+      })
+    );
+  };
+
+  const commits = Array.from({ length: 90 }, (_, i) => generateDailyCommits(i))
+    .flat();
+
+  return {
+    request: {
+      query: GET_REPO_COMMITS,
+      variables: {
+        owner,
+        name: repoName,
+      },
+    },
+    result: {
+      data: {
+        repository: {
+          defaultBranchRef: {
+            target: {
+              history: {
+                nodes: commits,
+                __typename: 'CommitHistoryConnection'
+              },
+              __typename: 'Commit'
+            },
+            __typename: 'Ref'
+          },
+          __typename: 'Repository'
+        }
+      }
+    }
+  };
+};
+
 const repoCommitMocks = mockUserReposData.data.user.repositories.nodes.map(repo =>
   createCommitMock('octocat', repo.name)
 );
 
 export const Default: Story = {
-  args: {
-    onSearchStateChange: (state: boolean) => console.log('Search state:', state)
-  },
   decorators: [
     (Story) => (
-      <MockedProvider mocks={[]} addTypename={true}>
+      <Wrapper>
         <Story />
-      </MockedProvider>
+      </Wrapper>
     ),
   ],
 };
 
 export const PrePopulated: Story = {
-  args: {
-    onSearchStateChange: (state: boolean) => console.log('Search state:', state),
-    initialUsername: 'octocat'
-  },
   decorators: [
-    (Story) => {
+    () => {
       const baseMocks = [
         {
           request: { query: GET_USER_INFO, variables: { username: 'octocat' } },
@@ -256,30 +254,26 @@ export const PrePopulated: Story = {
       ];
 
       return (
-        <MockedProvider mocks={[...baseMocks, ...baseMocks, ...baseMocks]} addTypename={true}>
-          <Story />
-        </MockedProvider>
+        <Wrapper mocks={[...baseMocks, ...baseMocks, ...baseMocks]}>
+          <MainView initialUsername="octocat" />
+        </Wrapper>
       );
     },
   ]
 };
 
 export const WithError: Story = {
-  args: {
-    onSearchStateChange: (state: boolean) => console.log('Search state:', state),
-    initialUsername: 'octocat'
-  },
   decorators: [
-    (Story) => {
+    () => {
       const errorMock = {
         request: { query: GET_USER_INFO, variables: { username: 'octocat' } },
         error: new Error('Rate limit exceeded. Please try again later.')
       };
 
       return (
-        <MockedProvider mocks={[errorMock]} addTypename={true}>
-          <Story />
-        </MockedProvider>
+        <Wrapper mocks={[errorMock]}>
+          <MainView initialUsername="octocat" />
+        </Wrapper>
       );
     },
   ]

@@ -16,7 +16,6 @@ import {
  */
 export interface UserStatsGridProps {
   user: User;
-  isComparing: boolean;
 }
 
 /**
@@ -59,20 +58,17 @@ export interface UserStatsGridProps {
  *
  * @param props - Component properties
  * @param props.user - GitHub user data containing statistics
- * @param props.isComparing - Whether in comparison mode
  * @returns The rendered statistics grid
  *
  * @example
  * ```tsx
  * <UserStatsGrid
  *   user={userData}
- *   isComparing={false}
  * />
  * ```
  */
 export function UserStatsGrid({
   user,
-  isComparing
 }: UserStatsGridProps) {
   /**
    * Calculates the total number of stars across all repositories
@@ -130,9 +126,7 @@ export function UserStatsGrid({
                 index > 1 ? 'border-t border-gray-200 dark:border-gray-700 md:border-t-0' : ''
               }`}
             >
-              <div className={`flex flex-col items-center ${
-                isComparing ? 'md:flex-col' : 'md:flex-row md:gap-1.5'
-              } text-gray-600 dark:text-gray-400`}>
+              <div className={`flex flex-col items-center md:flex-row md:gap-1.5 text-gray-600 dark:text-gray-400`}>
                 {stat.icon}
                 <h3 className="text-sm leading-tight">{stat.label}</h3>
               </div>
