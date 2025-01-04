@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
@@ -164,23 +164,7 @@
 <a name='L99'></a><a href='#L99'>99</a>
 <a name='L100'></a><a href='#L100'>100</a>
 <a name='L101'></a><a href='#L101'>101</a>
-<a name='L102'></a><a href='#L102'>102</a>
-<a name='L103'></a><a href='#L103'>103</a>
-<a name='L104'></a><a href='#L104'>104</a>
-<a name='L105'></a><a href='#L105'>105</a>
-<a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a>
-<a name='L109'></a><a href='#L109'>109</a>
-<a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a>
-<a name='L112'></a><a href='#L112'>112</a>
-<a name='L113'></a><a href='#L113'>113</a>
-<a name='L114'></a><a href='#L114'>114</a>
-<a name='L115'></a><a href='#L115'>115</a>
-<a name='L116'></a><a href='#L116'>116</a>
-<a name='L117'></a><a href='#L117'>117</a>
-<a name='L118'></a><a href='#L118'>118</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L102'></a><a href='#L102'>102</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -263,28 +247,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -307,24 +275,14 @@ import { UserStatsGrid } from './UserStatsGrid';
  * @interface UserSectionProps
  * @property {User} user - GitHub user data containing profile and statistics information
  * @property {number} [score] - User's percentile score (optional)
- * @property {boolean} [hasCompetitor] - Whether there is another user to compare against
  * @property {string} [dataTestId] - Optional data-testid for testing
  */
 export interface UserSectionProps {
   /** GitHub user data containing profile and statistics information */
   user: User;
 &nbsp;
-  /** Whether this user won the comparison */
-  isWinner: boolean;
-&nbsp;
   /** User's percentile score (optional) */
   score?: number;
-&nbsp;
-  /** Whether the component is in comparison mode */
-  isComparing: boolean;
-&nbsp;
-  /** Whether there is another user to compare against */
-  hasCompetitor?: boolean;
 &nbsp;
   /** Optional data-testid for testing */
   dataTestId?: string;
@@ -374,10 +332,7 @@ export interface UserSectionProps {
  *
  * @param props - Component properties
  * @param props.user - GitHub user data
- * @param props.isWinner - Whether this user won the comparison
  * @param props.score - User's percentile score
- * @param props.isComparing - Whether in comparison mode
- * @param props.hasCompetitor - Whether there is another user to compare against
  * @param props.dataTestId - Optional data-testid for testing
  * @returns The rendered user section
  *
@@ -395,14 +350,11 @@ export interface UserSectionProps {
  */
 export function UserSection({
   user,
-  isWinner,
   score,
   dataTestId = 'user-section'
 }: UserSectionProps) {
   return (
-    &lt;div className={`mb-8 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 ${
-      isWinner ? <span class="branch-0 cbranch-no" title="branch not covered" >'shadow-[0_0_15px_rgba(255,215,0,0.5)]' </span>: ''
-    }`} data-testid={dataTestId}&gt;
+    &lt;div className={`mb-8 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800`} data-testid={dataTestId}&gt;
       {/* User profile section */}
       &lt;div className="p-6"&gt;
         &lt;UserProfile user={user} score={score}  /&gt;
@@ -421,7 +373,7 @@ export function UserSection({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-30T20:49:41.536Z
+                at 2025-01-02T15:12:06.444Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
