@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { RepositoryList } from '../components/RepositoryList/RepositoryList';
 import { MockedProvider } from '@apollo/client/testing';
 import { GET_REPO_COMMITS } from '../graphql/queries';
+import { ThemeDecorator } from './decorators/ThemeDecorator';
 
 // Reuse the same commit mock generator
 const createCommitMock = (owner: string, repoName: string) => {
@@ -84,6 +85,7 @@ const meta = {
     layout: 'padded',
   },
   decorators: [
+    ThemeDecorator,
     (Story, context) => {
       // Create mocks for all repositories
       const mocks = (context.args.repositories || []).map(repo =>
@@ -91,9 +93,11 @@ const meta = {
       );
 
       return (
-        <MockedProvider mocks={mocks} addTypename={true}>
-          <Story />
-        </MockedProvider>
+        <div className="p-6 bg-white dark:bg-gray-900">
+          <MockedProvider mocks={mocks} addTypename={true}>
+            <Story />
+          </MockedProvider>
+        </div>
       );
     },
   ],
@@ -103,12 +107,27 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Light: Story = {
   args: {
     repositories: mockRepositories,
     loading: false,
     error: undefined,
     owner: 'example'
+  },
+  parameters: {
+    theme: 'light',
+  },
+};
+
+export const Dark: Story = {
+  args: {
+    repositories: mockRepositories,
+    loading: false,
+    error: undefined,
+    owner: 'example'
+  },
+  parameters: {
+    theme: 'dark',
   },
 };
 
@@ -119,6 +138,9 @@ export const Loading: Story = {
     error: undefined,
     owner: 'example'
   },
+  parameters: {
+    theme: 'light',
+  },
 };
 
 export const WithError: Story = {
@@ -128,6 +150,9 @@ export const WithError: Story = {
     error: new Error('Failed to fetch repositories'),
     owner: 'example'
   },
+  parameters: {
+    theme: 'light',
+  },
 };
 
 export const EmptyList: Story = {
@@ -136,5 +161,8 @@ export const EmptyList: Story = {
     loading: false,
     error: undefined,
     owner: 'example'
+  },
+  parameters: {
+    theme: 'light',
   },
 };
