@@ -7,12 +7,12 @@ const meta: Meta<typeof ErrorDisplay> = {
   component: ErrorDisplay,
   parameters: {
     docs: {
-      // Prevent docs from trying to clone ApolloError instances
       source: {
         type: 'code',
       },
     },
   },
+  tags: ['autodocs'],
 };
 
 export default meta;

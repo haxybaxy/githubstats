@@ -20,6 +20,7 @@ const meta: Meta<typeof SearchForm> = {
       </div>
     ),
   ],
+  tags: ['autodocs'],
 };
 
 export default meta;
