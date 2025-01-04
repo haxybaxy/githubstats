@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { RepositoryCard } from '../components/RepositoryCard/RepositoryCard';
 import { MockedProvider } from '@apollo/client/testing';
 import { GET_REPO_COMMITS } from '../graphql/queries';
+import { ThemeDecorator } from './decorators/ThemeDecorator';
 
 // Helper function to create commit mocks with random patterns
 const createCommitMock = (owner: string, repoName: string) => {
@@ -62,8 +63,8 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  // Update decorator to handle multiple mocks
   decorators: [
+    ThemeDecorator,
     (Story, context) => {
       // Get the current story's repository data
       const { repository, owner } = context.args;
@@ -71,9 +72,11 @@ const meta = {
       const mock = createCommitMock(owner, repository.name);
 
       return (
-        <MockedProvider mocks={[mock]} addTypename={true}>
-          <Story />
-        </MockedProvider>
+        <div className="p-6 bg-white dark:bg-gray-900">
+          <MockedProvider mocks={[mock]} addTypename={true}>
+            <Story />
+          </MockedProvider>
+        </div>
       );
     },
   ],
@@ -83,7 +86,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Light: Story = {
   args: {
     repository: {
       id: '1',
@@ -100,6 +103,32 @@ export const Default: Story = {
       updatedAt: '2024-03-20T12:00:00Z'
     },
     owner: 'example'
+  },
+  parameters: {
+    theme: 'light',
+  },
+};
+
+export const Dark: Story = {
+  args: {
+    repository: {
+      id: '1',
+      name: 'example-repo',
+      description: 'This is an example repository with a longer description to show how text wraps.',
+      url: 'https://github.com/example/repo',
+      primaryLanguage: {
+        name: 'TypeScript',
+        color: '#2b7489'
+      },
+      languages: { nodes: [] },
+      stargazerCount: 1234,
+      forkCount: 567,
+      updatedAt: '2024-03-20T12:00:00Z'
+    },
+    owner: 'example'
+  },
+  parameters: {
+    theme: 'dark',
   },
 };
 
@@ -121,6 +150,9 @@ export const NoDescription: Story = {
     },
     owner: 'example'
   },
+  parameters: {
+    theme: 'light',
+  },
 };
 
 export const NoLanguage: Story = {
@@ -137,5 +169,8 @@ export const NoLanguage: Story = {
       updatedAt: '2024-03-20T12:00:00Z'
     },
     owner: 'example'
+  },
+  parameters: {
+    theme: 'light',
   },
 };
