@@ -22,6 +22,3 @@ export default meta;
 type Story = StoryObj<typeof ThemeToggle>;
 
 export const Default: Story = {};
-
-// You can add more stories if needed, but since this component
-// handles its own state through context, a single story might be sufficient
