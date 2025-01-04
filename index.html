@@ -93,46 +93,31 @@
 
 <a id="future-improvements" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Future Improvements<a href="#future-improvements" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ol>
 <li>
-<p><strong>Features</strong></p>
+<p><strong>Avoiding the Github Rate Limit</strong></p>
 <ul>
-<li>Add repository comparison functionality</li>
-<li>Implement organization statistics</li>
-<li>Add more detailed commit analysis</li>
-<li>Export statistics as PDF/PNG</li>
-<li>Add custom date range selection</li>
-<li>Implement GitHub API rate limit handling and caching</li>
+<li>A main issue with this app is that the GitHub v4 API has a rate limit of 5000 nodes expanded per hour, rather than requests.</li>
+<li>To prevent users from hitting the rate limit, I made the decision to only fetch the first 100 commits for a repo in the last 3 months, instead of fully visualizing the commit history.</li>
+<li>Since you have to expand the nodes to get the date of a commit, we would need to rely on an external webhook to fetch the data.</li>
 </ul>
 </li>
 <li>
-<p><strong>Technical</strong></p>
+<p><strong>Snapshot Tests for Commit Line Chart</strong></p>
 <ul>
-<li>Implement data caching for faster loads</li>
-<li>Add E2E tests with Cypress</li>
-<li>Improve error handling and retry logic</li>
-<li>Add PWA support</li>
-<li>Implement real-time updates</li>
-<li>Add comprehensive tests for commit line chart component</li>
-<li>Add light/dark mode support in Storybook</li>
+<li>Due to the nature of the react-chart-js-2 library, you are supposed to mock it with an empty canvas to test that it renders correctly.</li>
+<li>This means that regular testing with code does not work, so snapshot testing needs to be implemented to test that the chart renders with the correct data.</li>
 </ul>
 </li>
 <li>
-<p><strong>UI/UX</strong></p>
+<p><strong>Versus Mode</strong></p>
 <ul>
-<li>Add more visualization options</li>
-<li>Implement customizable themes</li>
-<li>Add keyboard shortcuts</li>
-<li>Improve mobile experience</li>
-<li>Add more accessibility features</li>
+<li>The Versus mode is a feature I added to this project to allow users to compare their own stats to another user, you can find the implementation on the comparisonview branch.</li>
+<li>Some smoother animations and a better mobile UI would need to be implemented before this can be merged into the main branch.</li>
 </ul>
 </li>
 <li>
-<p><strong>Performance</strong></p>
+<p><strong>Feature Additions</strong></p>
 <ul>
-<li>Implement code splitting</li>
-<li>Add service worker for offline support</li>
-<li>Optimize bundle size</li>
-<li>Add request batching</li>
-<li>Implement virtual scrolling for large datasets</li>
+<li>Adding another query to fetch the amount of open, merged, and closed pull requests or issues for a user would be a nice addition, but I would need to find a more aesthetic way to display the data, in order to not clash with the other user stats.</li>
 </ul>
 </li>
 </ol>
