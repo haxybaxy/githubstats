@@ -118,33 +118,18 @@ npm run storybook
 
 ## Future Improvements
 
-1. **Features**
-   - Add repository comparison functionality
-   - Implement organization statistics
-   - Add more detailed commit analysis
-   - Export statistics as PDF/PNG
-   - Add custom date range selection
-   - Implement GitHub API rate limit handling and caching
+1. **Avoiding the Github Rate Limit**
+   - A main issue with this app is that the GitHub v4 API has a rate limit of 5000 nodes expanded per hour, rather than requests.
+   - To prevent users from hitting the rate limit, I made the decision to only fetch the first 100 commits for a repo in the last 3 months, instead of fully visualizing the commit history.
+   - Since you have to expand the nodes to get the date of a commit, we would need to rely on an external webhook to fetch the data.
 
-2. **Technical**
-   - Implement data caching for faster loads
-   - Add E2E tests with Cypress
-   - Improve error handling and retry logic
-   - Add PWA support
-   - Implement real-time updates
-   - Add comprehensive tests for commit line chart component
-   - Add light/dark mode support in Storybook
+2. **Snapshot Tests for Commit Line Chart**
+   - Due to the nature of the react-chart-js-2 library, you are supposed to mock it with an empty canvas to test that it renders correctly.
+   - This means that regular testing with code does not work, so snapshot testing needs to be implemented to test that the chart renders with the correct data.
 
-3. **UI/UX**
-   - Add more visualization options
-   - Implement customizable themes
-   - Add keyboard shortcuts
-   - Improve mobile experience
-   - Add more accessibility features
+4. **Versus Mode**
+   - The Versus mode is a feature I added to this project to allow users to compare their own stats to another user, you can find the implementation on the comparisonview branch.
+   - Some smoother animations and a better mobile UI would need to be implemented before this can be merged into the main branch.
 
-4. **Performance**
-   - Implement code splitting
-   - Add service worker for offline support
-   - Optimize bundle size
-   - Add request batching
-   - Implement virtual scrolling for large datasets
+5. **Feature Additions**
+   - Adding another query to fetch the amount of open, merged, and closed pull requests or issues for a user would be a nice addition, but I would need to find a more aesthetic way to display the data, in order to not clash with the other user stats.
