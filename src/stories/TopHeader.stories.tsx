@@ -22,31 +22,3 @@ export default meta;
 type Story = StoryObj<typeof TopHeader>;
 
 export const Default: Story = {};
-
-export const InDarkMode: Story = {
-  parameters: {
-    backgrounds: {
-      default: 'dark',
-    },
-    themes: {
-      default: 'dark',
-    },
-  },
-};
-
-// Optional: Show with different widths
-export const NarrowScreen: Story = {
-  parameters: {
-    viewport: {
-      defaultViewport: 'mobile1',
-    },
-  },
-};
-
-export const WideScreen: Story = {
-  parameters: {
-    viewport: {
-      defaultViewport: 'desktop',
-    },
-  },
-};

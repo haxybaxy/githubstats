@@ -5,7 +5,6 @@ import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 import { GET_USER_INFO, GET_USER_CONTRIBUTIONS, GET_USER_REPOS, GET_REPO_COMMITS } from '../graphql/queries';
 import { ThemeProvider } from '../contexts/ThemeContext';
 
-// Create a wrapper component that provides both Apollo and Theme contexts
 const Wrapper = ({ children, mocks = [] }: { children: React.ReactNode, mocks?: readonly MockedResponse[] }) => (
   <ThemeProvider>
     <MockedProvider mocks={mocks} addTypename={true}>
@@ -26,7 +25,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Reuse the mock data from ComparisonView stories
 const baseUserData = {
   login: 'octocat',
   name: 'The Octocat',

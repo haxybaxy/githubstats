@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ComparisonView } from '../components/ComparisonView/ComparisonView';
 import { MockedProvider } from '@apollo/client/testing';
 import { GET_USER_INFO, GET_USER_CONTRIBUTIONS, GET_USER_REPOS, GET_REPO_COMMITS } from '../graphql/queries';
+import { ThemeDecorator } from './decorators/ThemeDecorator';
 
 const meta = {
   title: 'Components/ComparisonView',
@@ -9,6 +10,14 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
   },
+  decorators: [
+    ThemeDecorator,
+    (Story) => (
+      <div className="min-h-screen bg-white dark:bg-gray-900">
+        <Story />
+      </div>
+    ),
+  ],
   tags: ['autodocs'],
 } satisfies Meta<typeof ComparisonView>;
 
@@ -219,7 +228,7 @@ const repoCommitMocks = mockUserReposData.data.user.repositories.nodes.map(repo 
   createCommitMock('octocat', repo.name)
 );
 
-export const Default: Story = {
+export const Light: Story = {
   args: {
     onSearchStateChange: (state: boolean) => console.log('Search state:', state)
   },
@@ -230,6 +239,25 @@ export const Default: Story = {
       </MockedProvider>
     ),
   ],
+  parameters: {
+    theme: 'light',
+  },
+};
+
+export const Dark: Story = {
+  args: {
+    onSearchStateChange: (state: boolean) => console.log('Search state:', state)
+  },
+  decorators: [
+    (Story) => (
+      <MockedProvider mocks={[]} addTypename={true}>
+        <Story />
+      </MockedProvider>
+    ),
+  ],
+  parameters: {
+    theme: 'dark',
+  },
 };
 
 export const PrePopulated: Story = {
@@ -261,7 +289,45 @@ export const PrePopulated: Story = {
         </MockedProvider>
       );
     },
-  ]
+  ],
+  parameters: {
+    theme: 'light',
+  },
+};
+
+export const PrePopulatedDark: Story = {
+  args: {
+    onSearchStateChange: (state: boolean) => console.log('Search state:', state),
+    initialUsername: 'octocat'
+  },
+  decorators: [
+    (Story) => {
+      const baseMocks = [
+        {
+          request: { query: GET_USER_INFO, variables: { username: 'octocat' } },
+          result: mockUserInfoData
+        },
+        {
+          request: { query: GET_USER_CONTRIBUTIONS, variables: { username: 'octocat' } },
+          result: mockUserContributionsData
+        },
+        {
+          request: { query: GET_USER_REPOS, variables: { username: 'octocat' } },
+          result: mockUserReposData
+        },
+        ...repoCommitMocks
+      ];
+
+      return (
+        <MockedProvider mocks={[...baseMocks, ...baseMocks, ...baseMocks]} addTypename={true}>
+          <Story />
+        </MockedProvider>
+      );
+    },
+  ],
+  parameters: {
+    theme: 'dark',
+  },
 };
 
 export const WithError: Story = {
@@ -282,5 +348,8 @@ export const WithError: Story = {
         </MockedProvider>
       );
     },
-  ]
+  ],
+  parameters: {
+    theme: 'light',
+  },
 };

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { UserSection } from '../components/UserSection/UserSection';
+import { ThemeDecorator } from './decorators/ThemeDecorator';
 
 const meta = {
   title: 'Components/UserSection',
@@ -8,6 +9,7 @@ const meta = {
     layout: 'padded',
   },
   tags: ['autodocs'],
+  decorators: [ThemeDecorator],
 } satisfies Meta<typeof UserSection>;
 
 export default meta;
@@ -45,9 +47,22 @@ const baseUser = {
   }
 };
 
-export const Default: Story = {
+export const Light: Story = {
   args: {
     user: baseUser,
     score: 75.5,
+  },
+  parameters: {
+    theme: 'light',
+  },
+};
+
+export const Dark: Story = {
+  args: {
+    user: baseUser,
+    score: 75.5,
+  },
+  parameters: {
+    theme: 'dark',
   },
 };

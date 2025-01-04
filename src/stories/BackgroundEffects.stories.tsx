@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { BackgroundEffects } from '../components/MainView/BackgroundEffects';
+import { ThemeDecorator } from './decorators/ThemeDecorator';
 
 const meta = {
   title: 'Components/BackgroundEffects',
@@ -8,8 +9,9 @@ const meta = {
     layout: 'fullscreen',
   },
   decorators: [
+    ThemeDecorator,
     (Story) => (
-      <div className="w-screen h-screen">
+      <div className="w-screen h-screen bg-gray-50 dark:bg-gray-900">
         <Story />
       </div>
     ),
@@ -20,15 +22,14 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof BackgroundEffects>;
 
-export const Default: Story = {};
-
-export const InDarkMode: Story = {
+export const Light: Story = {
   parameters: {
-    backgrounds: {
-      default: 'dark',
-    },
-    themes: {
-      default: 'dark',
-    },
+    theme: 'light',
+  },
+};
+
+export const Dark: Story = {
+  parameters: {
+    theme: 'dark',
   },
 };

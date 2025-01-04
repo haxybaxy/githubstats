@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1735591781553" clover="3.2.0">
-  <project timestamp="1735591781553" name="All files">
-    <metrics statements="229" coveredstatements="190" conditionals="141" coveredconditionals="112" methods="67" coveredmethods="53" elements="437" coveredelements="355" complexity="0" loc="229" ncloc="229" packages="8" files="23" classes="23"/>
+<coverage generated="1735830726463" clover="3.2.0">
+  <project timestamp="1735830726463" name="All files">
+    <metrics statements="243" coveredstatements="231" conditionals="144" coveredconditionals="125" methods="67" coveredmethods="63" elements="454" coveredelements="419" complexity="0" loc="243" ncloc="243" packages="8" files="22" classes="22"/>
     <package name="components.ComparisonView">
-      <metrics statements="25" coveredstatements="14" conditionals="14" coveredconditionals="4" methods="7" coveredmethods="3"/>
-      <file name="ComparisonControls.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/ComparisonView/ComparisonControls.tsx">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="31" count="0" type="stmt"/>
-      </file>
+      <metrics statements="32" coveredstatements="30" conditionals="18" coveredconditionals="17" methods="6" coveredmethods="5"/>
       <file name="ComparisonView.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/ComparisonView/ComparisonView.tsx">
-        <metrics statements="10" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="60" count="0" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="76" count="0" type="stmt"/>
-        <line num="77" count="0" type="stmt"/>
-        <line num="83" count="0" type="stmt"/>
-        <line num="84" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="85" count="0" type="stmt"/>
-        <line num="88" count="0" type="stmt"/>
+        <metrics statements="18" coveredstatements="16" conditionals="14" coveredconditionals="13" methods="3" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="5" type="stmt"/>
+        <line num="36" count="5" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="44" count="5" type="stmt"/>
+        <line num="45" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="46" count="5" type="stmt"/>
+        <line num="49" count="5" type="stmt"/>
       </file>
       <file name="ErrorDisplay.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/ComparisonView/ErrorDisplay.tsx">
         <metrics statements="14" coveredstatements="14" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
-        <line num="58" count="7" type="stmt"/>
-        <line num="60" count="7" type="cond" truecount="1" falsecount="0"/>
-        <line num="74" count="6" type="stmt"/>
-        <line num="75" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="57" count="2" type="stmt"/>
+        <line num="58" count="8" type="stmt"/>
+        <line num="60" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="74" count="7" type="stmt"/>
+        <line num="75" count="7" type="cond" truecount="1" falsecount="0"/>
         <line num="76" count="1" type="stmt"/>
-        <line num="78" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="78" count="6" type="cond" truecount="1" falsecount="0"/>
         <line num="79" count="1" type="stmt"/>
-        <line num="81" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="81" count="5" type="cond" truecount="1" falsecount="0"/>
         <line num="82" count="1" type="stmt"/>
-        <line num="84" count="3" type="stmt"/>
-        <line num="87" count="6" type="stmt"/>
+        <line num="84" count="4" type="stmt"/>
+        <line num="87" count="7" type="stmt"/>
         <line num="97" count="1" type="stmt"/>
       </file>
     </package>
     <package name="components.MainView">
-      <metrics statements="23" coveredstatements="23" conditionals="15" coveredconditionals="12" methods="5" coveredmethods="5"/>
+      <metrics statements="26" coveredstatements="25" conditionals="16" coveredconditionals="12" methods="6" coveredmethods="6"/>
       <file name="BackgroundEffects.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/MainView/BackgroundEffects.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="37" count="1" type="stmt"/>
@@ -52,16 +56,19 @@
         <line num="47" count="6" type="stmt"/>
       </file>
       <file name="MainView.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/MainView/MainView.tsx">
-        <metrics statements="9" coveredstatements="9" conditionals="10" coveredconditionals="10" methods="1" coveredmethods="1"/>
+        <metrics statements="12" coveredstatements="11" conditionals="11" coveredconditionals="10" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="34" count="4" type="stmt"/>
-        <line num="36" count="3" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
+        <line num="40" count="3" type="stmt"/>
+        <line num="41" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="46" count="3" type="stmt"/>
       </file>
       <file name="ThemeToggle.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/MainView/ThemeToggle.tsx">
         <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
@@ -131,24 +138,24 @@
       </file>
     </package>
     <package name="components.SearchForm">
-      <metrics statements="25" coveredstatements="25" conditionals="22" coveredconditionals="19" methods="9" coveredmethods="9"/>
+      <metrics statements="25" coveredstatements="25" conditionals="22" coveredconditionals="20" methods="9" coveredmethods="9"/>
       <file name="SearchForm.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/SearchForm/SearchForm.tsx">
-        <metrics statements="20" coveredstatements="20" conditionals="12" coveredconditionals="9" methods="5" coveredmethods="5"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="90" count="1" type="stmt"/>
-        <line num="109" count="6" type="stmt"/>
-        <line num="111" count="6" type="stmt"/>
+        <metrics statements="20" coveredstatements="20" conditionals="12" coveredconditionals="10" methods="5" coveredmethods="5"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="90" count="2" type="stmt"/>
+        <line num="109" count="11" type="stmt"/>
+        <line num="111" count="11" type="stmt"/>
         <line num="112" count="2" type="stmt"/>
         <line num="113" count="2" type="stmt"/>
         <line num="114" count="2" type="stmt"/>
         <line num="115" count="2" type="stmt"/>
-        <line num="118" count="6" type="stmt"/>
+        <line num="118" count="11" type="stmt"/>
         <line num="119" count="1" type="stmt"/>
         <line num="120" count="1" type="stmt"/>
         <line num="121" count="1" type="stmt"/>
-        <line num="124" count="6" type="stmt"/>
+        <line num="124" count="11" type="stmt"/>
         <line num="127" count="2" type="stmt"/>
         <line num="128" count="2" type="cond" truecount="1" falsecount="0"/>
         <line num="129" count="1" type="stmt"/>
@@ -157,7 +164,7 @@
       </file>
       <file name="SearchSuggestions.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/SearchForm/SearchSuggestions.tsx">
         <metrics statements="5" coveredstatements="5" conditionals="10" coveredconditionals="10" methods="4" coveredmethods="4"/>
-        <line num="87" count="2" type="stmt"/>
+        <line num="87" count="3" type="stmt"/>
         <line num="93" count="7" type="cond" truecount="4" falsecount="0"/>
         <line num="95" count="7" type="stmt"/>
         <line num="112" count="6" type="stmt"/>
@@ -165,28 +172,28 @@
       </file>
     </package>
     <package name="components.UserSection">
-      <metrics statements="20" coveredstatements="20" conditionals="21" coveredconditionals="19" methods="8" coveredmethods="8"/>
+      <metrics statements="20" coveredstatements="20" conditionals="19" coveredconditionals="18" methods="8" coveredmethods="8"/>
       <file name="UserProfile.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/UserSection/UserProfile.tsx">
         <metrics statements="4" coveredstatements="4" conditionals="6" coveredconditionals="5" methods="1" coveredmethods="1"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
         <line num="72" count="2" type="stmt"/>
-        <line num="76" count="5" type="stmt"/>
+        <line num="76" count="4" type="stmt"/>
       </file>
       <file name="UserSection.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/UserSection/UserSection.tsx">
-        <metrics statements="4" coveredstatements="4" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <metrics statements="4" coveredstatements="4" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="97" count="1" type="stmt"/>
-        <line num="103" count="2" type="stmt"/>
+        <line num="84" count="1" type="stmt"/>
+        <line num="89" count="2" type="stmt"/>
       </file>
       <file name="UserSocialStats.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/UserSection/UserSocialStats.tsx">
         <metrics statements="5" coveredstatements="5" conditionals="8" coveredconditionals="8" methods="3" coveredmethods="3"/>
         <line num="2" count="3" type="stmt"/>
         <line num="77" count="3" type="stmt"/>
-        <line num="78" count="9" type="stmt"/>
-        <line num="116" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="120" count="9" type="stmt"/>
+        <line num="78" count="8" type="stmt"/>
+        <line num="116" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="120" count="8" type="stmt"/>
       </file>
       <file name="UserStatsGrid.tsx" path="/Users/zaidsaheb/Desktop/gitstats/src/components/UserSection/UserStatsGrid.tsx">
         <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
@@ -203,22 +210,22 @@
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="queries.ts" path="/Users/zaidsaheb/Desktop/gitstats/src/graphql/queries.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="76" count="1" type="stmt"/>
-        <line num="135" count="1" type="stmt"/>
-        <line num="195" count="1" type="stmt"/>
-        <line num="233" count="1" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="76" count="3" type="stmt"/>
+        <line num="135" count="3" type="stmt"/>
+        <line num="195" count="3" type="stmt"/>
+        <line num="233" count="3" type="stmt"/>
       </file>
     </package>
     <package name="hooks">
-      <metrics statements="98" coveredstatements="70" conditionals="40" coveredconditionals="31" methods="24" coveredmethods="14"/>
+      <metrics statements="102" coveredstatements="93" conditionals="40" coveredconditionals="31" methods="24" coveredmethods="21"/>
       <file name="useGitHubRank.ts" path="/Users/zaidsaheb/Desktop/gitstats/src/hooks/useGitHubRank.ts">
         <metrics statements="35" coveredstatements="35" conditionals="5" coveredconditionals="5" methods="6" coveredmethods="6"/>
-        <line num="1" count="1" type="stmt"/>
+        <line num="1" count="2" type="stmt"/>
         <line num="10" count="56" type="stmt"/>
         <line num="19" count="28" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
+        <line num="57" count="2" type="stmt"/>
         <line num="58" count="10" type="stmt"/>
         <line num="59" count="10" type="cond" truecount="3" falsecount="0"/>
         <line num="67" count="7" type="stmt"/>
@@ -283,38 +290,42 @@
         <line num="83" count="10" type="stmt"/>
       </file>
       <file name="useSearch.ts" path="/Users/zaidsaheb/Desktop/gitstats/src/hooks/useSearch.ts">
-        <metrics statements="25" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="0"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
+        <metrics statements="29" coveredstatements="23" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="7"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="25" count="5" type="stmt"/>
         <line num="26" count="0" type="cond" truecount="0" falsecount="3"/>
         <line num="27" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
+        <line num="31" count="5" type="stmt"/>
+        <line num="32" count="5" type="stmt"/>
+        <line num="35" count="5" type="stmt"/>
+        <line num="36" count="5" type="stmt"/>
         <line num="37" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="41" count="0" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
+        <line num="46" count="5" type="stmt"/>
+        <line num="47" count="5" type="stmt"/>
+        <line num="50" count="5" type="stmt"/>
+        <line num="51" count="5" type="stmt"/>
+        <line num="52" count="5" type="stmt"/>
+        <line num="56" count="5" type="stmt"/>
       </file>
       <file name="useUserQueries.ts" path="/Users/zaidsaheb/Desktop/gitstats/src/hooks/useUserQueries.ts">
         <metrics statements="10" coveredstatements="10" conditionals="19" coveredconditionals="19" methods="1" coveredmethods="1"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="63" count="1" type="stmt"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
         <line num="65" count="3" type="stmt"/>
         <line num="71" count="3" type="stmt"/>
         <line num="77" count="3" type="stmt"/>
