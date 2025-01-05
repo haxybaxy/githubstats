@@ -6,7 +6,7 @@ import { UserSection } from '../UserSection/UserSection';
 import { RepositoryList } from '../RepositoryList/RepositoryList';
 import { useGitHubRank } from '../../hooks/useGitHubRank';
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * Props for the ComparisonView component
@@ -120,6 +120,20 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
     onSearchStateChange(isValidSearch);
   }, [user1Data, error1, onSearchStateChange]);
 
+  // Add state for mobile view control
+  const [activeUserOnMobile, setActiveUserOnMobile] = useState<1 | 2>(1);
+
+  // Add a mobile switcher button component
+  const MobileSwitcher = () => (
+    <button
+      onClick={() => setActiveUserOnMobile(current => current === 1 ? 2 : 1)}
+      className="md:hidden w-full py-2 px-4 mb-4 bg-blue-500 text-white rounded-md"
+      data-testid="mobile-user-switcher"
+    >
+      Switch to {activeUserOnMobile === 1 ? 'Second' : 'First'} User
+    </button>
+  );
+
   return (
     <div data-testid="comparison-view" className="text-center">
       {/* Error Display Section */}
@@ -143,18 +157,27 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
         onToggleComparing={toggleComparing}
       />
 
-      {/* User Comparison Grid */}
+      {/* Modified User Comparison Grid */}
       <div
-        className={`grid gap-4 mt-6 ${state.isComparing ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}
+        className={`grid gap-4 mt-6 ${
+          state.isComparing ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'
+        }`}
         data-testid="comparison-grid"
       >
-        {/* First User Section */}
+        {/* Add Mobile Switcher when comparing */}
+        {state.isComparing && user2Data && (
+          <MobileSwitcher />
+        )}
+
+        {/* Modified First User Section */}
         {user1Data && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className={state.isComparing ? '' : 'col-span-full'}
+            className={`${state.isComparing ? '' : 'col-span-full'} ${
+              state.isComparing && activeUserOnMobile === 2 ? 'hidden md:block' : ''
+            }`}
             data-testid="user1-section"
           >
             <UserSection
@@ -180,9 +203,12 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
           </motion.div>
         )}
 
-        {/* Second User Section */}
+        {/* Modified Second User Section */}
         {state.isComparing && (
-          <div data-testid="user2-container">
+          <div
+            className={activeUserOnMobile === 1 ? 'hidden md:block' : ''}
+            data-testid="user2-container"
+          >
             {user2Data ? (
               <motion.div
                 initial={{ opacity: 0 }}
