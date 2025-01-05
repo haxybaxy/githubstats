@@ -5,7 +5,6 @@ import { jest } from '@jest/globals';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { SearchForm } from '../SearchForm';
 
-// Mock useSearch hook with controlled state
 jest.mock('../../../hooks/useSearch', () => ({
   useSearch: () => ({
     inputRef: { current: null },
@@ -113,11 +112,9 @@ describe('SearchForm', () => {
       />
     );
 
-    // First focus the input to show suggestions
     const input = screen.getByRole('textbox', { name: /github username/i });
     fireEvent.focus(input);
 
-    // Now the suggestions should be visible
     const suggestion = screen.getByTestId('suggestion-suggested-user');
     fireEvent.click(suggestion);
 
