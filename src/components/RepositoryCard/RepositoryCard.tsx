@@ -69,10 +69,10 @@ export const RepositoryCard = ({ repository, owner }: RepositoryCardProps) => (
       <div className="flex-shrink-0">
         {/* Repository name and link */}
         <div className="flex items-center flex-wrap">
-          <h2 className="text-lg sm:text-xl leading-6">
+          <h2 className="text-lg sm:text-xl leading-6 text-left">
             <a
               href={repository.url}
-              className="font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+              className="font-semibold text-blue-600 dark:text-blue-400 hover:underline text-left"
               target="_blank"
               rel="noopener noreferrer"
             >
