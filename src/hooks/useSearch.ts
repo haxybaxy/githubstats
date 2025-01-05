@@ -20,7 +20,7 @@ export const useSearch = (username: string, onUsernameChange: (username: string)
     debounce((value: string) => {
       lastSearchRef.current = value;
       onUsernameChange(value);
-    }, 300)
+    }, 50)
   ).current;
 
   const flushDebouncedValue = (value: string) => {
