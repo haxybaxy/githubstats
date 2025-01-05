@@ -98,22 +98,9 @@ describe('useSuggestions', () => {
       configurable: true
     });
 
-    console.log('Before click:', {
-      showSuggestions: result.current.showSuggestions,
-      hasRef: !!mockRef.current,
-      target: outsideDiv,
-      contains: mockRef.current?.contains(outsideDiv)
-    });
 
     act(() => {
       document.dispatchEvent(mockEvent);
-    });
-
-    console.log('After click:', {
-      showSuggestions: result.current.showSuggestions,
-      hasRef: !!mockRef.current,
-      target: outsideDiv,
-      contains: mockRef.current?.contains(outsideDiv)
     });
 
     expect(result.current.showSuggestions).toBe(false);
