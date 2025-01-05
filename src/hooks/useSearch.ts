@@ -21,6 +21,11 @@ export const useSearch = (username: string, onUsernameChange: (username: string)
     }, 300)
   ).current;
 
+  const flushDebouncedValue = (value: string) => {
+    debouncedOnChange.cancel();
+    onUsernameChange(value);
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (suggestionRef.current && !suggestionRef.current.contains(event.target as Node)) {
@@ -62,6 +67,7 @@ export const useSearch = (username: string, onUsernameChange: (username: string)
     inputRef,
     data,
     searchLoading,
-    debouncedOnChange
+    debouncedOnChange,
+    flushDebouncedValue
   };
 };

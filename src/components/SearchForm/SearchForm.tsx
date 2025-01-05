@@ -105,7 +105,8 @@ export const SearchForm = ({
     inputRef,
     data,
     searchLoading,
-    debouncedOnChange
+    debouncedOnChange,
+    flushDebouncedValue
   } = useSearch(username, onUsernameChange);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -127,6 +128,7 @@ export const SearchForm = ({
         e.preventDefault();
         if (!searchTerm.trim()) return;
         setShowSuggestions(false);
+        flushDebouncedValue(searchTerm);
         onSubmit(e);
       }}
       className={`my-8 w-full sm:max-w-[500px] ${className}`}
