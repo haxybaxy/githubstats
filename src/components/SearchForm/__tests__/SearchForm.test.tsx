@@ -9,6 +9,7 @@ import { SearchForm } from '../SearchForm';
 const mockSetSearchTerm = jest.fn();
 const mockSetShowSuggestions = jest.fn();
 const mockDebouncedOnChange = jest.fn();
+const mockFlushDebouncedValue = jest.fn();
 
 // Mock useSearch hook with controlled state
 jest.mock('../../../hooks/useSearch', () => ({
@@ -31,7 +32,8 @@ jest.mock('../../../hooks/useSearch', () => ({
       }
     },
     searchLoading: false,
-    debouncedOnChange: mockDebouncedOnChange
+    debouncedOnChange: mockDebouncedOnChange,
+    flushDebouncedValue: mockFlushDebouncedValue
   })
 }));
 
@@ -57,10 +59,10 @@ describe('SearchForm', () => {
     expect(screen.getByRole('button', { name: /search/i })).toBeInTheDocument();
   });
 
-  it('calls onSubmit when form is submitted', () => {
+  it('calls onSubmit when form is submitted', async () => {
     render(
       <SearchForm
-        username="testuser"  // Make sure to pass a non-empty username
+        username="testuser"
         onUsernameChange={mockOnUsernameChange}
         onSubmit={mockOnSubmit}
         placeholder="Enter GitHub username"
@@ -69,6 +71,9 @@ describe('SearchForm', () => {
 
     const form = screen.getByTestId('search-form');
     fireEvent.submit(form);
+
+    // Wait for the setTimeout to complete
+    await new Promise(resolve => setTimeout(resolve, 50));
 
     expect(mockOnSubmit).toHaveBeenCalled();
   });

@@ -8,18 +8,26 @@ export const useSearch = (username: string, onUsernameChange: (username: string)
   const [showSuggestions, setShowSuggestions] = useState(false);
   const suggestionRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const lastSearchRef = useRef(searchTerm);
 
   const { data, loading: searchLoading } = useQuery(SEARCH_USERS, {
-    variables: { query: searchTerm },
-    skip: searchTerm.length < 2,
+    variables: { query: lastSearchRef.current },
+    skip: lastSearchRef.current.length < 2,
     fetchPolicy: 'cache-first',
   });
 
   const debouncedOnChange = useRef(
     debounce((value: string) => {
+      lastSearchRef.current = value;
       onUsernameChange(value);
-    }, 300)
+    }, 50)
   ).current;
+
+  const flushDebouncedValue = (value: string) => {
+    debouncedOnChange.cancel();
+    lastSearchRef.current = value;
+    onUsernameChange(value);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -62,6 +70,7 @@ export const useSearch = (username: string, onUsernameChange: (username: string)
     inputRef,
     data,
     searchLoading,
-    debouncedOnChange
+    debouncedOnChange,
+    flushDebouncedValue
   };
 };

@@ -105,7 +105,8 @@ export const SearchForm = ({
     inputRef,
     data,
     searchLoading,
-    debouncedOnChange
+    debouncedOnChange,
+    flushDebouncedValue
   } = useSearch(username, onUsernameChange);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -121,14 +122,21 @@ export const SearchForm = ({
     setShowSuggestions(false);
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchTerm.trim()) return;
+
+    setShowSuggestions(false);
+    flushDebouncedValue(searchTerm);
+
+    // Increase the delay slightly to ensure state updates complete
+    await new Promise(resolve => setTimeout(resolve, 50));
+    onSubmit(e);
+  };
+
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (!searchTerm.trim()) return;
-        setShowSuggestions(false);
-        onSubmit(e);
-      }}
+      onSubmit={handleSubmit}
       className={`my-8 w-full sm:max-w-[500px] ${className}`}
       role="search"
       aria-label="Search GitHub users"
