@@ -92,7 +92,7 @@ export function UserStatsGrid({
    */
   const stats = [
     {
-      label: 'Total Commits',
+      label: 'Total Commits (Last Year)',
       value: user.contributionsCollection.totalCommitContributions,
       icon: <GitCommitIcon className="h-5 w-5" />
     },
