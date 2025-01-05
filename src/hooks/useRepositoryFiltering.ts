@@ -56,8 +56,6 @@ export function useRepositoryFiltering(repositories: Repository[]) {
             return (a.forkCount - b.forkCount) * order;
           case 'updated':
             return (new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()) * order;
-          default:
-            return 0;
         }
       });
 
