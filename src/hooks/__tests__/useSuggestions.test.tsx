@@ -2,6 +2,11 @@ import React from 'react';
 import { renderHook, act } from '@testing-library/react';
 import { useSuggestions } from '../useSuggestions';
 
+// Add type for the mock ref
+type SuggestionRef = {
+  current: HTMLDivElement | null;
+};
+
 describe('useSuggestions', () => {
   beforeEach(() => {
     jest.useFakeTimers();
@@ -34,9 +39,8 @@ describe('useSuggestions', () => {
       result.current.setShowSuggestions(true);
     });
 
-    const mockDiv = document.createElement('div');
-
-    const mockRef = { current: mockDiv };
+    const mockDiv: HTMLDivElement = document.createElement('div');
+    const mockRef: SuggestionRef = { current: mockDiv };
     Object.defineProperty(result.current, 'suggestionRef', {
       get: () => mockRef
     });
@@ -69,10 +73,10 @@ describe('useSuggestions', () => {
   });
 
   it('should hide suggestions when clicking outside', () => {
-    const mockSuggestionDiv = document.createElement('div');
-    const outsideDiv = document.createElement('div');
+    const mockSuggestionDiv: HTMLDivElement = document.createElement('div');
+    const outsideDiv: HTMLDivElement = document.createElement('div');
 
-    const mockRef = { current: mockSuggestionDiv };
+    const mockRef: SuggestionRef = { current: mockSuggestionDiv };
 
     jest.spyOn(React, 'useRef').mockReturnValue(mockRef);
 
