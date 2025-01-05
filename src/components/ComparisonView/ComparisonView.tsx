@@ -247,7 +247,7 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
                 className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex items-center justify-center h-40"
                 data-testid="user2-placeholder"
               >
-                <p className="text-gray-500 dark:text-gray-400">Enter a second username to compare</p>
+                <p className="text-gray-500 dark:text-gray-400">Enter a username to compare</p>
               </div>
             )}
           </div>

@@ -87,7 +87,7 @@ export function UserProfile({
   hasCompetitor
 }: UserProfileProps) {
   return (
-    <div className="flex items-start space-x-4" data-testid="user-profile">
+    <div className="flex items-start space-x-4 h-[150px]" data-testid="user-profile">
           {/* Avatar with optional winner crown */}
           <div className="relative flex-shrink-0" data-testid="avatar-container">
             <img
