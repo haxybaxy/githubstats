@@ -20,6 +20,7 @@ const baseUser = {
   name: 'John Doe',
   bio: 'Full-stack developer passionate about React and TypeScript',
   avatarUrl: 'https://avatars.githubusercontent.com/u/1234567',
+  url: 'https://github.com/johndoe',
   followers: { totalCount: 150 },
   following: { totalCount: 89 },
   location: 'San Francisco, CA',
