@@ -1,4 +1,5 @@
 import { SearchForm } from '../SearchForm/SearchForm';
+import { UserPlusIcon, UserMinusIcon } from '@heroicons/react/24/outline';
 
 /**
  * Props for the ComparisonControls component
@@ -106,15 +107,17 @@ export function ComparisonControls({
       {/* Comparison toggle button */}
       <button
         onClick={onToggleComparing}
-        className={`w-full sm:w-auto px-4 py-2 rounded-md ${
+        className={`w-full sm:w-auto px-4 py-[7px] text-sm font-semibold rounded-md
+                    transition-colors duration-200 flex items-center justify-center gap-2 ${
           isComparing
-            ? 'bg-red-500 hover:bg-red-600'
-            : 'bg-blue-500 hover:bg-blue-600'
-        } text-white`}
+            ? 'bg-[#cf222e] hover:bg-[#a40e26] text-white'
+            : 'bg-[#0969da] hover:bg-[#0557c5] text-white'
+        }`}
         aria-label={isComparing ? "Remove comparison" : "Enable comparison"}
         data-testid="toggle-comparison-button"
       >
-        {isComparing ? 'Remove VS' : 'VS'}
+        {isComparing ? <UserMinusIcon className="w-4 h-4" /> : <UserPlusIcon className="w-4 h-4" />}
+        {isComparing ? 'Remove Versus Mode' : 'Versus Mode'}
       </button>
 
       {/* Second user search form (only shown when comparing) */}

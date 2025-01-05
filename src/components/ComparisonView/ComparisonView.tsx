@@ -7,6 +7,7 @@ import { RepositoryList } from '../RepositoryList/RepositoryList';
 import { useGitHubRank } from '../../hooks/useGitHubRank';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { ArrowsRightLeftIcon } from '@heroicons/react/24/outline';
 
 /**
  * Props for the ComparisonView component
@@ -127,9 +128,13 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
   const MobileSwitcher = () => (
     <button
       onClick={() => setActiveUserOnMobile(current => current === 1 ? 2 : 1)}
-      className="md:hidden w-full py-2 px-4 mb-4 bg-blue-500 text-white rounded-md"
+      className="md:hidden w-full py-[7px] px-4 mb-4 text-sm font-semibold
+                 bg-[#2da44e] hover:bg-[#2c974b] text-white
+                 rounded-md flex items-center justify-center gap-2
+                 transition-colors duration-200"
       data-testid="mobile-user-switcher"
     >
+      <ArrowsRightLeftIcon className="w-4 h-4" />
       Switch to {activeUserOnMobile === 1 ? 'Second' : 'First'} User
     </button>
   );
@@ -157,7 +162,7 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
         onToggleComparing={toggleComparing}
       />
 
-      {/* Modified User Comparison Grid */}
+      {/*  User Comparison Grid */}
       <div
         className={`grid gap-4 mt-6 ${
           state.isComparing ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'
@@ -169,7 +174,7 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
           <MobileSwitcher />
         )}
 
-        {/* Modified First User Section */}
+        {/* First User Section */}
         {user1Data && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -203,7 +208,7 @@ export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
           </motion.div>
         )}
 
-        {/* Modified Second User Section */}
+        {/*  Second User Section */}
         {state.isComparing && (
           <div
             className={activeUserOnMobile === 1 ? 'hidden md:block' : ''}
