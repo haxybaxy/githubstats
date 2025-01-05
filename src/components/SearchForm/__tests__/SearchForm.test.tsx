@@ -48,7 +48,7 @@ describe('SearchForm', () => {
     expect(screen.getByRole('button', { name: /search/i })).toBeInTheDocument();
   });
 
-  it('calls onSubmit when form is submitted', () => {
+  it('calls onSubmit when form is submitted', async () => {
     render(
       <SearchForm
         username="testuser"
@@ -61,6 +61,9 @@ describe('SearchForm', () => {
 
     const form = screen.getByTestId('search-form');
     fireEvent.submit(form);
+
+    // Wait for the setTimeout to complete
+    await new Promise(resolve => setTimeout(resolve, 50));
 
     expect(mockOnSubmit).toHaveBeenCalled();
   });

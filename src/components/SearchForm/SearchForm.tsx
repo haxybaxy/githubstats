@@ -116,6 +116,18 @@ export const SearchForm = ({
     onSuggestionSelect(login);
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchTerm.trim()) return;
+
+    setShowSuggestions(false);
+    flushDebouncedValue(searchTerm);
+
+    // Increase the delay slightly to ensure state updates complete
+    await new Promise(resolve => setTimeout(resolve, 50));
+    onSubmit(e);
+  };
+
   return (
     <form
       onSubmit={(e) => {
