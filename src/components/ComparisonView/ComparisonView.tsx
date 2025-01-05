@@ -46,6 +46,14 @@ export function ComparisonView({ onSearchStateChange, initialUsername }: Compari
     onSearchStateChange(isValidSearch);
   }, [userData, error, onSearchStateChange]);
 
+  /**
+   * Handle suggestion select
+   */
+  const handleSuggestionSelect = (selectedUsername: string) => {
+    setUsername(selectedUsername);
+    setSearchedUsername(selectedUsername);
+  };
+
   return (
     <div data-testid="comparison-view" className="text-center">
       {/* Error Display Section */}
@@ -61,6 +69,7 @@ export function ComparisonView({ onSearchStateChange, initialUsername }: Compari
           username={username}
           onUsernameChange={setUsername}
           onSubmit={handleSearchSubmit}
+          onSuggestionSelect={handleSuggestionSelect}
           placeholder="Enter username..."
           isLoading={loading}
           className="w-full sm:w-auto"

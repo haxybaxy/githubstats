@@ -26,7 +26,7 @@ export interface SearchFormProps {
   onSubmit: (e: React.FormEvent) => void;
 
   /** Placeholder text for the search input */
-  placeholder: string;
+  placeholder?: string;
 
   /** Optional loading state indicator */
   isLoading?: boolean;
@@ -36,6 +36,11 @@ export interface SearchFormProps {
 
   /** Optional data-testid for testing */
   dataTestId?: string;
+
+  /** Callback function triggered when suggestion is selected
+   * @param username - The selected username
+   */
+  onSuggestionSelect: (username: string) => void;
 }
 /**
  * Search form component for GitHub username search
@@ -92,6 +97,7 @@ export const SearchForm = ({
   username,
   onUsernameChange,
   onSubmit,
+  onSuggestionSelect,
   placeholder = "Search GitHub username",
   isLoading = false,
   className = "",
@@ -106,8 +112,8 @@ export const SearchForm = ({
   };
 
   const handleSuggestionClick = (login: string) => {
-    onUsernameChange(login);
     setShowSuggestions(false);
+    onSuggestionSelect(login);
   };
 
   return (
