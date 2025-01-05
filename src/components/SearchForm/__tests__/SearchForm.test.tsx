@@ -5,13 +5,9 @@ import { jest } from '@jest/globals';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { SearchForm } from '../SearchForm';
 
-// Create mock functions outside to access them in tests
-const mockSetSearchTerm = jest.fn();
-const mockSetShowSuggestions = jest.fn();
-
 // Mock useSearch hook with controlled state
 jest.mock('../../../hooks/useSearch', () => ({
-  useSearch: (username: string) => ({
+  useSearch: () => ({
     inputRef: { current: null },
     data: {
       search: {
