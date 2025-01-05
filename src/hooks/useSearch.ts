@@ -4,7 +4,6 @@ import { SEARCH_USERS } from '../graphql/queries';
 
 export const useSearch = (username: string) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const lastSearchRef = useRef(searchTerm);
 
   const { data, loading: searchLoading } = useQuery(SEARCH_USERS, {
     variables: { query: username },
