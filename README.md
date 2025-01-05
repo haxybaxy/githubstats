@@ -94,6 +94,7 @@ docker run -it \
 ```bash
 npm run test
 ```
+You might get a few warnings about the props and components in the ThemeToggle component being invalid, which is fine, since these props are needed for the framer motion library.
 
 2. Run tests in watch mode (for development):
 ```bash
@@ -104,6 +105,12 @@ npm run test:watch
 ```bash
 npm run test:coverage
 ```
+
+The test coverage report can be found in `coverage/lcov-report/index.html`
+
+The remaining uncovered code is for a few trivial lines.
+
+![alt text](./public/coverage.png)
 
 ### Running Storybook
 
