@@ -69,28 +69,22 @@ describe('useSuggestions', () => {
   });
 
   it('should hide suggestions when clicking outside', () => {
-    // Create elements first
     const mockSuggestionDiv = document.createElement('div');
     const outsideDiv = document.createElement('div');
 
-    // Create a ref before rendering the hook
     const mockRef = { current: mockSuggestionDiv };
 
-    // Mock useRef to return our controlled ref
     jest.spyOn(React, 'useRef').mockReturnValue(mockRef);
 
     const { result } = renderHook(() => useSuggestions());
 
-    // Show suggestions first
     act(() => {
       result.current.setShowSuggestions(true);
     });
 
-    // Add elements to document
     document.body.appendChild(mockSuggestionDiv);
     document.body.appendChild(outsideDiv);
 
-    // Create mousedown event with the outside element as target
     const mockEvent = new MouseEvent('mousedown', {
       bubbles: true,
       cancelable: true,
@@ -100,7 +94,6 @@ describe('useSuggestions', () => {
       configurable: true
     });
 
-    // Log state before click
     console.log('Before click:', {
       showSuggestions: result.current.showSuggestions,
       hasRef: !!mockRef.current,
@@ -108,12 +101,10 @@ describe('useSuggestions', () => {
       contains: mockRef.current?.contains(outsideDiv)
     });
 
-    // Trigger the document event
     act(() => {
       document.dispatchEvent(mockEvent);
     });
 
-    // Log state after click
     console.log('After click:', {
       showSuggestions: result.current.showSuggestions,
       hasRef: !!mockRef.current,
@@ -121,10 +112,8 @@ describe('useSuggestions', () => {
       contains: mockRef.current?.contains(outsideDiv)
     });
 
-    // Verify suggestions are hidden
     expect(result.current.showSuggestions).toBe(false);
 
-    // Cleanup
     document.body.removeChild(mockSuggestionDiv);
     document.body.removeChild(outsideDiv);
     jest.restoreAllMocks();

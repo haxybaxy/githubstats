@@ -28,7 +28,6 @@ export interface UserProfileProps {
  *
  * Visual Elements:
  * - User avatar with border
- * - Winner crown (when applicable)
  * - Name and username
  * - Truncated bio
  * - Score badge with tooltip
@@ -46,12 +45,6 @@ export interface UserProfileProps {
  * - Percentile formatting
  * - Conditional rendering
  *
- * Accessibility:
- * - Semantic HTML structure
- * - ARIA labels
- * - Tooltip keyboard access
- * - Screen reader support
- * - Color contrast compliance
  *
  * @param props - Component properties
  * @param props.user - GitHub user data

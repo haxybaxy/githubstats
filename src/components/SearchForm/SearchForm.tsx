@@ -67,12 +67,6 @@ export interface SearchFormProps {
  * - Suggestion selection
  * - Form submission
  *
- * Accessibility:
- * - ARIA labels and roles
- * - Keyboard navigation
- * - Focus management
- * - Screen reader support
- * - Disabled state handling
  *
  * @param props - Component properties extending SearchFormProps
  * @param props.username - Current username value

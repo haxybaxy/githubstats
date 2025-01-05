@@ -48,12 +48,6 @@ export interface UserSocialStatsProps {
  * - URL sanitization and formatting
  * - Conditional link rendering
  *
- * Accessibility:
- * - Semantic HTML structure
- * - ARIA labels for icons
- * - Screen reader support
- * - Proper link attributes
- * - Color contrast compliance
  *
  * @param props - Component properties
  * @param props.user - GitHub user data containing social information
