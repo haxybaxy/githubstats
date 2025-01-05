@@ -6,6 +6,7 @@ const baseUserData = {
   name: 'The Octocat',
   bio: 'Professional cat and GitHub mascot',
   avatarUrl: 'https://avatars.githubusercontent.com/u/583231',
+  url: 'https://github.com/octocat',
   location: 'San Francisco',
   websiteUrl: 'https://github.blog',
   twitterUsername: 'github',

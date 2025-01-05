@@ -89,10 +89,24 @@ export function UserProfile({
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
               <div className="min-w-0">
                 <h2 className="text-xl text-left font-semibold text-gray-900 dark:text-white truncate">
-                  {user.name || user.login}
+                  <a
+                    href={user.url}
+                    className="hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {user.name || user.login}
+                  </a>
                 </h2>
                 <h3 className="text-base text-left text-gray-600 dark:text-gray-400 mb-2">
-                  {user.login}
+                  <a
+                    href={user.url}
+                    className="hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {user.login}
+                  </a>
                 </h3>
                 {user.bio && (
                   <p className="text-gray-600 text-left dark:text-gray-400 text-sm mb-3 line-clamp-2">
