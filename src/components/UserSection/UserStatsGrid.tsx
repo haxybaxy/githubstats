@@ -32,7 +32,6 @@ export interface UserStatsGridProps {
  * Grid Layout:
  * - Mobile: 2 columns with last item spanning full width
  * - Desktop: 5 equal columns
- * - Comparison mode: Icons stack vertically
  * - Proper borders and dividers
  *
  * Statistics Displayed:
@@ -48,13 +47,6 @@ export interface UserStatsGridProps {
  * - Consistent spacing
  * - Border separators
  * - Number formatting
- *
- * Accessibility:
- * - Semantic HTML structure
- * - ARIA labels for statistics
- * - Screen reader support
- * - Color contrast compliance
- * - Focus management
  *
  * @param props - Component properties
  * @param props.user - GitHub user data containing statistics

@@ -28,18 +28,6 @@ export interface ErrorDisplayProps {
  * - Network errors
  * - Generic fallback errors
  *
- * Visual Elements:
- * - Error icon
- * - Colored border indicator
- * - Formatted message text
- * - Alert role for accessibility
- * - Proper spacing and layout
- *
- * Accessibility:
- * - Semantic HTML structure
- * - ARIA roles and attributes
- * - Color contrast compliance
- * - Screen reader support
  *
  * @param props - Component properties
  * @param props.error - Apollo error object to process and display

@@ -33,7 +33,6 @@ export interface UserSectionProps {
  * - Responsive design
  *
  * Component Structure:
- * - Container with optional winner highlight
  * - UserProfile component
  *   - Avatar and basic info
  *   - Social links
@@ -43,12 +42,6 @@ export interface UserSectionProps {
  *   - Contribution data
  *   - Activity metrics
  *
- * Visual States:
- * - Normal display
- * - Winner state with golden shadow
- * - Comparison mode with scores
- * - Dark/light mode variants
- *
  * Layout Features:
  * - Responsive padding
  * - Proper spacing between sections
@@ -56,12 +49,6 @@ export interface UserSectionProps {
  * - Rounded corners
  * - Background colors
  *
- * Accessibility:
- * - Semantic structure
- * - ARIA attributes
- * - Color contrast
- * - Focus management
- * - Screen reader support
  *
  * @param props - Component properties
  * @param props.user - GitHub user data

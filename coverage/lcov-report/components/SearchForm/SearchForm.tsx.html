@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>22/22</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/20</span>
+                <span class='fraction'>19/19</span>
             </div>
         
             
@@ -261,21 +261,10 @@
 <a name='L196'></a><a href='#L196'>196</a>
 <a name='L197'></a><a href='#L197'>197</a>
 <a name='L198'></a><a href='#L198'>198</a>
-<a name='L199'></a><a href='#L199'>199</a>
-<a name='L200'></a><a href='#L200'>200</a>
-<a name='L201'></a><a href='#L201'>201</a>
-<a name='L202'></a><a href='#L202'>202</a>
-<a name='L203'></a><a href='#L203'>203</a>
-<a name='L204'></a><a href='#L204'>204</a>
-<a name='L205'></a><a href='#L205'>205</a>
-<a name='L206'></a><a href='#L206'>206</a>
-<a name='L207'></a><a href='#L207'>207</a>
-<a name='L208'></a><a href='#L208'>208</a>
-<a name='L209'></a><a href='#L209'>209</a>
-<a name='L210'></a><a href='#L210'>210</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L199'></a><a href='#L199'>199</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -371,31 +360,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -484,6 +462,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { useSearch } from '../../hooks/useSearch';
 import { SearchSuggestions } from './SearchSuggestions';
+import { useSuggestions } from '../../hooks/useSuggestions';
 &nbsp;
 /**
  * Props interface for search form components
@@ -508,7 +487,7 @@ export interface SearchFormProps {
   onSubmit: (e: React.FormEvent) =&gt; void;
 &nbsp;
   /** Placeholder text for the search input */
-  placeholder: string;
+  placeholder?: string;
 &nbsp;
   /** Optional loading state indicator */
   isLoading?: boolean;
@@ -518,6 +497,11 @@ export interface SearchFormProps {
 &nbsp;
   /** Optional data-testid for testing */
   dataTestId?: string;
+&nbsp;
+  /** Callback function triggered when suggestion is selected
+   * @param username - The selected username
+   */
+  onSuggestionSelect: (username: string) =&gt; void;
 }
 /**
  * Search form component for GitHub username search
@@ -544,12 +528,6 @@ export interface SearchFormProps {
  * - Suggestion selection
  * - Form submission
  *
- * Accessibility:
- * - ARIA labels and roles
- * - Keyboard navigation
- * - Focus management
- * - Screen reader support
- * - Disabled state handling
  *
  * @param props - Component properties extending SearchFormProps
  * @param props.username - Current username value
@@ -574,41 +552,30 @@ export const SearchForm = ({
   username,
   onUsernameChange,
   onSubmit,
+  onSuggestionSelect,
   placeholder = <span class="branch-0 cbranch-no" title="branch not covered" >"Search GitHub username",</span>
   isLoading = false,
   className = "",
   dataTestId = "search-form"
 }: SearchFormProps) =&gt; {
-  const {
-    searchTerm,
-    setSearchTerm,
-    showSuggestions,
-    setShowSuggestions,
-    suggestionRef,
-    inputRef,
-    data,
-    searchLoading,
-    debouncedOnChange
-  } = useSearch(username, onUsernameChange);
+  const { inputRef, data, searchLoading } = useSearch(username);
+  const { showSuggestions, setShowSuggestions, suggestionRef } = useSuggestions();
 &nbsp;
   const handleInputChange = (e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
     const value = e.target.value;
-    setSearchTerm(value);
-    setShowSuggestions(true);
-    debouncedOnChange(value);
+    onUsernameChange(value);
   };
 &nbsp;
   const handleSuggestionClick = (login: string) =&gt; {
-    setSearchTerm(login);
-    onUsernameChange(login);
     setShowSuggestions(false);
+    onSuggestionSelect(login);
   };
 &nbsp;
   return (
     &lt;form
       onSubmit={(e) =&gt; {
         e.preventDefault();
-        if (!searchTerm.trim()) return;
+        if (!username.trim()) return;
         setShowSuggestions(false);
         onSubmit(e);
       }}
@@ -629,7 +596,7 @@ export const SearchForm = ({
             &lt;input
               ref={inputRef}
               type="text"
-              value={searchTerm}
+              value={username}
               onChange={handleInputChange}
               onFocus={() =&gt; setShowSuggestions(true)}
               placeholder={placeholder}
@@ -663,7 +630,7 @@ export const SearchForm = ({
             )}
 &nbsp;
             {/* Suggestions dropdown - positioned absolutely */}
-            {showSuggestions &amp;&amp; searchTerm.length &gt;= 2 &amp;&amp; (
+            {showSuggestions &amp;&amp; username.length &gt;= 2 &amp;&amp; (
               &lt;div className="absolute left-0 right-0 top-[calc(100%+4px)] z-10"&gt;
                 &lt;SearchSuggestions
                   searchLoading={searchLoading}
@@ -697,7 +664,7 @@ export const SearchForm = ({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-01-02T15:12:06.444Z
+                at 2025-01-05T22:41:59.687Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

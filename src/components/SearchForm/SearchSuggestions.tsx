@@ -60,12 +60,6 @@ export interface SearchSuggestionsProps {
  * - Focus management
  * - Click outside to dismiss
  *
- * Accessibility:
- * - Proper ARIA roles
- * - Keyboard navigation
- * - Screen reader support
- * - Focus management
- * - Loading state announcements
  *
  * @param props - Component properties
  * @param props.searchLoading - Whether search is in progress

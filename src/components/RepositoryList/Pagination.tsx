@@ -33,13 +33,6 @@ export interface PaginationProps {
  * - Focus states for keyboard navigation
  * - Disabled states for boundary conditions
  *
- * Accessibility:
- * - Semantic navigation structure
- * - ARIA labels for buttons
- * - Keyboard navigation support
- * - Clear focus indicators
- * - Disabled state announcements
- *
  * Boundary Handling:
  * - Disables Previous button on first page
  * - Disables Next button on last page

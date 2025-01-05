@@ -52,11 +52,6 @@ export interface FilterControlsProps {
  * - Consistent hover and focus states
  * - Responsive container with proper spacing
  *
- * Accessibility:
- * - Proper ARIA labels for all controls
- * - Keyboard navigation support
- * - Clear visual focus indicators
- * - Semantic HTML structure
  *
  * @param props - Component properties
  * @param props.searchQuery - Current search filter text

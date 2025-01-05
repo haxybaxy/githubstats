@@ -94,6 +94,7 @@ docker run -it \
 ```bash
 npm run test
 ```
+You might get a few warnings about the props and components in the ThemeToggle component being invalid, which is fine, since these props are needed for the framer motion library.
 
 2. Run tests in watch mode (for development):
 ```bash
@@ -104,6 +105,12 @@ npm run test:watch
 ```bash
 npm run test:coverage
 ```
+
+The test coverage report can be found in `coverage/lcov-report/index.html`
+
+The remaining uncovered code is for a few trivial lines.
+
+![alt text](./public/coverage.png)
 
 ### Running Storybook
 
@@ -125,11 +132,15 @@ npm run storybook
 
 2. **Snapshot Tests for Commit Line Chart**
    - Due to the nature of the react-chart-js-2 library, you are supposed to mock it with an empty canvas to test that it renders correctly.
-   - This means that regular testing with code does not work, so snapshot testing needs to be implemented to test that the chart renders with the correct data.
+   - This means that regular testing with jest does not work, so image snapshot testing needs to be implemented to test that the chart renders with the correct data.
 
 4. **Versus Mode**
    - The Versus mode is a feature I added to this project to allow users to compare their own stats to another user, you can find the implementation on the comparisonview branch.
    - Some smoother animations and a better mobile UI would need to be implemented before this can be merged into the main branch.
 
-5. **Feature Additions**
+5. **Global State Management**
+   - As the app grows in complexity, it would need a better mechanism to manage global state, in order to prevent prop drilling.
+   - I would like to implement a state management library like Redux or Zustand in the future, as adding the versus mode already had me pass down props down the component tree multiple times.
+
+6. **Feature Additions**
    - Adding another query to fetch the amount of open, merged, and closed pull requests or issues for a user would be a nice addition, but I would need to find a more aesthetic way to display the data, in order to not clash with the other user stats.
