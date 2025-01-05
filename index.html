@@ -75,6 +75,7 @@
 <pre><code class="bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">run</span><span class="hl-1"> </span><span class="hl-2">test</span>
 </code><button type="button">Copy</button></pre>
 
+<p>You might get a few warnings about the props and components in the ThemeToggle component being invalid, which is fine, since these props are needed for the framer motion library.</p>
 <ol start="2">
 <li>Run tests in watch mode (for development):</li>
 </ol>
@@ -87,6 +88,9 @@
 <pre><code class="bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">run</span><span class="hl-1"> </span><span class="hl-2">test:coverage</span>
 </code><button type="button">Copy</button></pre>
 
+<p>The test coverage report can be found in <code>coverage/lcov-report/index.html</code></p>
+<p>The remaining uncovered code is for a few trivial lines.</p>
+<p><img src="media/coverage.png" alt="alt text"></p>
 <a id="running-storybook" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Running Storybook<a href="#running-storybook" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Storybook provides a sandbox environment for developing and testing components in isolation:</p>
 <pre><code class="bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">run</span><span class="hl-1"> </span><span class="hl-2">storybook</span>
 </code><button type="button">Copy</button></pre>
@@ -104,7 +108,7 @@
 <p><strong>Snapshot Tests for Commit Line Chart</strong></p>
 <ul>
 <li>Due to the nature of the react-chart-js-2 library, you are supposed to mock it with an empty canvas to test that it renders correctly.</li>
-<li>This means that regular testing with code does not work, so snapshot testing needs to be implemented to test that the chart renders with the correct data.</li>
+<li>This means that regular testing with jest does not work, so image snapshot testing needs to be implemented to test that the chart renders with the correct data.</li>
 </ul>
 </li>
 <li>
@@ -112,6 +116,13 @@
 <ul>
 <li>The Versus mode is a feature I added to this project to allow users to compare their own stats to another user, you can find the implementation on the comparisonview branch.</li>
 <li>Some smoother animations and a better mobile UI would need to be implemented before this can be merged into the main branch.</li>
+</ul>
+</li>
+<li>
+<p><strong>Global State Management</strong></p>
+<ul>
+<li>As the app grows in complexity, it would need a better mechanism to manage global state, in order to prevent prop drilling.</li>
+<li>I would like to implement a state management library like Redux or Zustand in the future, as adding the versus mode already had me pass down props down the component tree multiple times.</li>
 </ul>
 </li>
 <li>
