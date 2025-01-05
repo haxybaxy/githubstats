@@ -68,6 +68,9 @@ export interface User {
   /** URL to user's avatar image */
   avatarUrl: string;
 
+  /** URL to user's GitHub profile */
+  url: string;
+
   /** User's bio/description */
   bio: string;
 

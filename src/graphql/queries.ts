@@ -29,6 +29,7 @@ export const GET_USER_INFO = gql`
       name
       login
       avatarUrl
+      url
       bio
       location
       websiteUrl
