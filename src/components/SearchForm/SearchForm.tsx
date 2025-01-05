@@ -1,6 +1,7 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { useSearch } from '../../hooks/useSearch';
 import { SearchSuggestions } from './SearchSuggestions';
+import { useSuggestions } from '../../hooks/useSuggestions';
 
 /**
  * Props interface for search form components
@@ -96,27 +97,15 @@ export const SearchForm = ({
   className = "",
   dataTestId = "search-form"
 }: SearchFormProps) => {
-  const {
-    searchTerm,
-    setSearchTerm,
-    showSuggestions,
-    setShowSuggestions,
-    suggestionRef,
-    inputRef,
-    data,
-    searchLoading,
-    debouncedOnChange
-  } = useSearch(username, onUsernameChange);
+  const { inputRef, data, searchLoading } = useSearch(username);
+  const { showSuggestions, setShowSuggestions, suggestionRef } = useSuggestions();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setSearchTerm(value);
-    setShowSuggestions(true);
-    debouncedOnChange(value);
+    onUsernameChange(value);
   };
 
   const handleSuggestionClick = (login: string) => {
-    setSearchTerm(login);
     onUsernameChange(login);
     setShowSuggestions(false);
   };
@@ -125,7 +114,7 @@ export const SearchForm = ({
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        if (!searchTerm.trim()) return;
+        if (!username.trim()) return;
         setShowSuggestions(false);
         onSubmit(e);
       }}
@@ -146,7 +135,7 @@ export const SearchForm = ({
             <input
               ref={inputRef}
               type="text"
-              value={searchTerm}
+              value={username}
               onChange={handleInputChange}
               onFocus={() => setShowSuggestions(true)}
               placeholder={placeholder}
@@ -180,7 +169,7 @@ export const SearchForm = ({
             )}
 
             {/* Suggestions dropdown - positioned absolutely */}
-            {showSuggestions && searchTerm.length >= 2 && (
+            {showSuggestions && username.length >= 2 && (
               <div className="absolute left-0 right-0 top-[calc(100%+4px)] z-10">
                 <SearchSuggestions
                   searchLoading={searchLoading}
