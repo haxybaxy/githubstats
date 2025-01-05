@@ -7,11 +7,12 @@ import { gql } from '@apollo/client';
  * - Basic Information:
  *   - User's name and login
  *   - Avatar URL
+ *   - URL
  *   - Bio and location
  * - Social Links:
  *   - Website URL
  *   - Twitter username
- *   - Other social accounts (first 10)
+ *   - Other social accounts (first 10, only linkedin is implemented)
  * - Network Statistics:
  *   - Follower count
  *   - Following count
