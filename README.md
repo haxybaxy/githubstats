@@ -1,4 +1,4 @@
-# <img src="./public/favicon.svg" alt="GitStats Logo" width="30" height="30" style="vertical-align: middle; margin-left: 5px;"> GitHub Stats <img src="./public/favicon.svg" alt="GitStats Logo" width="30" height="30" style="vertical-align: middle; margin-left: 5px;">
+# GitHub Stats 
 ![Screenshot](./public/screenshot.jpeg "Screenshot")
 
 Vite React app to view real-time GitHub profile contribution and repository data.
