@@ -130,7 +130,7 @@ npm run storybook
    - To prevent users from hitting the rate limit, I made the decision to only fetch the first 100 commits for a repo in the last 3 months, instead of fully visualizing the commit history.
    - Since you have to expand the nodes to get the date of a commit, we would need to rely on an external webhook to fetch the data.
 
-2. **Snapshot Tests for Commit Line Chart**
+2. **Image Snapshot Tests for Commit Line Chart**
    - Due to the nature of the react-chart-js-2 library, you are supposed to mock it with an empty canvas to test that it renders correctly.
    - This means that regular testing with jest does not work, so image snapshot testing needs to be implemented to test that the chart renders with the correct data.
 
