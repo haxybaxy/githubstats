@@ -5,7 +5,7 @@
   "excludePrivate": true,
   "excludeProtected": true,
   "theme": "default",
-  "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/*.stories.tsx", "**/*.config.ts","**/*.d.ts","main.tsx","setupTests.ts","__mocks__"],
+  "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/*.stories.tsx", "**/*.config.ts","**/*.d.ts","main.tsx","setupTests.ts","**/__mocks__/**", "**/stories/**", "**/App.tsx","**/setupTests.ts"],
   "categorizeByGroup": true,
   "categoryOrder": ["Components", "Hooks", "Utils", "*"]
 }
