@@ -6,6 +6,7 @@ import { MockedProvider } from '@apollo/client/testing';
 import { GET_USER_INFO, GET_USER_CONTRIBUTIONS, GET_USER_REPOS } from '../graphql/queries';
 import { mockUserInfoData, mockUserContributionsData, mockUserReposData, repoCommitMocks, secondUserRepoCommitMocks } from './mocks/githubData';
 import { mockSecondUserInfoData, mockSecondUserContributionsData, mockSecondUserReposData } from './mocks/githubData';
+import { ThemeDecorator } from './decorators/ThemeDecorator';
 
 const meta = {
   title: 'Components/ComparisonView',
@@ -14,11 +15,13 @@ const meta = {
     layout: 'fullscreen',
   },
   decorators: [
+    ThemeDecorator,
     (Story) => (
       <ApolloProvider client={client}>
         <Story />
       </ApolloProvider>
     ),
+
   ],
   tags: ['autodocs'],
 } satisfies Meta<typeof ComparisonView>;
