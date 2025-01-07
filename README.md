@@ -135,7 +135,7 @@ npm run storybook
    - This means that regular testing with jest does not work, so image snapshot testing needs to be implemented to test that the chart renders with the correct data.
 
 4. **Versus Mode**
-   - The Versus mode is a feature I added to this project to allow users to compare their own stats to another user, you can find the implementation on the comparisonview branch.
+   - The Versus mode is a feature I added to this project to allow users to compare their own stats to another user, you can find the implementation on the comparisonview branch. The autocompletion and keybind for the searchform are disabled for convenience.
    - The UI in this branch varies a lot, so more elaborate storybook stories should be made here.
    - Smoother animations could be implemented for the appearance and disappearance of the versus mode.
    - The test coverage of this branch is also a bit worse, so more tests should be made.
