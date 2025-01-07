@@ -80,6 +80,7 @@ export interface ComparisonControlsProps {
  * />
  * ```
  */
+
 export function ComparisonControls({
   username1,
   username2,
@@ -98,6 +99,7 @@ export function ComparisonControls({
         username={username1}
         onUsernameChange={onUsernameChange1}
         onSubmit={onSubmit}
+        onSuggestionSelect={onUsernameChange1}
         placeholder={isComparing ? "Enter first username..." : "Enter username..."}
         isLoading={loading1}
         className="w-full sm:w-auto"
@@ -126,6 +128,7 @@ export function ComparisonControls({
           username={username2}
           onUsernameChange={onUsernameChange2}
           onSubmit={onSubmit}
+          onSuggestionSelect={onUsernameChange2}
           placeholder="Enter second username..."
           isLoading={loading2}
           className="w-full sm:w-auto"
