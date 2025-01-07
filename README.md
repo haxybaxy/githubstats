@@ -11,7 +11,7 @@ Vite React app to view real-time GitHub profile contribution and repository data
 
 - 📊 Real-time GitHub statistics visualization
 - 📈 Interactive contribution graphs
-- 📱 Responsive design with dark mode support
+- 📱 Responsive desktop and mobile friendly design with dark mode support
 - ⚡ Fast and efficient data loading
 - 🎨 Beautiful UI with smooth animations
 - 🤖 Automatic deployment and testing using Github Actions
@@ -136,7 +136,9 @@ npm run storybook
 
 4. **Versus Mode**
    - The Versus mode is a feature I added to this project to allow users to compare their own stats to another user, you can find the implementation on the comparisonview branch.
-   - Some smoother animations and a better mobile UI would need to be implemented before this can be merged into the main branch.
+   - The UI in this branch varies a lot, so more elaborate storybook stories should be made here.
+   - Smoother animations could be implemented for the appearance and disappearance of the versus mode.
+   - The test coverage of this branch is also a bit worse, so more tests should be made.
 
 5. **Global State Management**
    - As the app grows in complexity, it would need a better mechanism to manage global state, in order to prevent prop drilling.
