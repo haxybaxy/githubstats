@@ -17,6 +17,8 @@ import { ArrowsRightLeftIcon } from '@heroicons/react/24/outline';
  */
 export interface ComparisonViewProps {
   onSearchStateChange: (isSearchActive: boolean) => void;
+  initialUsername1?: string;
+  initialUsername2?: string;
 }
 
 /**
@@ -65,9 +67,15 @@ export interface ComparisonViewProps {
  * />
  * ```
  */
-export function ComparisonView({ onSearchStateChange }: ComparisonViewProps) {
-
-  const { state, setState, handleSearch, toggleComparing } = useComparisonState();
+export function ComparisonView({
+  onSearchStateChange,
+  initialUsername1,
+  initialUsername2
+}: ComparisonViewProps) {
+  const { state, setState, handleSearch, toggleComparing } = useComparisonState(
+    initialUsername1,
+    initialUsername2
+  );
 
   /**
    * Fetch data for the first user

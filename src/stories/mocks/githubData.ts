@@ -31,6 +31,27 @@ const baseUserData = {
   __typename: 'User'
 };
 
+// Add a second user's base data
+const secondUserData = {
+  ...baseUserData,
+  login: 'torvalds',
+  name: 'Linus Torvalds',
+  bio: 'Linux kernel creator',
+  avatarUrl: 'https://avatars.githubusercontent.com/u/1024025',
+  url: 'https://github.com/torvalds',
+  location: 'Portland, OR',
+  websiteUrl: 'https://www.kernel.org',
+  twitterUsername: null,
+  followers: {
+    totalCount: 190000,
+    __typename: 'FollowerConnection'
+  },
+  following: {
+    totalCount: 0,
+    __typename: 'FollowingConnection'
+  }
+};
+
 export const createCommitMock = (owner: string, repoName: string) => {
   const generateDailyCommits = (dayIndex: number) => {
     const baseCommits = Math.sin((dayIndex / 90) * Math.PI * 4) + 1;
@@ -198,7 +219,100 @@ export const mockUserContributionsData = {
   }
 };
 
-
 export const repoCommitMocks = mockUserReposData.data.user.repositories.nodes.map(repo =>
   createCommitMock('octocat', repo.name)
+);
+
+// Add second user's mock data
+export const mockSecondUserInfoData = {
+  data: {
+    user: secondUserData
+  }
+};
+
+export const mockSecondUserReposData = {
+  data: {
+    user: {
+      login: 'torvalds',
+      repositories: {
+        totalCount: 6,
+        totalStargazers: [
+          { stargazerCount: 150000, __typename: 'Repository' },
+          { stargazerCount: 1200, __typename: 'Repository' }
+        ],
+        nodes: [
+          {
+            id: '3',
+            name: 'linux',
+            description: 'Linux kernel source tree',
+            url: 'https://github.com/torvalds/linux',
+            primaryLanguage: {
+              name: 'C',
+              color: '#555555',
+              __typename: 'Language'
+            },
+            languages: {
+              nodes: [
+                {
+                  name: 'C',
+                  color: '#555555',
+                  __typename: 'Language'
+                }
+              ],
+              __typename: 'LanguageConnection'
+            },
+            stargazerCount: 150000,
+            forkCount: 50000,
+            updatedAt: '2024-03-21T10:00:00Z',
+            __typename: 'Repository'
+          }
+        ],
+        __typename: 'RepositoryConnection'
+      },
+      __typename: 'User'
+    }
+  }
+};
+
+export const mockSecondUserContributionsData = {
+  data: {
+    user: {
+      contributionsCollection: {
+        totalCommitContributions: 25000,
+        totalPullRequestContributions: 0,
+        totalIssueContributions: 50,
+        totalRepositoryContributions: 6,
+        contributionCalendar: {
+          totalContributions: 25050,
+          weeks: [
+            {
+              contributionDays: [
+                {
+                  contributionCount: 15,
+                  date: '2024-03-20',
+                  __typename: 'ContributionDay'
+                }
+              ],
+              __typename: 'ContributionWeek'
+            }
+          ],
+          __typename: 'ContributionCalendar'
+        },
+        __typename: 'ContributionsCollection'
+      },
+      pullRequests: {
+        totalCount: 0,
+        __typename: 'PullRequestConnection'
+      },
+      issues: {
+        totalCount: 50,
+        __typename: 'IssueConnection'
+      },
+      __typename: 'User'
+    }
+  }
+};
+
+export const secondUserRepoCommitMocks = mockSecondUserReposData.data.user.repositories.nodes.map(repo =>
+  createCommitMock('torvalds', repo.name)
 );

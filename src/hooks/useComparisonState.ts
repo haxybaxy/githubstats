@@ -72,16 +72,16 @@ export interface ComparisonStateHook {
  * </form>
  * ```
  */
-export function useComparisonState(): ComparisonStateHook {
+export function useComparisonState(initialUsername1?: string, initialUsername2?: string): ComparisonStateHook {
   /**
    * Initialize state with default values
    */
-  const [state, setState] = useState<ComparisonState>({
-    username1: '',
-    username2: '',
-    searchedUsername1: '',
-    searchedUsername2: '',
-    isComparing: false,
+  const [state, setState] = useState({
+    username1: initialUsername1 || '',
+    username2: initialUsername2 || '',
+    searchedUsername1: initialUsername1 || '',
+    searchedUsername2: initialUsername2 || '',
+    isComparing: !!initialUsername2
   });
 
   /**
