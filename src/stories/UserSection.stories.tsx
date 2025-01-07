@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { UserSection } from '../components/UserSection/UserSection';
-
+import { ThemeDecorator } from './decorators/ThemeDecorator';
 const meta = {
   title: 'Components/UserSection',
   component: UserSection,
   parameters: {
     layout: 'padded',
   },
+  decorators: [ThemeDecorator],
   tags: ['autodocs'],
 } satisfies Meta<typeof UserSection>;
 
@@ -54,6 +55,15 @@ export const Default: Story = {
     isComparing: false,
     hasCompetitor: false,
   },
+};
+
+export const DefaultDark: Story = {
+  args: {
+    ...Default.args,
+  },
+  parameters: {
+    theme: 'dark'
+  }
 };
 
 export const Winner: Story = {
