@@ -6,6 +6,7 @@ export const mockUser: User = {
   bio: 'Test bio',
   avatarUrl: 'https://example.com/avatar.jpg',
   location: 'Test Location',
+  url: 'https://github.com/testuser',
   websiteUrl: 'https://example.com',
   twitterUsername: 'testuser',
   followers: {
