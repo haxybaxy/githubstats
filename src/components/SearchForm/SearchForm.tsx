@@ -2,7 +2,7 @@ import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { useSearch } from '../../hooks/useSearch';
 import { SearchSuggestions } from './SearchSuggestions';
 import { useSuggestions } from '../../hooks/useSuggestions';
-
+import React from 'react';
 /**
  * Props interface for search form components
  *
@@ -99,6 +99,22 @@ export const SearchForm = ({
 }: SearchFormProps) => {
   const { inputRef, data, searchLoading } = useSearch(username);
   const { showSuggestions, setShowSuggestions, suggestionRef } = useSuggestions();
+
+  React.useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (
+        e.key === '/' &&
+        document.activeElement?.tagName !== 'INPUT' &&
+        document.activeElement?.tagName !== 'TEXTAREA'
+      ) {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+    return () => document.removeEventListener('keydown', handleKeyPress);
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
