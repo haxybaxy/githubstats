@@ -47,9 +47,8 @@ export interface SearchFormProps {
  *
  * Features:
  * - Real-time search suggestions
- * - Debounced search input
  * - Loading states
- * - Keyboard shortcuts
+ * - Keyboard shortcut
  * - Dark mode support
  * - Responsive design
  *
