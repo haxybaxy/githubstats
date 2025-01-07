@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { FilterControls } from '../components/RepositoryList/FilterControls';
-
+import { ThemeDecorator } from './decorators/ThemeDecorator';
 const meta = {
   title: 'Components/FilterControls',
   component: FilterControls,
@@ -8,6 +8,7 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  decorators: [ThemeDecorator]
 } satisfies Meta<typeof FilterControls>;
 
 export default meta;
@@ -25,6 +26,15 @@ export const Default: Story = {
     onSortByChange: (value) => console.log('Sort by changed:', value),
     onSortOrderChange: () => console.log('Sort order changed'),
   },
+};
+
+export const DefaultDark: Story = {
+  args: {
+    ...Default.args,
+  },
+  parameters: {
+    theme: 'dark'
+  }
 };
 
 export const WithFiltersApplied: Story = {

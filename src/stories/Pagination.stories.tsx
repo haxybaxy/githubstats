@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Pagination } from '../components/RepositoryList/Pagination';
-
+import { ThemeDecorator } from './decorators/ThemeDecorator';
 const meta = {
   title: 'Components/Pagination',
   component: Pagination,
@@ -8,6 +8,7 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  decorators: [ThemeDecorator]
 } satisfies Meta<typeof Pagination>;
 
 export default meta;
@@ -19,6 +20,24 @@ export const FirstPage: Story = {
     totalPages: 5,
     onPageChange: (page) => console.log('Page changed to:', page),
   },
+};
+
+export const FirstPageDark: Story = {
+  args: {
+    ...FirstPage.args,
+  },
+  parameters: {
+    theme: 'dark',
+    backgrounds: {
+      default: 'dark',
+      values: [
+        {
+          name: 'dark',
+          value: '#1a1a1a'
+        }
+      ]
+    }
+  }
 };
 
 export const MiddlePage: Story = {
